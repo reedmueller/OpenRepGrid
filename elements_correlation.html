@@ -10,7 +10,7 @@
 
 
 
-<title>The OpenRepGrid R package</title>
+<title>Elements correlations</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -206,43 +206,86 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 <div id="header">
-<h1 class="title">The OpenRepGrid R package</h1>
+<h1 class="title">Elements correlations</h1>
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#r-code">R-Code</a></li>
+<li><a href="#literature">Literature</a></li>
+</ul>
+</div>
 
-<div id="tools-for-the-analysis-of-repertory-grid-data" class="section level3">
-<h3><em>Tools for the analysis of repertory grid data</em></h3>
-<div id="openrepgrid" class="section level4">
-<h4>OpenRepGrid</h4>
-<ul>
-<li>The <a href="http://en.wikipedia.org/wiki/Repertory_grid"><em>repertory grid</em></a> (also <em>grid</em> or <em>repgrid</em>) is an interview method that originated from <a href="http://en.wikipedia.org/wiki/Personal_construct_theory">Personal Construct Psychology</a>. It is applied in different academic and practical fields (clinical psychology, market research etc.). <code>OpenRepGrid</code> provides tools to analyze repertory grid data. It is a ‘plug-in’ for the statistical software <a href="http://www.r-project.org/">R</a>. Both are free and Open Source and will run on Windows, MacOS and Linux.</li>
-</ul>
+<div id="description" class="section level3">
+<h3>Description</h3>
+<p>As a measure for element similarity correlations between elements are frequently used. Note that product moment correlations as a measure of similarity are flawed as they are not invariant to construct reflection <span class="citation">(Bell, 2010; Mackay, 1992)</span>. A correlation index invariant to construct reflection is Cohen’s rc measure <span class="citation">(1969)</span>, which can be calculated using the argument <code>rc=TRUE</code> which is the default option.</p>
 </div>
-<div id="why-an-r-package" class="section level4">
-<h4>Why an R package?</h4>
+<div id="r-code" class="section level3">
+<h3>R-Code</h3>
+<p>As a default the construct reflection invariant correlation Cohen’s rc is calculated.</p>
+<p>Note how the values change when the simple product-moment correlation is used instaed of Cohen’s rc. Make sure you know what you are doing when setting <code>rc=FALSE</code>.</p>
+<pre class="r"><code>elementCor(mackay1992, rc=F)</code></pre>
+<pre><code>
+############################
+Correlation between elements
+############################
+
+Type of correlation:  pearson 
+Note: Standard correlations are not invariant to scale reflection.
+
+                        1     2     3     4     5     6
+(1) Self            1     -0.37 -0.19  0.32 -0.75  0.96
+(2) Ideal self      2           -0.71 -0.56 -0.26 -0.30
+(3) Mother          3                  0.63  0.57 -0.12
+(4) Father          4                        0.05  0.38
+(5) Spouse          5                             -0.74
+(6) Disliked person 6                                  </code></pre>
+<p>Although nor recommended different measures, not invariant to construct relfection, can be prompoted, when setting <code>rc=FALSE</code>.</p>
 <ul>
-<li><a href="http://www.r-project.org/">R</a> is an Open Source framework for statistical programming. Its syntax is simple and it provides a wealth of functionality. This means that any ideas you might come up with can be implemented easily and be provided to other grid users around the world. That’s why R is a strong basis to build <code>OpenRepGrid</code> upon.</li>
+<li><strong>Pearson</strong> or Product-moment correlation (PMC)</li>
+<li><strong>Kendall</strong>’s tau rank correlation</li>
+<li><strong>Spearman</strong>’s rank correlation</li>
 </ul>
+<p>To request these types of correlations use the <code>method</code> argument plus <code>rc=FALSE</code>.</p>
+<pre class="r"><code>elementCor(mackay1992, rc=FALSE, meth=&quot;kendall&quot;)    # Kendalls tau correlation
+elementCor(mackay1992, rc=FALSE, meth=&quot;spearman&quot;)   # Spearman rank correlation</code></pre>
+<p>Several arguments to format the output are available.</p>
+<pre class="r"><code>elementCor(mackay1992, index=F, trim=6)</code></pre>
+<pre><code>
+############################
+Correlation between elements
+############################
+
+Type of correlation:  Cohens&#39;s rc (invariant to scale reflection) 
+
+           1     2     3     4     5     6
+Self   1      0.59  0.28  0.29 -0.61 -0.62
+Ideal  2           -0.04 -0.20 -0.38 -0.81
+Mother 3                  0.63  0.37 -0.43
+Father 4                        0.00  0.00
+Spouse 5                              0.00
+Dislik 6                                  </code></pre>
+<p>If the correlations are calculated for further processing, the correlations can be saved.</p>
+<pre class="r"><code>r &lt;- elementCor(mackay1992)</code></pre>
+<p>The object is matrix, so you can eassily acces the results. E.g. all correlations with the element <code>Self</code>.</p>
+<pre class="r"><code>r[1, ]</code></pre>
+<pre><code>           (1) Self      (2) Ideal self          (3) Mother 
+          1.0000000           0.5876060           0.2809003 
+         (4) Father          (5) Spouse (6) Disliked person 
+          0.2909572          -0.6123724          -0.6182840 </code></pre>
 </div>
-<div id="join-in" class="section level4">
-<h4>Join in!</h4>
-<ul>
-<li>The OpenRepGrid project is supposed to be an endeavor of <em>collaborative construing</em>. Anyone who is interested in supporting the project is invited to <a href="participate.html">join in</a>. We hope that many participators will make <code>OpenRepGrid</code> a tool that really suits the needs of the community.</li>
-</ul>
-</div>
-<div id="future-developments" class="section level4">
-<h4>Future developments</h4>
-<ul>
-<li>In a first phase <code>OpenRepGrid</code> will be a command line tool. In a second phase a graphical user interface (GUI) will be added. Features for administration of grids are currently not part of the project.</li>
-</ul>
-</div>
-<div id="citing-openrepgrid" class="section level4">
-<h4>Citing OpenRepGrid</h4>
-<p>If you use <code>OpenRepGrid</code> for calculations in your publications, please cite it as below.</p>
-<ul>
-<li>Heckmann, M. (2014). OpenRepGrid: An R package for the analysis of repertory grids. <em>ZENODO</em>. <a href="doi:10.5281/zenodo.8492" class="uri">doi:10.5281/zenodo.8492</a></li>
-</ul>
-<p><a href="http://dx.doi.org/10.5281/zenodo.11623"><img src="https://zenodo.org/badge/5972/markheckmann/OpenRepGrid.png" alt="DOI" /></a></p>
+<div id="literature" class="section level3">
+<h3>Literature</h3>
+<!-- 
+* Bell, R. C. (2010). A note on aligning constructs. Personal Construct Theory & Practice, (7), 42-48.
+* Cohen, J. (1969). rc: A profile similarity coefficient invariant over variable reflection. Psychological Bulletin, 71(4), 281-284.
+* Mackay, N. (1992). Identification, Reflection, and Correlation: Problems in the bases of Repertory Grid measures. International Journal of Personal Construct Psychology, 5(1), 57-75.
+-->
+<div class="references">
+<p>Bell, R. C. (2010). A note on aligning constructs. <em>Personal Construct Theory &amp; Practice</em>, <em>7</em>, 42–48.</p>
+<p>Cohen, J. (1969). rc: A profile similarity coefficient invariant over variable reflection. <em>Psychological Bulletin</em>, <em>71</em>(4), 281–284. doi:<a href="http://dx.doi.org/10.1037/h0026865">10.1037/h0026865</a></p>
+<p>Mackay, N. (1992). Identification, reflection, and correlation: Problems in the bases of repertory grid measures. <em>International Journal of Personal Construct Psychology</em>, <em>5</em>(1), 57–75. doi:<a href="http://dx.doi.org/10.1080/08936039208404941">10.1080/08936039208404941</a></p>
 </div>
 </div>
 

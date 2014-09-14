@@ -1,0 +1,55 @@
+---
+title: "Join in!"
+output: html_document
+---
+
+There are several ways of how to participate in the project.
+
+**<i class="icon-comment"></i> Make suggestions**
+
+* In order to make `OpenRepGrid` suit your needs we need to know what features you need, what you miss and what you feel needs improvement. So please don't hesitate to [tell us](#get-in-touch). Just share your ideas in the comment section at the bottom of each page. 
+
+       
+**<i class="icon-pencil"></i> Build the documentation** 
+
+* If you feel the documentation needs improvement or you have a use case you would like to see in the documentation, just [tell us](#get-in-touch) in the comment section. Or if you have a draft you would like to add, [send it to us](#get-in-touch).
+
+**<i class="icon-align-justify"></i> Supply code snippets** 
+
+* If have some basic R knowledge and come up with some code snippets just [send them](#get-in-touch) and we will take care to integrate your ideas into the package.
+
+**<i class="icon-user"></i> Join us on github** 
+
+* If you have solid R knowledge just hammer out some code and [send it to us](#get-in-touch) :) Or, if you are familiar with git, fork the [OpenRepGrid repo](https://github.com/markheckmann/OpenRepGrid), make some changes and submit a pull request. Please also [report bugs and suggest enhancements](https://github.com/markheckmann/OpenRepGrid/issues) here.
+
+<!--
+**<i class="icon-gift"></i> Give financial support**
+
+* If you like to help us paying the server hosting costs, just make a small donation. <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="ZMJ3KA9XW9FCN">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+-->
+
+
+### Get in touch
+
+You can get in touch in several ways:
+
+* Post your ideas, remarks and suggestions in the comment section at the bottom of each page. We will get back to your comments ASAP.
+* Write an email to openrepgrid@gmail.com
+* (Expert level): Post a bug, issue or enhancement directly on [github](https://github.com/markheckmann/OpenRepGrid/issues)
+
+
+### Contributors
+
+The following people have contributed to the development of `OpenRepGrid` in one of the above ways. Become one of them!
+
+* [Mark Heckmann](http://www.markheckmann.de) (package maintainer)
+* Richard C. Bell (thanks for some FORTRAN code and for the joint work on [bootstrap clustering](slideshare.net/markheckmann/a-new-development-in-the-hierarchical-clustering-of-repertory-grid-data-24444362)) 
+
+
+

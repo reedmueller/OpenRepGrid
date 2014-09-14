@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>Analysing constructs</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="libs/bootstrap-2.3.2/css/united.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+/* offset scroll position for anchor links (for fixed navbar)  */
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="/">OpenRepGrid</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="basics_installation.html">Installation</a></li>
+          <li><a href="quickstart.html">Quick start</a></li>
+          <li class="dropdown">
+            <a href="authoring" class="dropdown-toggle" data-toggle="dropdown">Features <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><a href="features.html">Feature overview</a></li>
+               <li class="divider"></li>
+
+               <li class="nav-header">Basics</li>
+               <li><a href="basics_manipulations.html">Basic manipulations</a></li>
+               <li class="divider"></li>
+
+               <li><a href="loading.html">Loading and saving grids</a></li>
+               <li class="divider"></li>
+               <li class="nav-header">Analyzing constructs</li>
+               <li><a href="analyzing_constructs.html">Analyzing constructs</a></li>
+            </ul>
+          </li>
+          <li><a href="data.html">Data</a></li>
+          <li><a href="developer.html">Join in!</a></li>
+
+        </ul>
+        <ul class="nav pull-right">
+          <a class="btn btn-primary" href="https://github.com/markheckmann/openrepgrid">
+            <i class="fa fa-github fa-lg"></i>
+            GitHub
+          </a>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div id="header">
+<h1 class="title">Analysing constructs</h1>
+</div>
+
+
+<div id="description" class="section level1">
+<h1>Description</h1>
+<p>To prompt descriptive statistics for the constructs of a grid use the function <code>statsConstructs</code>. The following measures are returned:</p>
+<ul>
+<li>item name</li>
+<li>item number</li>
+<li>number of valid cases</li>
+<li>mean</li>
+<li>standard deviation</li>
+<li>trimmed mean (with trim defaulting to <code>.1</code>)</li>
+<li>median (standard or interpolated)</li>
+<li>mad: median absolute deviation (from the median)</li>
+<li>minimum</li>
+<li>maximum</li>
+<li>skew</li>
+<li>kurtosis</li>
+<li>standard error</li>
+</ul>
+<p>The corresponding function for element statistics is <code>statsElements</code>.</p>
+</div>
+<div id="r-code" class="section level1">
+<h1>R-Code</h1>
+<pre class="r"><code>d &lt;- statsConstructs(fbb2003)
+d</code></pre>
+<pre><code>
+####################################
+Desriptive statistics for constructs
+####################################
+
+                            vars n mean   sd median trimmed  mad min max range  skew kurtosis   se
+(1) clever - not bright        1 8 3.75 2.31    4.0    3.75 2.97   1   7     6  0.02    -1.84 0.82
+(2) disorganiz - organized     2 8 4.00 1.77    4.5    4.00 2.22   2   6     4 -0.13    -1.96 0.63
+(3) listens - doesn&#39;t he       3 8 3.50 2.14    3.0    3.50 2.22   1   7     6  0.35    -1.40 0.76
+(4) no clear v - clear view    4 8 4.38 1.60    4.0    4.38 1.48   3   7     4  0.38    -1.68 0.56
+(5) understand - no underst    5 8 3.50 1.85    2.5    3.50 0.74   2   6     4  0.41    -1.90 0.65
+(6) ambitious - no ambitio     6 8 4.50 1.51    4.5    4.50 2.22   3   7     4  0.33    -1.58 0.53
+(7) respected - not respec     7 8 3.25 1.75    3.0    3.25 1.48   1   6     5  0.23    -1.67 0.62
+(8) distant - warm             8 8 4.12 1.96    4.0    4.12 1.48   1   7     6 -0.05    -1.46 0.69
+(9) rather agg - not aggres    9 8 3.62 1.92    3.0    3.62 2.22   1   7     6  0.36    -1.25 0.68</code></pre>
+<p>The returned object is a dataframe, so you may access them as usual. E.g. to retrieve the means of the constructs, type</p>
+<pre class="r"><code>d$mean</code></pre>
+<pre><code>[1] 3.750 4.000 3.500 4.375 3.500 4.500 3.250 4.125 3.625</code></pre>
+<pre class="r"><code>statsConstructs(fbb2003, trim = 10)</code></pre>
+<pre><code>
+####################################
+Desriptive statistics for constructs
+####################################
+
+                  vars n mean   sd median trimmed  mad min max range  skew kurtosis   se
+(1) cleve - not b    1 8 3.75 2.31    4.0    3.75 2.97   1   7     6  0.02    -1.84 0.82
+(2) disor - organ    2 8 4.00 1.77    4.5    4.00 2.22   2   6     4 -0.13    -1.96 0.63
+(3) liste - doesn    3 8 3.50 2.14    3.0    3.50 2.22   1   7     6  0.35    -1.40 0.76
+(4) no cl - clear    4 8 4.38 1.60    4.0    4.38 1.48   3   7     4  0.38    -1.68 0.56
+(5) under - no un    5 8 3.50 1.85    2.5    3.50 0.74   2   6     4  0.41    -1.90 0.65
+(6) ambit - no am    6 8 4.50 1.51    4.5    4.50 2.22   3   7     4  0.33    -1.58 0.53
+(7) respe - not r    7 8 3.25 1.75    3.0    3.25 1.48   1   6     5  0.23    -1.67 0.62
+(8) dista - warm     8 8 4.12 1.96    4.0    4.12 1.48   1   7     6 -0.05    -1.46 0.69
+(9) rathe - not a    9 8 3.62 1.92    3.0    3.62 2.22   1   7     6  0.36    -1.25 0.68</code></pre>
+<pre class="r"><code>statsConstructs(fbb2003, index=F)</code></pre>
+<pre><code>
+####################################
+Desriptive statistics for constructs
+####################################
+
+                        vars n mean   sd median trimmed  mad min max range  skew kurtosis   se
+clever - not bright        1 8 3.75 2.31    4.0    3.75 2.97   1   7     6  0.02    -1.84 0.82
+disorganiz - organized     2 8 4.00 1.77    4.5    4.00 2.22   2   6     4 -0.13    -1.96 0.63
+listens - doesn&#39;t he       3 8 3.50 2.14    3.0    3.50 2.22   1   7     6  0.35    -1.40 0.76
+no clear v - clear view    4 8 4.38 1.60    4.0    4.38 1.48   3   7     4  0.38    -1.68 0.56
+understand - no underst    5 8 3.50 1.85    2.5    3.50 0.74   2   6     4  0.41    -1.90 0.65
+ambitious - no ambitio     6 8 4.50 1.51    4.5    4.50 2.22   3   7     4  0.33    -1.58 0.53
+respected - not respec     7 8 3.25 1.75    3.0    3.25 1.48   1   6     5  0.23    -1.67 0.62
+distant - warm             8 8 4.12 1.96    4.0    4.12 1.48   1   7     6 -0.05    -1.46 0.69
+rather agg - not aggres    9 8 3.62 1.92    3.0    3.62 2.22   1   7     6  0.36    -1.25 0.68</code></pre>
+</div>
+
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+<script>
+
+// manage active state of menu based on current page
+$(document).ready(function () {
+
+    // active menu
+    href = window.location.pathname
+    href = href.substr(href.lastIndexOf('/') + 1)
+    $('a[href="' + href + '"]').parent().addClass('active');
+
+    // manage active menu header
+    if (href.startsWith('authoring_'))
+      $('a[href="' + 'authoring' + '"]').parent().addClass('active');
+    else if (href.endsWith('_format.html'))
+      $('a[href="' + 'formats' + '"]').parent().addClass('active');
+    else if (href.startsWith('developer_'))
+      $('a[href="' + 'developer' + '"]').parent().addClass('active');
+
+});
+
+</script>
+
+<!-- disqus -->
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rmarkdown'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

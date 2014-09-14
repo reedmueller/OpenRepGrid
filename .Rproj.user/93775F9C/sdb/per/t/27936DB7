@@ -1,0 +1,16 @@
+{
+    "contents" : "Package: OpenRepGrid\nLicense: GPL (>= 2)\nTitle: Tools to analyse repertory grid data\nLazyData: yes\nType: Package\nLazyLoad: yes\nAuthors@R: person(\"Mark\", \"Heckmann\", email = \"heckmann@uni-bremen.de\",\n    role = c(\"aut\", \"cre\"))\nDescription: Tools to analyse repertory grid data\nVersion: 0.1.9\nDate: 2014-09-06\nImports:\n    methods,\n    grid,\n    colorspace,\n    plyr,\n    stringr,\n    abind,\n    rgl,\n    GPArotation,\n    psych,\n    XML,\n    tcltk\nDepends:\n    pvclust\nSuggests:\n    xlsx\nCollate:\n    'bertin.r'\n    'calc.r'\n    'data-openrepgrid.r'\n    'dev-functions.r'\n    'distance.R'\n    'double-entry.R'\n    'export.r'\n    'gmMain.r'\n    'import.r'\n    'measures.r'\n    'onair.r'\n    'openrepgrid.r'\n    'repgrid.r'\n    'repgrid-basicops.r'\n    'repgrid-constructs.r'\n    'repgrid-elements.r'\n    'repgrid-output.r'\n    'repgrid-plots.r'\n    'repgrid-ratings.r'\n    'rgl-3d.r'\n    'settings.r'\n    'utils-import.r'\n    'utils.r'\n    'zzz.r'\n",
+    "created" : 1410013857033.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3973976514",
+    "id" : "27936DB7",
+    "lastKnownWriteTime" : 1410057259,
+    "path" : "~/_mh/programming/R/pkg_dev/grid/OpenRepGrid/OpenRepGrid/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "dcf"
+}

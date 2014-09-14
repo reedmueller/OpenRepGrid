@@ -1,0 +1,16 @@
+{
+    "contents" : "\\name{calcCoordsBorders}\n\\alias{calcCoordsBorders}\n\\title{Coordinates of a sourrounding rectangle in direction of a given vector.}\n\\usage{\n  calcCoordsBorders(x, y, xmax = 1, ymax = 1, cx = 0,\n    cy = 0)\n}\n\\arguments{\n  \\item{x}{numeric vector of x coordinates x coordinates.}\n\n  \\item{y}{numeric vector of y coordinates x coordinates.}\n\n  \\item{xmax}{maximal x value for sourrounding rectangle\n  (default is \\code{1}).}\n\n  \\item{ymax}{maximal y value for sourrounding rectangle\n  (default is \\code{1}).}\n\n  \\item{cx}{center of retangle in x direction (not yet\n  supported).}\n\n  \\item{cy}{center of retangle in x direction (not yet\n  supported).}\n}\n\\value{\n  a \\code{dataframe} containing the x and y coordinates for\n  the extended vectors.\n}\n\\description{\n  An arbitrary numeric vector in 2D is to be extented so it\n  will end on the borders of a sourrounding rectangle of a\n  given size. Currently the vector is supposed to start in\n  the origin \\code{c(0,0)}.\n}\n\\examples{\n\\dontrun{\n  calcCoordsBorders(1:10, 10:1)\n\n  x <- c(-100:0, 0:100, 100:0, 0:-100)/10\n  y <- c(0:100, 100:0, -(0:100), -(100:0))/10\n  xy1 <- calcCoordsBorders(x, y)\n  xy2 <- calcCoordsBorders(x, y, xm=1.2, ym=1.2)\n  plot(xy2[,1], xy2[,2], type=\"n\")\n  segments(xy1[,1],xy1[,2],xy2[,1], xy2[,2])\n}\n}\n\\author{\n  Mark Heckmann\n}\n\\keyword{internal}\n\n",
+    "created" : 1388448986439.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2634604254",
+    "id" : "39283B5E",
+    "lastKnownWriteTime" : 1365083061,
+    "path" : "~/_mh/programming/R/pkg_dev/grid/OpenRepGrid/OpenRepGrid/man/calcCoordsBorders.Rd",
+    "project_path" : "man/calcCoordsBorders.Rd",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_doc"
+}

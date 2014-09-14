@@ -10,7 +10,7 @@
 
 
 
-<title>The OpenRepGrid R package</title>
+<title>Installation</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -206,44 +206,65 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 <div id="header">
-<h1 class="title">The OpenRepGrid R package</h1>
+<h1 class="title">Installation</h1>
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#installing-r-and-rstudio">Installing R and RStudio</a></li>
+<li><a href="#installing-the-package">Installing the package</a></li>
+<li><a href="#loading-the-package">Loading the package</a></li>
+<li><a href="#video-tutorial">Video tutorial</a></li>
+<li><a href="#development-version">Development version</a></li>
+</ul>
+</div>
 
-<div id="tools-for-the-analysis-of-repertory-grid-data" class="section level3">
-<h3><em>Tools for the analysis of repertory grid data</em></h3>
-<div id="openrepgrid" class="section level4">
-<h4>OpenRepGrid</h4>
-<ul>
-<li>The <a href="http://en.wikipedia.org/wiki/Repertory_grid"><em>repertory grid</em></a> (also <em>grid</em> or <em>repgrid</em>) is an interview method that originated from <a href="http://en.wikipedia.org/wiki/Personal_construct_theory">Personal Construct Psychology</a>. It is applied in different academic and practical fields (clinical psychology, market research etc.). <code>OpenRepGrid</code> provides tools to analyze repertory grid data. It is a ‘plug-in’ for the statistical software <a href="http://www.r-project.org/">R</a>. Both are free and Open Source and will run on Windows, MacOS and Linux.</li>
-</ul>
+<hr>
+<p>To start using OpenRepGrid you need to go through three steps: You need to</p>
+<ol style="list-style-type: decimal">
+<li>install R</li>
+<li>install the OpenRepGrid package</li>
+<li>load the package.</li>
+</ol>
+<p>The video guide at the bottom also shows how to do that.</p>
+<div id="installing-r-and-rstudio" class="section level3">
+<h3>Installing R and RStudio</h3>
+<p>The prerequisite for installing the <code>OpenRepGrid</code> package is that R has been installed on your computer. R can be downloaded from the CRAN server for all three big operating systems (Windows, MacOS, Linux). Please follow the installation instructions on the R website. After installing R you can proceed.</p>
 </div>
-<div id="why-an-r-package" class="section level4">
-<h4>Why an R package?</h4>
-<ul>
-<li><a href="http://www.r-project.org/">R</a> is an Open Source framework for statistical programming. Its syntax is simple and it provides a wealth of functionality. This means that any ideas you might come up with can be implemented easily and be provided to other grid users around the world. That’s why R is a strong basis to build <code>OpenRepGrid</code> upon.</li>
-</ul>
+<div id="installing-the-package" class="section level3">
+<h3>Installing the package</h3>
+<p>Once R is installed you need to install the <code>OpenRepGrid</code> package on your computer. This is a standard step that has to be done for any additional R package you would like to use. There are several options how to do the installing. The simplest is to install the package via the R menu (steps 1 to 3).</p>
+<ol style="list-style-type: decimal">
+<li>click install package(s) in the menu</li>
+<li>select a location near to you 3: select OpenRepGrid</li>
+</ol>
+<p>Alternatively you may also use the R command line to install the package. Just type in the following code: install.packages(“OpenRepGrid”, dependencies=TRUE) The installation has to be done once. Afterwards the package is stored on your computer and can be used by R.</p>
 </div>
-<div id="join-in" class="section level4">
-<h4>Join in!</h4>
-<ul>
-<li>The OpenRepGrid project is supposed to be an endeavor of <em>collaborative construing</em>. Anyone who is interested in supporting the project is invited to <a href="participate.html">join in</a>. We hope that many participators will make <code>OpenRepGrid</code> a tool that really suits the needs of the community.</li>
-</ul>
+<div id="loading-the-package" class="section level3">
+<h3>Loading the package</h3>
+<p>Given that R and the package are installed on your computer you can start using its features. To do this, we need to tell R to load the package. This is a step you have do do <strong>each time</strong> when opening R. As there might be a lot of packages installed on your computer for memory optimization reasons R will only load the most important ones automatically. If you want to use any of the other packages (like e.g. <code>OpenRepGrid</code>) you need to tell R to load the additional package to be ready for use.</p>
+<p>To load the <code>OpenRepGrid</code> package type:</p>
+<pre class="r"><code>library(OpenRepGrid)</code></pre>
+<p>That’s it, now you can start analyzing your grids.</p>
 </div>
-<div id="future-developments" class="section level4">
-<h4>Future developments</h4>
-<ul>
-<li>In a first phase <code>OpenRepGrid</code> will be a command line tool. In a second phase a graphical user interface (GUI) will be added. Features for administration of grids are currently not part of the project.</li>
-</ul>
+<div id="video-tutorial" class="section level3">
+<h3>Video tutorial</h3>
+<iframe src="//player.vimeo.com/video/27903566" width="600" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+</iframe>
 </div>
-<div id="citing-openrepgrid" class="section level4">
-<h4>Citing OpenRepGrid</h4>
-<p>If you use <code>OpenRepGrid</code> for calculations in your publications, please cite it as below.</p>
-<ul>
-<li>Heckmann, M. (2014). OpenRepGrid: An R package for the analysis of repertory grids. <em>ZENODO</em>. <a href="doi:10.5281/zenodo.8492" class="uri">doi:10.5281/zenodo.8492</a></li>
-</ul>
-<p><a href="http://dx.doi.org/10.5281/zenodo.11623"><img src="https://zenodo.org/badge/5972/markheckmann/OpenRepGrid.png" alt="DOI" /></a></p>
-</div>
+<div id="development-version" class="section level3">
+<h3>Development version</h3>
+<p>The version of the package hosted on CRAN is a checked release. The latest development version is hosted at github. To install the latest version with the features currently under development you need to follow three steps:</p>
+<ol style="list-style-type: decimal">
+<li>Make sure you have the latest version of R installed.</li>
+<li>Make sure the following packages are installed. If not install them by typing</li>
+</ol>
+<pre class="r"><code>install.packages(c(&quot;colorspace&quot;, &quot;plyr&quot;, &quot;abind&quot;, &quot;rgl&quot;, &quot;psych&quot;, &quot;XML&quot;))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>To download and install the OpenRepGrid development version from github you can use a function from the <code>devtools</code> package.</li>
+</ol>
+<pre class="r"><code>library(devtools)
+install_github(&quot;OpenRepGrid&quot;, &quot;markheckmann&quot;) </code></pre>
 </div>
 
 

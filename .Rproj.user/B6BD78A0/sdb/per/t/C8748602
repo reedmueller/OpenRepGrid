@@ -1,0 +1,16 @@
+{
+    "contents" : "Package: OpenRepGrid\nMaintainer: Mark Heckmann <heckmann@uni-bremen.de>\nLicense: GPL (>= 2)\nTitle: Tools to analyse repertory grid data\nLazyData: yes\nType: Package\nLazyLoad: yes\nAuthor: Mark Heckmann\nDescription: Tools to analyse repertory grid data\nVersion: 0.1.9\nDate: 2013-06-13\nDepends:\n    methods,\n    grid,\n    colorspace,\n    plyr,\n    stringr,\n    abind,\n    rgl,\n    GPArotation,\n    psych,\n    XML,\n    tcltk,\n    xlsx,\n    pvclust\nCollate:\n    'data-openrepgrid.r'\n    'repgrid.r'\n    'repgrid-basicops.r'\n    'zzz.r'\n    'openrepgrid.r'\n    'repgrid-constructs.r'\n    'repgrid-elements.r'\n    'repgrid-ratings.r'\n    'gmMain.r'\n    'utils-import.r'\n    'utils.r'\n    'export.r'\n    'import.r'\n    'bertin.r'\n    'calc.r'\n    'dev-functions.r'\n    'measures.r'\n    'repgrid-output.r'\n    'repgrid-plots.r'\n    'rgl-3d.r'\n    'settings.r'\n    'distance.R'\n    'double-entry.R'\n    'onair.r'\n",
+    "created" : 1388410556887.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1421253731",
+    "id" : "C8748602",
+    "lastKnownWriteTime" : 1388410889,
+    "path" : "~/_mh/programming/R/pkg_dev/grid/OpenRepGrid/OpenRepGrid/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "dcf"
+}

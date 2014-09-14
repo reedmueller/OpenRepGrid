@@ -10,7 +10,7 @@
 
 
 
-<title>The OpenRepGrid R package</title>
+<title>Settings</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -206,45 +206,106 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 <div id="header">
-<h1 class="title">The OpenRepGrid R package</h1>
+<h1 class="title">Settings</h1>
 </div>
 
 
-<div id="tools-for-the-analysis-of-repertory-grid-data" class="section level3">
-<h3><em>Tools for the analysis of repertory grid data</em></h3>
-<div id="openrepgrid" class="section level4">
-<h4>OpenRepGrid</h4>
-<ul>
-<li>The <a href="http://en.wikipedia.org/wiki/Repertory_grid"><em>repertory grid</em></a> (also <em>grid</em> or <em>repgrid</em>) is an interview method that originated from <a href="http://en.wikipedia.org/wiki/Personal_construct_theory">Personal Construct Psychology</a>. It is applied in different academic and practical fields (clinical psychology, market research etc.). <code>OpenRepGrid</code> provides tools to analyze repertory grid data. It is a ‘plug-in’ for the statistical software <a href="http://www.r-project.org/">R</a>. Both are free and Open Source and will run on Windows, MacOS and Linux.</li>
-</ul>
-</div>
-<div id="why-an-r-package" class="section level4">
-<h4>Why an R package?</h4>
-<ul>
-<li><a href="http://www.r-project.org/">R</a> is an Open Source framework for statistical programming. Its syntax is simple and it provides a wealth of functionality. This means that any ideas you might come up with can be implemented easily and be provided to other grid users around the world. That’s why R is a strong basis to build <code>OpenRepGrid</code> upon.</li>
-</ul>
-</div>
-<div id="join-in" class="section level4">
-<h4>Join in!</h4>
-<ul>
-<li>The OpenRepGrid project is supposed to be an endeavor of <em>collaborative construing</em>. Anyone who is interested in supporting the project is invited to <a href="participate.html">join in</a>. We hope that many participators will make <code>OpenRepGrid</code> a tool that really suits the needs of the community.</li>
-</ul>
-</div>
-<div id="future-developments" class="section level4">
-<h4>Future developments</h4>
-<ul>
-<li>In a first phase <code>OpenRepGrid</code> will be a command line tool. In a second phase a graphical user interface (GUI) will be added. Features for administration of grids are currently not part of the project.</li>
-</ul>
-</div>
-<div id="citing-openrepgrid" class="section level4">
-<h4>Citing OpenRepGrid</h4>
-<p>If you use <code>OpenRepGrid</code> for calculations in your publications, please cite it as below.</p>
-<ul>
-<li>Heckmann, M. (2014). OpenRepGrid: An R package for the analysis of repertory grids. <em>ZENODO</em>. <a href="doi:10.5281/zenodo.8492" class="uri">doi:10.5281/zenodo.8492</a></li>
-</ul>
-<p><a href="http://dx.doi.org/10.5281/zenodo.11623"><img src="https://zenodo.org/badge/5972/markheckmann/OpenRepGrid.png" alt="DOI" /></a></p>
-</div>
-</div>
+<p>You can change several global settings for OpenRepGrid which will influence the way grids are displyed. You can promt the available settings by calling <code>settings()</code>.</p>
+<pre class="r"><code>settings()</code></pre>
+<pre><code>------------------------
+Settings for OpenRepGrid
+------------------------
+
+Printing a grid to the console
+    show.scale : TRUE (show grid scale info?)
+    show.meta  : TRUE (show grid meta data?)
+    show.trim  : 30 (number of chars to trim strings to)
+    show.cut   : 20 (max no of chars on the sides of a grid)
+    c.no       : TRUE (print construct id?)
+    e.no       : TRUE (print element id?)</code></pre>
+<p>By default information about the scale and grid meta data is displayed.</p>
+<pre class="r"><code>fbb2003</code></pre>
+<pre><code>
+META DATA:
+Number of constructs:  9 
+Number of elements:  8 
+
+SCALE INFO:
+The grid is rated on a scale from 1 (left pole) to 7 (right pole)
+
+RATINGS:
+       an ethical person - 4 5 - my mother              
+          an old flame - 3 | | 6 - a rejected teacher   
+           my father - 2 | | | | 7 - as I would love to 
+              self - 1 | | | | | | 8 - a pitied person  
+                     | | | | | | | |                    
+        clever (1)   2 1 6 3 5 7 1 5   (1) not bright   
+  disorganized (2)   6 6 4 5 2 2 5 2   (2) organized    
+       listens (3)   3 1 6 3 3 7 1 4   (3) doesn&#39;t hear 
+ no clear view (4)   5 6 3 3 3 5 7 3   (4) clear view of
+understands me (5)   3 2 6 2 2 6 2 5   (5) no understand
+     ambitious (6)   6 3 5 4 7 3 3 5   (6) no ambition  
+     respected (7)   2 2 4 2 5 6 1 4   (7) not respected
+       distant (8)   3 3 7 3 5 1 6 5   (8) warm         
+her aggressive (9)   1 3 3 3 5 2 5 7   (9) not aggressiv</code></pre>
+<p>To change the settings enter the new parameters as <code>name=value</code> pairs. To turn off the display of the scale and meta information type in</p>
+<pre class="r"><code>settings(show.scale=FALSE, show.meta=FALSE)</code></pre>
+<p>Now all grids are displayed without this information:</p>
+<pre class="r"><code>fbb2003</code></pre>
+<pre><code>
+RATINGS:
+       an ethical person - 4 5 - my mother              
+          an old flame - 3 | | 6 - a rejected teacher   
+           my father - 2 | | | | 7 - as I would love to 
+              self - 1 | | | | | | 8 - a pitied person  
+                     | | | | | | | |                    
+        clever (1)   2 1 6 3 5 7 1 5   (1) not bright   
+  disorganized (2)   6 6 4 5 2 2 5 2   (2) organized    
+       listens (3)   3 1 6 3 3 7 1 4   (3) doesn&#39;t hear 
+ no clear view (4)   5 6 3 3 3 5 7 3   (4) clear view of
+understands me (5)   3 2 6 2 2 6 2 5   (5) no understand
+     ambitious (6)   6 3 5 4 7 3 3 5   (6) no ambition  
+     respected (7)   2 2 4 2 5 6 1 4   (7) not respected
+       distant (8)   3 3 7 3 5 1 6 5   (8) warm         
+her aggressive (9)   1 3 3 3 5 2 5 7   (9) not aggressiv</code></pre>
+<p>Other settings that can be modified are maximal length of the construct that is displayed. Changing <code>show.cut</code>to <code>40</code> will prevent that the names of the constructs are cut off.</p>
+<pre class="r"><code>settings(show.cut=40)
+fbb2003</code></pre>
+<pre><code>
+RATINGS:
+          an ethical person - 4 5 - my mother                   
+             an old flame - 3 | | 6 - a rejected teacher        
+              my father - 2 | | | | 7 - as I would love to be   
+                 self - 1 | | | | | | 8 - a pitied person       
+                        | | | | | | | |                         
+           clever (1)   2 1 6 3 5 7 1 5   (1) not bright        
+     disorganized (2)   6 6 4 5 2 2 5 2   (2) organized         
+          listens (3)   3 1 6 3 3 7 1 4   (3) doesn&#39;t hear      
+    no clear view (4)   5 6 3 3 3 5 7 3   (4) clear view of life
+   understands me (5)   3 2 6 2 2 6 2 5   (5) no understanding  
+        ambitious (6)   6 3 5 4 7 3 3 5   (6) no ambition       
+        respected (7)   2 2 4 2 5 6 1 4   (7) not respected     
+          distant (8)   3 3 7 3 5 1 6 5   (8) warm              
+rather aggressive (9)   1 3 3 3 5 2 5 7   (9) not aggressive    </code></pre>
+<p>In order to not print the number of constructs and elements you can turn off this options by</p>
+<pre class="r"><code>settings(c.no=FALSE, e.no=FALSE)
+fbb2003</code></pre>
+<pre><code>
+RATINGS:
+          an ethical person my mother                   
+             an old flame | | a rejected teacher        
+              my father | | | | as I would love to be   
+                 self | | | | | | a pitied person       
+                    | | | | | | | |                     
+           clever   2 1 6 3 5 7 1 5   not bright        
+     disorganized   6 6 4 5 2 2 5 2   organized         
+          listens   3 1 6 3 3 7 1 4   doesn&#39;t hear      
+    no clear view   5 6 3 3 3 5 7 3   clear view of life
+   understands me   3 2 6 2 2 6 2 5   no understanding  
+        ambitious   6 3 5 4 7 3 3 5   no ambition       
+        respected   2 2 4 2 5 6 1 4   not respected     
+          distant   3 3 7 3 5 1 6 5   warm              
+rather aggressive   1 3 3 3 5 2 5 7   not aggressive    </code></pre>
 
 
 <!-- some extra javascript for older browsers -->

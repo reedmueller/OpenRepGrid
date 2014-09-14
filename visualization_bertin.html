@@ -10,7 +10,7 @@
 
 
 
-<title>The OpenRepGrid R package</title>
+<title>Bertin display</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -206,44 +206,67 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 <div id="header">
-<h1 class="title">The OpenRepGrid R package</h1>
+<h1 class="title">Bertin display</h1>
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#r-code">R-Code</a></li>
+<li><a href="#literature">Literature</a></li>
+</ul>
+</div>
 
-<div id="tools-for-the-analysis-of-repertory-grid-data" class="section level3">
-<h3><em>Tools for the analysis of repertory grid data</em></h3>
-<div id="openrepgrid" class="section level4">
-<h4>OpenRepGrid</h4>
-<ul>
-<li>The <a href="http://en.wikipedia.org/wiki/Repertory_grid"><em>repertory grid</em></a> (also <em>grid</em> or <em>repgrid</em>) is an interview method that originated from <a href="http://en.wikipedia.org/wiki/Personal_construct_theory">Personal Construct Psychology</a>. It is applied in different academic and practical fields (clinical psychology, market research etc.). <code>OpenRepGrid</code> provides tools to analyze repertory grid data. It is a ‘plug-in’ for the statistical software <a href="http://www.r-project.org/">R</a>. Both are free and Open Source and will run on Windows, MacOS and Linux.</li>
-</ul>
+<div id="description" class="section level3">
+<h3>Description</h3>
+<p>One of the most popular ways of displaying grid data has been adopted from Bertin’s (1966) graphical proposals, which have had an immense influence onto data visualization. One of the most appealing ideas presented by Bertin is the concept of the reordable matrix. It is comprised of graphical displays for each cell of a matrix, allowing to identify structures by eye-balling reordered versions of the data matrix (see Bertin, 1966). In the context of repertory grids, the Bertin display is made up of a simple colored rectangle where the color denotes the corresponding score. Bright values correspond to low, dark to high scores. For an example of how to analyze a Bertin display see e. g. Dick (2000) and Raeithel (1998).</p>
 </div>
-<div id="why-an-r-package" class="section level4">
-<h4>Why an R package?</h4>
-<ul>
-<li><a href="http://www.r-project.org/">R</a> is an Open Source framework for statistical programming. Its syntax is simple and it provides a wealth of functionality. This means that any ideas you might come up with can be implemented easily and be provided to other grid users around the world. That’s why R is a strong basis to build <code>OpenRepGrid</code> upon.</li>
-</ul>
+<div id="r-code" class="section level3">
+<h3>R-Code</h3>
+<div id="bertin-display-standard" class="section level4">
+<h4>Bertin display (standard)</h4>
+<pre class="r"><code>bertin(boeker)</code></pre>
+<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-2.png" title="" alt="" width="672" /></p>
+<p>Various settings can be modified in the <code>bertin</code> function. To see the whole set of options type <code>?bertin</code> to the R console.</p>
+<p><strong>Color</strong></p>
+<p>E.g. to change the color of the display use the argument color.</p>
+<pre class="r"><code>bertin(boeker, color=c(&quot;white&quot;, &quot;darkred&quot;))</code></pre>
+<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-3.png" title="" alt="" width="672" /></p>
+<p><strong>Printing of Scores</strong></p>
+<p>To suppress the printing of the scores and only plot the colors use</p>
+<pre class="r"><code>bertin(boeker, showvalues=FALSE)</code></pre>
+<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-4.png" title="" alt="" width="672" /></p>
+<p>** Construct / Element Index **</p>
+<p>The argument <code>id</code> allows to manage the printing of an index number of the elements and constructs.</p>
+<pre class="r"><code>bertin(boeker, id=c(T, F))          # only index numbers for constructs
+bertin(boeker, id=c(F, T))          # only index numbers for elements
+bertin(boeker, id=c(F, F))          # no index numbers</code></pre>
 </div>
-<div id="join-in" class="section level4">
-<h4>Join in!</h4>
-<ul>
-<li>The OpenRepGrid project is supposed to be an endeavor of <em>collaborative construing</em>. Anyone who is interested in supporting the project is invited to <a href="participate.html">join in</a>. We hope that many participators will make <code>OpenRepGrid</code> a tool that really suits the needs of the community.</li>
-</ul>
+<div id="clustered-bertin" class="section level4">
+<h4>Clustered Bertin</h4>
+<p>Beside the standard Bertin display also a clustered version is available. It contains a standard Bertin display in its center and dendrograms at the sides. How to cluster a grid is described <a href="constructs_cluster.html">here</a>. You should read the cluster section first to understand the following code.</p>
+<p>As a default Euclidean distance and ward clustering is applied to the grid.</p>
+<pre class="r"><code>bertinCluster(feixas2004)</code></pre>
+<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-6.png" title="" alt="" width="672" /></p>
+<p>To apply different distance and cluster methods use the arguments <code>dmethod</code> (abbreveated: <code>dm</code>) and <code>cmethod</code> (abbreveated: cm). For more information on clustering go to here. The following code uses <code>manhattan</code> distance and <code>single</code> linkage clustering.</p>
+<pre class="r"><code>bertinCluster(feixas2004, dmethod=&quot;manhattan&quot;, cm=&quot;single&quot;)  </code></pre>
+<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-7.png" title="" alt="" width="672" /></p>
+<p>Sometimes it is desirable to spot structures by eye-balling the colors. For this purpose the printing of the scores can be surpressed.</p>
+<pre class="r"><code>bertinCluster(feixas2004, showvalues=FALSE)  </code></pre>
+<p>Other options include to suppress the axis of the dendrogram</p>
+<pre class="r"><code>bertinCluster(feixas2004, draw.axis=F)        # no axis drawn for dendrogram  </code></pre>
+<p>or to chose a rectangular type of dendrogram.</p>
+<pre class="r"><code>bertinCluster(feixas2004, type=&quot;rectangle&quot;)   # rectangle type dendrogram </code></pre>
+<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-10.png" title="" alt="" width="672" /></p>
 </div>
-<div id="future-developments" class="section level4">
-<h4>Future developments</h4>
-<ul>
-<li>In a first phase <code>OpenRepGrid</code> will be a command line tool. In a second phase a graphical user interface (GUI) will be added. Features for administration of grids are currently not part of the project.</li>
-</ul>
 </div>
-<div id="citing-openrepgrid" class="section level4">
-<h4>Citing OpenRepGrid</h4>
-<p>If you use <code>OpenRepGrid</code> for calculations in your publications, please cite it as below.</p>
+<div id="literature" class="section level3">
+<h3>Literature</h3>
 <ul>
-<li>Heckmann, M. (2014). OpenRepGrid: An R package for the analysis of repertory grids. <em>ZENODO</em>. <a href="doi:10.5281/zenodo.8492" class="uri">doi:10.5281/zenodo.8492</a></li>
+<li>Bertin, J. (1966). Sémiologie graphique: Diagrammes, réseaux, cartographie. Paris: Mouton.</li>
+<li>Dick, M. (2000). The Use of Narrative Grid Interviews in Psychological Mobility Research. Forum Qualitative Sozialforschung / Forum: Qualitative Social Research, 1(2).</li>
+<li>Raeithel, A. (1998). Kooperative Modellproduktion von Professionellen und Klienten - erlauetert am Beispiel des Repertory Grid. Selbstorganisation, Kooperation, Zeichenprozess: Arbeiten zu einer kulturwissenschaftlichen, anwendungsbezogenen Psychologie (pp. 209-254). Opladen: Westdeutscher Verlag.</li>
 </ul>
-<p><a href="http://dx.doi.org/10.5281/zenodo.11623"><img src="https://zenodo.org/badge/5972/markheckmann/OpenRepGrid.png" alt="DOI" /></a></p>
-</div>
 </div>
 
 

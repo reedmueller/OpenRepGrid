@@ -1,0 +1,11 @@
+---
+title: "Examples 1"
+output: html_document
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(comment=NA)
+library(OpenRepGrid)
+```
+
+### TODO

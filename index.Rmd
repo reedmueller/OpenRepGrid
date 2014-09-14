@@ -1,0 +1,32 @@
+---
+title: "The OpenRepGrid R package"
+---
+
+### *Tools for the analysis of repertory grid data*
+
+#### OpenRepGrid 
+
+* The [*repertory grid*](http://en.wikipedia.org/wiki/Repertory_grid) (also *grid* or *repgrid*) is an interview method that originated from [Personal Construct Psychology](http://en.wikipedia.org/wiki/Personal_construct_theory). It is applied in different academic and practical fields (clinical psychology, market research etc.). `OpenRepGrid` provides tools to analyze repertory grid data. It is a ‘plug-in’ for the statistical software [R](http://www.r-project.org/). Both are free and Open Source and will run on Windows, MacOS and Linux. 
+
+#### Why an R package?
+
+* [R](http://www.r-project.org/) is an Open Source framework for statistical programming. Its syntax is simple and it provides a wealth of functionality. This means that any ideas you might come up with can be implemented easily and be provided to other grid users around the world. That's why R is a strong basis to build `OpenRepGrid` upon. 
+
+#### Join in!
+
+* The OpenRepGrid project is supposed to be an endeavor of *collaborative construing*. Anyone who is interested in supporting the project is invited to [join in](participate.html). We hope that many participators will make `OpenRepGrid` a tool that really suits the needs of the community.
+
+
+#### Future developments
+
+* In a first phase `OpenRepGrid` will be a command line tool. In a second phase a graphical user interface (GUI) will be added. Features for administration of grids are currently not part of the project.
+
+
+#### Citing OpenRepGrid
+
+If you use `OpenRepGrid` for calculations in your publications, please cite it as below.
+
+* Heckmann, M. (2014). OpenRepGrid: An R package for the analysis of repertory grids. *ZENODO*. doi:10.5281/zenodo.8492
+
+[![DOI](https://zenodo.org/badge/5972/markheckmann/OpenRepGrid.png)](http://dx.doi.org/10.5281/zenodo.11623)
+

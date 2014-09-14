@@ -1,0 +1,64 @@
+---
+title: "Features"
+output:
+  html_document:
+    toc: true
+---
+
+This page gives an overview over the features currently implemented in the OpenRepGrid R package. Note that the most accurate list of features in always found in the documentation of the R package itself. We try to keep this list up-to-date though.
+As the package development is an ongoing process there might be forms of analysis that have not yet been implemented. If you miss any features please make a suggestion for a new feature or for an enhancement or modification of an old features here.
+
+## Single grid
+
+* Basics
+
+* Installing the package [more]
+    + Basic package handling [more]
+    + Basic grid manipulations [more]
+
+
+* Loading and saving data
+    + Import data files from other grid programs and standard formats [more]
+    + Saving a grid [more]
+
+
+* Analyzing constructs
+    + Descriptive statistics of constructs [more]
+    + Construct correlations [more]
+    + Distances between constructs [more]
+    + Root mean square of inter-construct correlations [more]
+    + Somers' D [more]
+    + Principal component analysis (PCA) of construct correlation matrix [more]
+    + Cluster analysis of constructs [more]
+
+
+* Analyzing elements
+    + Descriptive statistics of elements [more]
+    + Element correlations [more]
+    + Distances between elements [more]
+    + Slater and Hartmann distance [more]
+    + Normalized Hartmann distance [more]
+    + Cluster analysis of elements [more]
+
+
+* Visual representation
+    + Bertin plots [more]
+    + Biplots [more]
+
+
+* Index measures
+    + Intensity index [more]
+    + PVAFF [more]
+    + Conflicts: based on correlations [more]
+    + Conflicts: based on distances [more]
+    + Implicative dilemmas [more]
+
+
+* Special features
+    + Align constructs [more]
+    + Reorder grid by polar angles in 2D [more]
+
+
+## Multiple grids
+
+Multiple grid analysis is not yet available.

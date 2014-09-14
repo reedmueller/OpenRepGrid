@@ -1,0 +1,22 @@
+---
+title: "News"
+output: html_document
+---
+
+### Latest features
+
+* `multigridone` - a web GUI for mixed models and repertory grids is now  online:  [multigridone.openrepgrid.org](onair.openrepgrid.org) 
+* `onair` - a web GUI built upon the `OpenRepGrid` package is 
+now online: [onair.openrepgrid.org](onair.openrepgrid.org)
+* Since v0.1.9 there is no need for the Java Runtime Environment (JRE) to be installed anymore in order to install `OpenRepGrid`
+
+
+### Presentations and publications
+
+* Heckmann, M. (2014, June). *The OpenRepGrid project – Software tools  for the analysis and administration of repertory  grid data*. Workshop held at the 12th Biennial Conference of the European Personal Construct Association (EPCA), Brno, Czech Republic. ([Slides](http://de.slideshare.net/markheckmann/presentation-workshop-openrepgridbrno2014))
+
+* Heckmann, M. (2013, July). *OpenRepGrid and Friends – Tools for the Analysis of Repertory Grid Data*. Workshop presented at the 20th International Congress of the Personal Construct Psychology (ICPCP), Sydney, Australia. doi:10.13140/2.1.1979.8409 ([Slides](http://de.slideshare.net/markheckmann/openrepgrid-and-friends))
+
+* Heckmann, M. (2012, July). *OpenRepGrid – An Open Source Software for the Analysis of Repertory Grids*. Paper presented at the  11th Biennial Conference of the European Personal Construct Association (EPCA), Dublin, Irland. ([Slides](http://de.slideshare.net/markheckmann/openrepgrid-an-r-package-for-the-analysis-of-repertory-grids))
+
+

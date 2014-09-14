@@ -1,0 +1,68 @@
+---
+title: "Installation"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+---
+
+<hr>
+
+To start using OpenRepGrid you need to go through three steps: You need to 
+
+1. install R 
+2. install the OpenRepGrid package
+3. load the package. 
+
+The video guide at the bottom also shows how to do that.
+
+### Installing R and RStudio
+
+The prerequisite for installing the `OpenRepGrid` package is that R has been installed on your computer. R can be downloaded from the CRAN server for all three big operating systems (Windows, MacOS, Linux). Please follow the installation instructions on the R website. After installing R you can proceed.
+
+
+### Installing the package
+
+Once R is installed you need to install the `OpenRepGrid` package on your computer. This is a standard step that has to be done for any additional R package you would like to use. There are several options how to do the installing. The simplest is to install the package via the R menu (steps 1 to 3).
+
+1. click install package(s) in the menu
+2. select a location near to you
+3: select OpenRepGrid
+
+Alternatively you may also use the R command line to install the package. Just type in the following code:
+install.packages("OpenRepGrid", dependencies=TRUE)
+The installation has to be done once. Afterwards the package is stored on your computer and can be used by R.
+
+### Loading the package
+
+Given that R and the package are installed on your computer you can start using its features. To do this, we need to tell R to load the package. This is a step you have do do **each time** when opening R. As there might be a lot of packages installed on your computer for memory optimization reasons R will only load the most important ones automatically. If you want to use any of the other packages (like e.g. `OpenRepGrid`) you need to tell R to load the additional package to be ready for use.
+
+To load the `OpenRepGrid` package type:
+
+```{r eval=FALSE}
+library(OpenRepGrid)
+```
+
+That's it, now you can start analyzing your grids.
+
+### Video tutorial
+
+<iframe src="//player.vimeo.com/video/27903566" width="600" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+### Development version
+
+The version of the package hosted on CRAN is a checked release. The latest development version is hosted at github. To install the latest version with the features currently under development you need to follow three steps:
+
+1. Make sure you have the latest version of R installed.
+2. Make sure the following packages are installed. If not install them by typing
+```{r eval=FALSE}
+install.packages(c("colorspace", "plyr", "abind", "rgl", "psych", "XML"))
+```
+3. To download and install the OpenRepGrid development version from github you can use a function from the `devtools` package.
+```{r eval=FALSE}
+library(devtools)
+install_github("OpenRepGrid", "markheckmann") 
+```
+
+
+

@@ -10,7 +10,7 @@
 
 
 
-<title>The OpenRepGrid R package</title>
+<title>Intensity</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -206,43 +206,69 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 <div id="header">
-<h1 class="title">The OpenRepGrid R package</h1>
+<h1 class="title">Intensity</h1>
 </div>
 
 
-<div id="tools-for-the-analysis-of-repertory-grid-data" class="section level3">
-<h3><em>Tools for the analysis of repertory grid data</em></h3>
-<div id="openrepgrid" class="section level4">
-<h4>OpenRepGrid</h4>
-<ul>
-<li>The <a href="http://en.wikipedia.org/wiki/Repertory_grid"><em>repertory grid</em></a> (also <em>grid</em> or <em>repgrid</em>) is an interview method that originated from <a href="http://en.wikipedia.org/wiki/Personal_construct_theory">Personal Construct Psychology</a>. It is applied in different academic and practical fields (clinical psychology, market research etc.). <code>OpenRepGrid</code> provides tools to analyze repertory grid data. It is a ‘plug-in’ for the statistical software <a href="http://www.r-project.org/">R</a>. Both are free and Open Source and will run on Windows, MacOS and Linux.</li>
-</ul>
+<div id="description" class="section level3">
+<h3>Description</h3>
+<p>The Intensity index has been suggested by <span class="citation">Bannister (1960)</span> as a measure of the amount of construct linkage. Bannister suggested that the score reflects the degree of organization of the construct system under investigation <span class="citation">(Bannister &amp; Mair, 1968)</span>. The index resulted from his and his colleagues work on construction systems of patient suffering schizophrenic thought disorder. The concept of intensity has a theoretical connection to the notion of “tight” and “loose” construing as proposed by <span class="citation">Kelly (1991)</span>. While tight constructs lead to unvarying prediction, loose constructs allow for varying predictions. Bannister hypothesized that schizophrenic thought disorder is liked to a process of extremely loose construing leading to a loss of predictive power of the subject’s construct system. The Intensity score as a structural measure is thought to reflect this type of system disintegration <span class="citation">(Bannister, 1960)</span>.</p>
 </div>
-<div id="why-an-r-package" class="section level4">
-<h4>Why an R package?</h4>
-<ul>
-<li><a href="http://www.r-project.org/">R</a> is an Open Source framework for statistical programming. Its syntax is simple and it provides a wealth of functionality. This means that any ideas you might come up with can be implemented easily and be provided to other grid users around the world. That’s why R is a strong basis to build <code>OpenRepGrid</code> upon.</li>
-</ul>
+<div id="r-code" class="section level3">
+<h3>R-Code</h3>
+<p>The index can be prompted in <code>OpenRepGrid</code> as follows. It calculates an intensity score for each construct and each element, an average score for both types and an overall intensity value <span class="citation">(cf. Feixas &amp; Cornejo, 2002)</span>.</p>
+<pre class="r"><code>indexIntensity(bell2010)</code></pre>
+<pre><code>
+################
+Intensity index
+################
+
+Total intensity: 0.19 
+
+
+Average intensity of constructs: 0.16 
+
+Itensity by construct:
+                                    intensity
+1 relaxed - worried &amp; tense              0.18
+2 not so smart (a - smart (academic      0.14
+3 dislikes sports - loves sports         0.05
+4 not interactive - loves people         0.15
+5 not transparent - transparent          0.13
+6 insensitive - sensitive                0.16
+7 fearful&amp;timid - fearless               0.25
+8 rough - gentle                         0.25
+9 accept as it is - loves to argue       0.12
+
+
+Average intensity of elements: 0.14 
+
+Itensity by element:
+                                      intensity
+1 (1) self                                 0.16
+2 (2) closest friend of the same sex       0.16
+3 (3) the unhappiest person you know       0.04
+4 (4) A person of the opposite sex t       0.14
+5 (5) A teacher you respected              0.19
+6 (6) Mother (or the person who fill       0.10
+7 (7) A person of the opposite sex t       0.13
+8 (8) The most confident person you        0.22
+9 (9) A person you work well with (a       0.14
+10 (10) A teacher you did not respect      0.09</code></pre>
 </div>
-<div id="join-in" class="section level4">
-<h4>Join in!</h4>
-<ul>
-<li>The OpenRepGrid project is supposed to be an endeavor of <em>collaborative construing</em>. Anyone who is interested in supporting the project is invited to <a href="participate.html">join in</a>. We hope that many participators will make <code>OpenRepGrid</code> a tool that really suits the needs of the community.</li>
-</ul>
-</div>
-<div id="future-developments" class="section level4">
-<h4>Future developments</h4>
-<ul>
-<li>In a first phase <code>OpenRepGrid</code> will be a command line tool. In a second phase a graphical user interface (GUI) will be added. Features for administration of grids are currently not part of the project.</li>
-</ul>
-</div>
-<div id="citing-openrepgrid" class="section level4">
-<h4>Citing OpenRepGrid</h4>
-<p>If you use <code>OpenRepGrid</code> for calculations in your publications, please cite it as below.</p>
-<ul>
-<li>Heckmann, M. (2014). OpenRepGrid: An R package for the analysis of repertory grids. <em>ZENODO</em>. <a href="doi:10.5281/zenodo.8492" class="uri">doi:10.5281/zenodo.8492</a></li>
-</ul>
-<p><a href="http://dx.doi.org/10.5281/zenodo.11623"><img src="https://zenodo.org/badge/5972/markheckmann/OpenRepGrid.png" alt="DOI" /></a></p>
+<div id="literature" class="section level3">
+<h3>Literature</h3>
+<!-- OLD LITERATURE
+Bannister, D. (1960). Conceptual structure in thought-disordered schizophrenics. The Journal of mental science, 106, 1230-49.
+Bannister, D., & Mair, J. M. M. (1968). The evaluation of personal constructs. London: Academic Press.
+Feixas, G., & Cornejo, J. M. (2002). GRIDCOR: Correspondence Analysis for Grid Data (version 4.0). Barcelona: Centro de Terapia Cognitiva. Retrieved from www.terapiacognitiva.net/record.
+Kelly, G. A. (1991). The Psychology of Personal Constructs. Volume One: Theory and Personality. Routledge.
+-->
+<div class="references">
+<p>Bannister, D. (1960). Conceptual structure in thought-disordered schizophrenics. <em>The Journal of Mental Science</em>, <em>106</em>, 1230–49.</p>
+<p>Bannister, D., &amp; Mair, J. M. M. (1968). <em>The evaluation of personal constructs</em>. London: Academic Press.</p>
+<p>Feixas, G., &amp; Cornejo, J. M. (2002). GRIDCOR: Correspondence Analysis for Grid Data (version 4.0). Barcelona: Centro de Terapia Cognitiva. Retrieved from <a href="www.terapiacognitiva.net/record." class="uri">www.terapiacognitiva.net/record.</a></p>
+<p>Kelly, G. A. (1991). <em>The Psychology of Personal Constructs: Volume One: Theory and Personality</em>. London, New York: Routledge.</p>
 </div>
 </div>
 

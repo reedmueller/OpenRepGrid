@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>Automatic reordering</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="libs/bootstrap-2.3.2/css/united.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+
+/* padding for bootstrap navbar */
+body {
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+/* offset scroll position for anchor links (for fixed navbar)  */
+@media (min-width: 980px) {
+  .section h2 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+  .section h3 {
+    padding-top: 52px;
+    margin-top: -52px;
+  }
+}
+
+
+/* don't use link color in navbar */
+.dropdown-menu>li>a {
+  color: black;
+}
+
+/* some padding for disqus */
+#disqus_thread {
+  margin-top: 45px;
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+
+<!-- -----------  to enable mathjax on github pages -----------------  -->
+
+  <script src="http://github.com/javascripts/other/MathJax/MathJax.js"
+type="text/javascript">
+    if (window.location.protocol == "https:") {
+      MathJax.OutputJax.fontDir = "https://github.com/assets/MathJax/fonts"
+    } else {
+      MathJax.OutputJax.fontDir = "http://github.com/assets/MathJax/fonts"
+    }
+    MathJax.Hub.Config({
+      extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
+      jax: ["input/TeX", "output/HTML-CSS"]
+    })
+  </script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="index.html">OpenRepGrid</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="basics_installation.html">Installation</a></li>
+          <li><a href="quickstart.html">Quick start</a></li>
+          <li class="dropdown">
+            <a href="authoring" class="dropdown-toggle" data-toggle="dropdown">Features <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+               <li><a href="features.html">Feature overview</a></li>
+
+              <li class="divider"></li>
+              <li class="dropdown-submenu">
+                  <a href="#">Basics</a>
+                  <ul class="dropdown-menu">
+                     <li><a href="basics_manipulations.html">Grid manipulations</a></li>
+                     <li><a href="settings.html">Settings</a></li>
+                     <li><a href="loading.html">Loading and saving grids</a></li>
+                  </ul>
+               </li>
+
+               <li class="divider"></li>
+               <li class="nav-header">Single grid analysis</li>
+
+               <li class="dropdown-submenu">
+                  <a href="#">Analyzing constructs</a>
+                  <ul class="dropdown-menu">
+                     <li><a href="constructs_descriptives.html">Descriptive statstics</a></li>
+                     <li><a href="constructs_correlation.html">Correlations</a></li>
+                     <li><a href="constructs_distances.html">Distances</a></li>
+                     <li><a href="constructs_pca.html">PCA</a></li>
+                     <li><a href="constructs_cluster.html">Clustering</a></li>
+                  </ul>
+               </li>
+
+               <li class="dropdown-submenu">
+                  <a href="#">Analyzing elements</a>
+                  <ul class="dropdown-menu">
+                     <li><a href="constructs_descriptives.html">Descriptive statstics</a></li>
+                     <li><a href="elements_correlation.html">Correlations</a></li>
+                     <li><a href="elements_distances.html">Distances</a></li>
+                     <li><a href="elements_distances_standardized.html">Distances (standardized)</a></li>
+                     <li><a href="constructs_cluster.html">Clustering</a></li>
+                  </ul>
+               </li>
+
+               <li class="dropdown-submenu">
+                  <a href="#">Visualization</a>
+                  <ul class="dropdown-menu">
+                     <li><a href="visualization_bertin.html">Bertin display</a></li>
+                     <li><a href="visualization_biplot.html">Biplots</a></li>
+                  </ul>
+               </li>
+
+               <li class="dropdown-submenu">
+                  <a href="#">Index measures</a>
+                  <ul class="dropdown-menu">
+                     <li><a href="measures_intensity.html">Intensity</a></li>
+                     <li><a href="measures_pvaff.html">PVAFF</a></li>
+                     <li><a href="measures_conflict.html">Cognitive conflicts</a></li>
+                     <li><a href="measures_dilemma.html">Implicative dilemmas</a></li>
+                  </ul>
+               </li>
+
+               <li class="dropdown-submenu">
+                  <a href="#">Special features</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="special_reordering.html">Automatic reordering</a></li>
+                  </ul>
+               </li>
+
+              </ul>
+          </li>
+          <li><a href="data.html">Data</a></li>
+          <li><a href="examples.html">Examples</a></li>
+          <li><a href="developer.html">Join in!</a></li>
+        </ul>
+        <ul class="nav pull-right">
+          <a class="btn btn-primary" href="https://github.com/markheckmann/openrepgrid">
+            <i class="fa fa-github fa-lg"></i>
+            GitHub
+          </a>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+
+<div id="header">
+<h1 class="title">Automatic reordering</h1>
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#r-code">R-Code</a><ul>
+<li><a href="#align-by-idealpreference">Align by ideal/preference</a></li>
+<li><a href="#align-by-loadings">Align by loadings</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="description" class="section level3">
+<h3>Description</h3>
+<p>The direction of the constructs in a grid is arbitrary and a reflection of a scale does not affect the information contained in the grid. Nonetheless, the direction of a scale has an effect on inter-element correlations <span class="citation">(Mackay, 1992)</span> and on the spatial representation and clustering of the grid <span class="citation">(Bell, 2010)</span>. Hence, it is desirable to follow a protocol to align constructs that will render unique results. A common approach is to align constructs by pole preference, i.e. aligning all positive and negative poles. This can e. g. be achieved using the function <code>swapPoles</code>. If an ideal element is present the function <code>alignByIdeal</code> will align the constructs accordingly. Note that this approach does not always yield definite results as sometimes ratings do not show a clear preference for one pole <span class="citation">(Winter, Bell, &amp; Watson, 2010)</span>. If a preference cannot be determined definitely, the construct direction remains unchanged (a warning is issued in that case).</p>
+<p><span class="citation">Bell (2010)</span> proposed another solution for the problem of construct alignment. As a unique protocol he suggests to align constructs in a way so they all have positive loadings on the first component of a grid PCA.</p>
+</div>
+<div id="r-code" class="section level3">
+<h3>R-Code</h3>
+<div id="align-by-idealpreference" class="section level4">
+<h4>Align by ideal/preference</h4>
+<p>To align a construct by preference, an ideal element has to be defined. For the following example it is element 13 (<em>ideal self</em>).</p>
+<pre class="r"><code>alignByIdeal(feixas2004, 13) </code></pre>
+<pre><code>Warning: The following constructs do not show a preference for either poleand have thus not been aligned: 2</code></pre>
+<pre><code>
+RATINGS:
+                                 7 - Friend 2                     
+                    Friend 1 - 6 | 8 - Non-grata                  
+                 Boyfriend - 5 | | | 9 - Friend 3                 
+                 Brother - 4 | | | | | 10 - Cousin                
+                Father - 3 | | | | | | | 11 - Godmother           
+              Mother - 2 | | | | | | | | | 12 - Friend 4          
+          Self now - 1 | | | | | | | | | | | 13 - Ideal Self      
+                     | | | | | | | | | | | | |                    
+   Pessimistic (1)   1 1 5 2 7 3 6 2 6 4 3 2 7   (1) Optimistic   
+Self-demanding (2)   1 6 6 2 2 5 6 3 5 6 4 5 4   (2) Takes it easy
+       Fearful (3)   2 2 6 2 4 5 6 5 2 3 4 5 5   (3) Enterprising 
+ Lives to work (4)   5 1 2 2 6 6 6 1 6 7 6 6 7   (4) Works to live
+his/her wishes (5)   6 2 1 1 4 3 6 1 7 3 4 2 7   (5) Tolerant with
+        Touchy (6)   6 1 7 2 4 5 4 2 5 5 3 2 5   (6) Teasing      
+reciate others (7)   6 2 2 2 7 3 4 1 4 6 6 3 7   (7) Appreciates o
+    Aggressive (8)   6 4 2 2 7 4 6 2 6 6 6 3 7   (8) Calm         
+       Selfish (9)   6 6 2 1 6 5 3 1 5 5 6 6 6   (9) Concerned abo
+   Avaricious (10)   6 1 1 1 7 5 5 1 6 3 3 6 7   (10) Generous    
+, superficial (11)   7 3 1 1 7 4 3 1 7 4 5 4 7   (11) Sensitive   
+       Cheeky (12)   6 6 5 4 6 6 6 1 6 5 6 5 7   (12) Respectful  
+ Hypocritical (13)   5 4 4 2 6 5 5 1 6 6 5 4 7   (13) Sincere     
+  Blackmailer (14)   3 2 2 1 5 6 6 1 6 6 6 3 7   (14) Non blackmai
+onger than is (15)   6 3 1 2 5 2 4 2 7 6 6 5 6   (15) Natural     
+er the friend (16)   6 3 3 3 6 2 1 2 4 4 6 4 7   (16) Looks after 
+on Accessible (17)   5 2 2 1 4 2 4 1 6 3 5 2 7   (17) Accessible  
+  Introverted (18)   1 2 6 2 4 5 7 5 2 6 6 5 5   (18) Extroverted 
+ressed easily (19)   1 2 6 3 6 3 7 6 1 3 3 3 6   (19) Does not get
+ the negative (20)   2 2 4 2 7 3 6 1 2 5 5 3 7   (20) Tries to fin</code></pre>
+<p>Note that when midpoint ratings are present no preferred pole can be identified, as it is the case for one construct in the example above.</p>
+<p>As a default the preferred poles are assigned to the right side. You can use the argument <code>high=FALSE</code> to indicate that high ratings will correspond to the negative pole. Hence, the preferred pole will be in the left side of the grid.</p>
+<pre class="r"><code>alignByIdeal(feixas2004, 13, high=F) </code></pre>
+<pre><code>Warning: The following constructs do not show a preference for either poleand have thus not been aligned: 2</code></pre>
+<pre><code>
+RATINGS:
+                                 7 - Friend 2                     
+                    Friend 1 - 6 | 8 - Non-grata                  
+                 Boyfriend - 5 | | | 9 - Friend 3                 
+                 Brother - 4 | | | | | 10 - Cousin                
+                Father - 3 | | | | | | | 11 - Godmother           
+              Mother - 2 | | | | | | | | | 12 - Friend 4          
+          Self now - 1 | | | | | | | | | | | 13 - Ideal Self      
+                     | | | | | | | | | | | | |                    
+    Optimistic (1)   7 7 3 6 1 5 2 6 2 4 5 6 1   (1) Pessimistic  
+Self-demanding (2)   1 6 6 2 2 5 6 3 5 6 4 5 4   (2) Takes it easy
+  Enterprising (3)   6 6 2 6 4 3 2 3 6 5 4 3 3   (3) Fearful      
+ Works to live (4)   3 7 6 6 2 2 2 7 2 1 2 2 1   (4) Lives to work
+nt with others (5)   2 6 7 7 4 5 2 7 1 5 4 6 1   (5) Imposes his/h
+       Teasing (6)   2 7 1 6 4 3 4 6 3 3 5 6 3   (6) Touchy       
+eciates others (7)   2 6 6 6 1 5 4 7 4 2 2 5 1   (7) Does not appr
+          Calm (8)   2 4 6 6 1 4 2 6 2 2 2 5 1   (8) Aggressive   
+d about others (9)   2 2 6 7 2 3 5 7 3 3 2 2 2   (9) Selfish      
+     Generous (10)   2 7 7 7 1 3 3 7 2 5 5 2 1   (10) Avaricious  
+    Sensitive (11)   1 5 7 7 1 4 5 7 1 4 3 4 1   (11) Materialisti
+   Respectful (12)   2 2 3 4 2 2 2 7 2 3 2 3 1   (12) Cheeky      
+      Sincere (13)   3 4 4 6 2 3 3 7 2 2 3 4 1   (13) Hypocritical
+n blackmailer (14)   5 6 6 7 3 2 2 7 2 2 2 5 1   (14) Blackmailer 
+      Natural (15)   2 5 7 6 3 6 4 6 1 2 2 3 2   (15) Appears stro
+he friendship (16)   2 5 5 5 2 6 7 6 4 4 2 4 1   (16) Does not loo
+   Accessible (17)   3 6 6 7 4 6 4 7 2 5 3 6 1   (17) Non Accessib
+  Extroverted (18)   7 6 2 6 4 3 1 3 6 2 2 3 3   (18) Introverted 
+ressed easily (19)   7 6 2 5 2 5 1 2 7 5 5 5 2   (19) Gets depress
+ good in thin (20)   6 6 4 6 1 5 2 7 6 3 3 5 1   (20) Sees only th</code></pre>
+<p>To save the assigned grid into a new object:</p>
+<pre class="r"><code>x &lt;- alignByIdeal(feixas2004, 13) </code></pre>
+<pre><code>Warning: The following constructs do not show a preference for either poleand have thus not been aligned: 2</code></pre>
+</div>
+<div id="align-by-loadings" class="section level4">
+<h4>Align by loadings</h4>
+<p>The alignment operation using <code>OpenRepgrid</code> is performed by the function <code>alignByLoadings</code>.</p>
+<pre class="r"><code>alignByLoadings(bell2010)</code></pre>
+<pre><code>
+###################################
+Alignment of constructs by loadings
+###################################
+
+Construct correlations - before alignment
+
+                                1     2     3     4     5     6     7     8     9
+(1) relaxed - worried &amp;     1     -0.10  0.03 -0.83  0.12  0.23 -0.49  0.66 -0.08
+(2) not so sma - smart (aca 2           -0.47 -0.01 -0.80 -0.35  0.28 -0.19  0.12
+(3) dislikes s - loves spor 3                 -0.04  0.36  0.04 -0.01 -0.24  0.08
+(4) not intera - loves peop 4                        0.17  0.21  0.34 -0.49  0.25
+(5) not transp - transparen 5                              0.38 -0.05  0.01  0.29
+(6) insensitiv - sensitive  6                                   -0.71  0.55 -0.26
+(7) fearful&amp;ti - fearless   7                                         -0.78  0.65
+(8) rough - gentle          8                                               -0.54
+(9) accept as  - loves to a 9                                                    
+
+Construct factor loadiongs on PC1 - before alignment
+
+                               PC1
+(1) relaxed - worried &amp;      0.726
+(2) not so sma - smart (aca -0.392
+(3) dislikes s - loves spor  0.029
+(4) not intera - loves peop -0.553
+(5) not transp - transparen  0.183
+(6) insensitiv - sensitive   0.643
+(7) fearful&amp;ti - fearless   -0.912
+(8) rough - gentle           0.907
+(9) accept as  - loves to a -0.591
+
+The following constructs are reversed:
+
+                            index
+(2) not so sma - smart (aca     2
+(4) not intera - loves peop     4
+(7) fearful&amp;ti - fearless       7
+(9) accept as  - loves to a     9
+
+Construct correlations - after alignment
+
+                                1     2     3     4     5     6     7     8     9
+(1) relaxed - worried &amp;     1      0.10  0.03  0.83  0.12  0.23  0.49  0.66  0.08
+(2) smart (aca - not so sma 2            0.47 -0.01  0.80  0.35  0.28  0.19  0.12
+(3) dislikes s - loves spor 3                  0.04  0.36  0.04  0.01 -0.24 -0.08
+(4) loves peop - not intera 4                       -0.17 -0.21  0.34  0.49  0.25
+(5) not transp - transparen 5                              0.38  0.05  0.01 -0.29
+(6) insensitiv - sensitive  6                                    0.71  0.55  0.26
+(7) fearless - fearful&amp;ti   7                                          0.78  0.65
+(8) rough - gentle          8                                                0.54
+(9) loves to a - accept as  9                                                    
+
+Construct factor loadings on PC1 - after alignment
+
+                              PC1
+(1) relaxed - worried &amp;     0.726
+(2) smart (aca - not so sma 0.392
+(3) dislikes s - loves spor 0.029
+(4) loves peop - not intera 0.553
+(5) not transp - transparen 0.183
+(6) insensitiv - sensitive  0.643
+(7) fearless - fearful&amp;ti   0.912
+(8) rough - gentle          0.907
+(9) loves to a - accept as  0.591</code></pre>
+<p>To save the alignment information in an object:</p>
+<pre class="r"><code>x &lt;- alignByLoadings(bell2010)</code></pre>
+<p>To get more information about the function type: <code>?alignByLoadings</code> to the console to open the help menu for the function. As a default the function will return a list containing:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Name of list element</th>
+<th align="left">Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>cor.before</code></td>
+<td align="left">Construct correlation matrix before reversal</td>
+</tr>
+<tr class="even">
+<td align="left"><code>loadings.before</code></td>
+<td align="left">Loadings on PCs before reversal</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>reversed</code></td>
+<td align="left">Constructs that have been reversed</td>
+</tr>
+<tr class="even">
+<td align="left"><code>cor.after</code></td>
+<td align="left">Construct correlation matrix after reversal</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>loadings.after</code></td>
+<td align="left">Loadings on PCs after reversal</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>names(x)</code></pre>
+<pre><code>[1] &quot;cor.before&quot;      &quot;loadings.before&quot; &quot;reversed&quot;        &quot;cor.after&quot;       &quot;loadings.after&quot; </code></pre>
+<p>To extract the indices that need reversal and use them to swap the poles you may do:</p>
+<pre class="r"><code>swapPoles(bell2010, x$reversed$index)</code></pre>
+<pre><code>
+RATINGS:
+   A teacher you respected - 5 6 - Mother (or the person who
+on of the opposite sex t - 4 | | 7 - A person of the opposit
+ppiest person you know - 3 | | | | 8 - The most confident pe
+iend of the same sex - 2 | | | | | | 9 - A person you work w
+              self - 1 | | | | | | | | 10 - A teacher you di
+                     | | | | | | | | | |                    
+       relaxed (1)   4 4 6 5 3 6 5 2 2 6   (1) worried &amp; ten
+(academically) (2)   2 1 2 3 1 4 2 1 4 1   (2) not so smart 
+islikes sports (3)   6 3 7 6 4 4 2 3 6 3   (3) loves sports 
+  loves people (4)   2 1 3 2 2 3 2 1 1 4   (4) not interacti
+ot transparent (5)   6 4 5 7 3 7 6 5 6 3   (5) transparent  
+   insensitive (6)   4 6 5 4 4 6 5 3 4 2   (6) sensitive    
+      fearless (7)   3 4 4 2 3 5 3 2 3 3   (7) fearful&amp;timid
+         rough (8)   5 6 6 4 5 7 7 3 5 6   (8) gentle       
+loves to argue (9)   3 3 2 1 4 4 2 1 3 3   (9) accept as it </code></pre>
+<p>This is clumsy though and will be subject to change in later versions of <code>OpenRepGrid</code>.</p>
+<div class="references">
+<h3>Literature</h3>
+<p>Bell, R. C. (2010). A note on aligning constructs. <em>Personal Construct Theory &amp; Practice</em>, <em>7</em>, 42–48.</p>
+<p>Mackay, N. (1992). Identification, reflection, and correlation: Problems in the bases of repertory grid measures. <em>International Journal of Personal Construct Psychology</em>, <em>5</em>(1), 57–75. doi:<a href="http://dx.doi.org/10.1080/08936039208404941">10.1080/08936039208404941</a></p>
+<p>Winter, D. A., Bell, R. C., &amp; Watson, S. (2010). Midpoint ratings on personal constructs: Constriction or the middle way? <em>Journal of Constructivist Psychology</em>, <em>23</em>(4), 337–356. doi:<a href="http://dx.doi.org/10.1080/10720537.2010.502428">10.1080/10720537.2010.502428</a></p>
+</div>
+</div>
+</div>
+
+
+<!-- some extra javascript for older browsers -->
+<script type="text/javascript" src="libs/polyfill.js"></script>
+
+<script>
+
+// manage active state of menu based on current page
+$(document).ready(function () {
+
+    // active menu
+    href = window.location.pathname
+    href = href.substr(href.lastIndexOf('/') + 1)
+    $('a[href="' + href + '"]').parent().addClass('active');
+
+    // manage active menu header
+    if (href.startsWith('authoring_'))
+      $('a[href="' + 'authoring' + '"]').parent().addClass('active');
+    else if (href.endsWith('_format.html'))
+      $('a[href="' + 'formats' + '"]').parent().addClass('active');
+    else if (href.startsWith('developer_'))
+      $('a[href="' + 'developer' + '"]').parent().addClass('active');
+
+});
+
+</script>
+
+<!-- disqus -->
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'markheckmanngithubiotmppages'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -10,7 +10,7 @@
 
 
 
-<title>The OpenRepGrid R package</title>
+<title>PCA of constructs</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -206,44 +206,109 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 <div id="header">
-<h1 class="title">The OpenRepGrid R package</h1>
+<h1 class="title">PCA of constructs</h1>
 </div>
 
 
-<div id="tools-for-the-analysis-of-repertory-grid-data" class="section level3">
-<h3><em>Tools for the analysis of repertory grid data</em></h3>
-<div id="openrepgrid" class="section level4">
-<h4>OpenRepGrid</h4>
-<ul>
-<li>The <a href="http://en.wikipedia.org/wiki/Repertory_grid"><em>repertory grid</em></a> (also <em>grid</em> or <em>repgrid</em>) is an interview method that originated from <a href="http://en.wikipedia.org/wiki/Personal_construct_theory">Personal Construct Psychology</a>. It is applied in different academic and practical fields (clinical psychology, market research etc.). <code>OpenRepGrid</code> provides tools to analyze repertory grid data. It is a ‘plug-in’ for the statistical software <a href="http://www.r-project.org/">R</a>. Both are free and Open Source and will run on Windows, MacOS and Linux.</li>
-</ul>
+<div id="description" class="section level3">
+<h3>Description</h3>
+<p>Principal component analysis (PCA) is a method to identify structures in data. It is a well known method of data reduction which can also be applied to any squared matrix. It is applied to the inter-construct correlations in order to explore structures in the relations between constructs in the case of grids. The default type of rotation used is Varimax. Other methods can be chosen (see <code>?constructPca</code>). In comparison to the Root-mean-square statistic, a PCA accounts for the sign of the correlation thus allowing the .</p>
 </div>
-<div id="why-an-r-package" class="section level4">
-<h4>Why an R package?</h4>
-<ul>
-<li><a href="http://www.r-project.org/">R</a> is an Open Source framework for statistical programming. Its syntax is simple and it provides a wealth of functionality. This means that any ideas you might come up with can be implemented easily and be provided to other grid users around the world. That’s why R is a strong basis to build <code>OpenRepGrid</code> upon.</li>
-</ul>
+<div id="r-code" class="section level3">
+<h3>R-Code</h3>
+<p>The following codes calculates a PCA with three factors (default) and <code>varimax</code> rotation (default).</p>
+<pre class="r"><code>constructPca(fbb2003)</code></pre>
+<pre><code>
+#################
+PCA of constructs
+#################
+
+Number of components extracted: 3
+Type of rotation: varimax 
+
+Loadings:
+                                   RC1   RC2   RC3  
+clever - not bright                 0.96  0.02  0.25
+disorganized - organized           -0.82 -0.40 -0.17
+listens - doesn&#39;t hear              0.92 -0.26  0.12
+no clear view - clear view of life -0.45 -0.15 -0.76
+understands me - no understanding   0.87 -0.07 -0.08
+ambitious - no ambition             0.02  0.13  0.94
+respected - not respected           0.91 -0.01  0.22
+distant - warm                     -0.13  0.74  0.25
+rather aggressive - not aggressive  0.07  0.96  0.00
+
+                RC1  RC2  RC3
+SS loadings    4.27 1.74 1.69
+Proportion Var 0.47 0.19 0.19
+Cumulative Var 0.47 0.67 0.86</code></pre>
+<p>You can specify the number of components to extract. The following code yields the examples from Fransella et al. (2003, p.87). Two components are extracted using varimax rotation.</p>
+<pre class="r"><code>constructPca(fbb2003, nf=2)</code></pre>
+<pre><code>
+#################
+PCA of constructs
+#################
+
+Number of components extracted: 2
+Type of rotation: varimax 
+
+Loadings:
+                                   RC1   RC2  
+clever - not bright                 0.98  0.13
+disorganized - organized           -0.79 -0.40
+listens - doesn&#39;t hear              0.95 -0.17
+no clear view - clear view of life -0.57 -0.54
+understands me - no understanding   0.84 -0.13
+ambitious - no ambition             0.20  0.64
+respected - not respected           0.93  0.09
+distant - warm                     -0.16  0.75
+rather aggressive - not aggressive -0.03  0.79
+
+                RC1  RC2
+SS loadings    4.47 2.13
+Proportion Var 0.50 0.24
+Cumulative Var 0.50 0.73</code></pre>
+<p>In case the results are needed for further processing you can save the ouput.</p>
+<pre class="r"><code>r &lt;- constructPca(fbb2003, nf=2)</code></pre>
+<p>To gain an easier overview of the data, a cutoff level can be set to surpress the printing of small loadings.</p>
+<pre class="r"><code>print(r, cut=.3)</code></pre>
+<pre><code>
+#################
+PCA of constructs
+#################
+
+Number of components extracted: 2
+Type of rotation: varimax 
+
+Loadings:
+                                   RC1   RC2  
+clever - not bright                 0.98      
+disorganized - organized           -0.79 -0.40
+listens - doesn&#39;t hear              0.95      
+no clear view - clear view of life -0.57 -0.54
+understands me - no understanding   0.84      
+ambitious - no ambition                   0.64
+respected - not respected           0.93      
+distant - warm                            0.75
+rather aggressive - not aggressive        0.79
+
+                RC1  RC2
+SS loadings    4.47 2.13
+Proportion Var 0.50 0.24
+Cumulative Var 0.50 0.73</code></pre>
+<p>Different methods of rotation can be chosen: <code>none</code>, <code>varimax</code>, <code>promax</code>, <code>cluster</code>.</p>
+<pre class="r"><code>constructPca(fbb2003, rotate=&quot;none&quot;)
+constructPca(fbb2003, rotate=&quot;varimax&quot;)
+constructPca(fbb2003, rotate=&quot;promax&quot;)
+constructPca(fbb2003, rotate=&quot;cluster&quot;)</code></pre>
+<p>As a default, the correlation matrix is calculated using product-moment correlation. The methods that can be selected are <code>pearson</code>, <code>kendall</code>, <code>spearman</code>.</p>
+<pre class="r"><code>constructPca(fbb2003, method=&quot;pearson&quot;)    # default setting
+constructPca(fbb2003, method=&quot;kendall&quot;)   
+constructPca(fbb2003, method=&quot;spearman&quot;)  </code></pre>
 </div>
-<div id="join-in" class="section level4">
-<h4>Join in!</h4>
-<ul>
-<li>The OpenRepGrid project is supposed to be an endeavor of <em>collaborative construing</em>. Anyone who is interested in supporting the project is invited to <a href="participate.html">join in</a>. We hope that many participators will make <code>OpenRepGrid</code> a tool that really suits the needs of the community.</li>
-</ul>
-</div>
-<div id="future-developments" class="section level4">
-<h4>Future developments</h4>
-<ul>
-<li>In a first phase <code>OpenRepGrid</code> will be a command line tool. In a second phase a graphical user interface (GUI) will be added. Features for administration of grids are currently not part of the project.</li>
-</ul>
-</div>
-<div id="citing-openrepgrid" class="section level4">
-<h4>Citing OpenRepGrid</h4>
-<p>If you use <code>OpenRepGrid</code> for calculations in your publications, please cite it as below.</p>
-<ul>
-<li>Heckmann, M. (2014). OpenRepGrid: An R package for the analysis of repertory grids. <em>ZENODO</em>. <a href="doi:10.5281/zenodo.8492" class="uri">doi:10.5281/zenodo.8492</a></li>
-</ul>
-<p><a href="http://dx.doi.org/10.5281/zenodo.11623"><img src="https://zenodo.org/badge/5972/markheckmann/OpenRepGrid.png" alt="DOI" /></a></p>
-</div>
+<div id="literature" class="section level3">
+<h3>Literature</h3>
+<p>Fransella, F., Bell, R. C., &amp; Bannister, D. (2003). A Manual for Repertory Grid Technique (2. ed.). Chichester: John Wiley &amp; Sons.</p>
 </div>
 
 

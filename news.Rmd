@@ -5,9 +5,9 @@ output: html_document
 
 ### Latest features
 
-* `multigridone` - a web GUI for mixed models and repertory grids is now  online:  [multigridone.openrepgrid.org](onair.openrepgrid.org) 
+* `multigridone` - a web GUI for mixed models and repertory grids is now  online:  [multigridone.openrepgrid.org](http://multigridone.openrepgrid.org) 
 * `onair` - a web GUI built upon the `OpenRepGrid` package is 
-now online: [onair.openrepgrid.org](onair.openrepgrid.org)
+now online: [onair.openrepgrid.org](http://onair.openrepgrid.org)
 * Since v0.1.9 there is no need for the Java Runtime Environment (JRE) to be installed anymore in order to install `OpenRepGrid`
 
 

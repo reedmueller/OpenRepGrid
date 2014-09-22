@@ -255,11 +255,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h4>Clustering</h4>
 <p>When the function <code>cluster</code> is called dendrograms of the construct and element clustering are drawn.</p>
 <pre class="r"><code>cluster(bell2010)</code></pre>
-<p><img src="constructs_cluster_files/figure-html/unnamed-chunk-2.png" title="" alt="" width="672" /></p>
-<p>The function also returns the reordered matrix invisibly. To see the reordered grid save it into a new object.</p>
-<pre class="r"><code>x &lt;- cluster(bell2010)</code></pre>
-<p><img src="constructs_cluster_files/figure-html/unnamed-chunk-3.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>x</code></pre>
+<p><img src="constructs_cluster_files/figure-html/cluster-simple.png" title="" alt="" width="672" /></p>
+<p>The function also returns the reordered matrix invisibly. To see the reordered grid save it into a new object. To oppress the creation of a graphic set <code>print = FALSE</code>.</p>
+<pre class="r"><code>x &lt;- cluster(bell2010, print=FALSE)
+x</code></pre>
 <pre><code>
 RATINGS:
 er (or the person who fill - 5 6 - A person of the opposite 
@@ -278,9 +277,8 @@ orried &amp; tense (3)   6 2 4 5 2 3 2 3 6 4   (3) relaxed
       fearless (8)   2 3 4 3 5 3 4 2 3 3   (8) fearful&amp;timid
 loves to argue (9)   1 3 3 4 4 2 2 1 3 3   (9) accept as it </code></pre>
 <p>The function also allows to only cluster constructs or elements. To only cluster the constructs us the following code. Again a dendrogram is drawn and a grid with reordered constructs is returned.</p>
-<pre class="r"><code>x &lt;- cluster(bell2010, along=1)</code></pre>
-<p><img src="constructs_cluster_files/figure-html/unnamed-chunk-4.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>x</code></pre>
+<pre class="r"><code>x &lt;- cluster(bell2010, along=1, print=FALSE)
+x</code></pre>
 <pre><code>
 RATINGS:
 er (or the person who fill - 5 6 - A person of the opposite 
@@ -299,9 +297,8 @@ orried &amp; tense (3)   6 2 4 5 2 3 2 6 4 3   (3) relaxed
       fearless (8)   2 3 4 3 5 3 4 3 3 2   (8) fearful&amp;timid
 loves to argue (9)   1 3 3 4 4 2 2 3 3 1   (9) accept as it </code></pre>
 <p>To only cluster the elements set <code>along=2</code>.</p>
-<pre class="r"><code>x &lt;- cluster(bell2010, along=2)</code></pre>
-<p><img src="constructs_cluster_files/figure-html/unnamed-chunk-5.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>x</code></pre>
+<pre class="r"><code>x &lt;- cluster(bell2010, along=2, print=FALSE)
+x</code></pre>
 <pre><code>
 RATINGS:
 er (or the person who fill - 5 6 - A person of the opposite 
@@ -320,9 +317,8 @@ orried &amp; tense (4)   6 2 4 5 2 3 2 3 6 4   (4) relaxed
 loves to argue (8)   1 3 3 4 4 2 2 1 3 3   (8) accept as it 
       fearless (9)   2 3 4 3 5 3 4 2 3 3   (9) fearful&amp;timid</code></pre>
 <p>To apply different distance measures and cluster methods us the arguments <code>dmethod</code> and <code>cmethod</code> (here <code>manhattan</code> distance and <code>single</code> linkage clustering).</p>
-<pre class="r"><code>x &lt;- cluster(bell2010, dmethod=&quot;manh&quot;, cmethod=&quot;single&quot;)</code></pre>
-<p><img src="constructs_cluster_files/figure-html/unnamed-chunk-6.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>x</code></pre>
+<pre class="r"><code>x &lt;- cluster(bell2010, dmethod=&quot;manh&quot;, cmethod=&quot;single&quot;, print=FALSE)
+x</code></pre>
 <pre><code>
 RATINGS:
 rson of the opposite sex t - 5 6 - A person you work well wi
@@ -341,11 +337,11 @@ ot transparent (5)   3 5 4 7 7 6 3 5 6 6   (5) transparent
 orried &amp; tense (8)   2 6 4 2 3 6 5 2 3 4   (8) relaxed      
   loves people (9)   4 1 1 3 2 1 2 3 2 2   (9) not interacti</code></pre>
 <p>To apply different methods to the constructs and the rows, use a two-step approach.</p>
-<pre class="r"><code>x &lt;- cluster(bell2010, along=1)                    # cluster constructs using default methods</code></pre>
-<p><img src="constructs_cluster_files/figure-html/unnamed-chunk-71.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>x &lt;- cluster(x, along=2, dm=&quot;manh&quot;, cm=&quot;single&quot;)   # cluster elements using manhattan distance and single linkage clustering</code></pre>
-<p><img src="constructs_cluster_files/figure-html/unnamed-chunk-72.png" title="" alt="" width="672" /></p>
-<pre class="r"><code>x</code></pre>
+<pre class="r"><code># cluster constructs using default methods
+x &lt;- cluster(bell2010, along=1, print=FALSE)       
+# cluster elements using manhattan distance and single linkage clustering
+x &lt;- cluster(x, along=2, dm=&quot;manh&quot;, cm=&quot;single&quot;, print=FALSE)  
+x</code></pre>
 <pre><code>
 RATINGS:
 rson of the opposite sex t - 5 6 - the unhappiest person you
@@ -380,7 +376,7 @@ cluster(bell2010, lab.cex=.7,                   # advanced appearance changes
 <h4>Clustered Bertin</h4>
 <p>The following figure shows a clustered Bertin matrix. The full explanation is found under the section <a href="">Bertin display</a>.</p>
 <pre class="r"><code>bertinCluster(bell2010)</code></pre>
-<p><img src="constructs_cluster_files/figure-html/unnamed-chunk-9.png" title="" alt="" width="672" /></p>
+<p><img src="constructs_cluster_files/figure-html/cluster-bertin.png" title="" alt="" width="672" /></p>
 </div>
 </div>
 <div id="literature" class="section level3">

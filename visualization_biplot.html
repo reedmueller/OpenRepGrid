@@ -234,9 +234,6 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <script type="text/javascript">
 CanvasMatrix4=function(m){if(typeof m=='object'){if("length"in m&&m.length>=16){this.load(m[0],m[1],m[2],m[3],m[4],m[5],m[6],m[7],m[8],m[9],m[10],m[11],m[12],m[13],m[14],m[15]);return}else if(m instanceof CanvasMatrix4){this.load(m);return}}this.makeIdentity()};CanvasMatrix4.prototype.load=function(){if(arguments.length==1&&typeof arguments[0]=='object'){var matrix=arguments[0];if("length"in matrix&&matrix.length==16){this.m11=matrix[0];this.m12=matrix[1];this.m13=matrix[2];this.m14=matrix[3];this.m21=matrix[4];this.m22=matrix[5];this.m23=matrix[6];this.m24=matrix[7];this.m31=matrix[8];this.m32=matrix[9];this.m33=matrix[10];this.m34=matrix[11];this.m41=matrix[12];this.m42=matrix[13];this.m43=matrix[14];this.m44=matrix[15];return}if(arguments[0]instanceof CanvasMatrix4){this.m11=matrix.m11;this.m12=matrix.m12;this.m13=matrix.m13;this.m14=matrix.m14;this.m21=matrix.m21;this.m22=matrix.m22;this.m23=matrix.m23;this.m24=matrix.m24;this.m31=matrix.m31;this.m32=matrix.m32;this.m33=matrix.m33;this.m34=matrix.m34;this.m41=matrix.m41;this.m42=matrix.m42;this.m43=matrix.m43;this.m44=matrix.m44;return}}this.makeIdentity()};CanvasMatrix4.prototype.getAsArray=function(){return[this.m11,this.m12,this.m13,this.m14,this.m21,this.m22,this.m23,this.m24,this.m31,this.m32,this.m33,this.m34,this.m41,this.m42,this.m43,this.m44]};CanvasMatrix4.prototype.getAsWebGLFloatArray=function(){return new WebGLFloatArray(this.getAsArray())};CanvasMatrix4.prototype.makeIdentity=function(){this.m11=1;this.m12=0;this.m13=0;this.m14=0;this.m21=0;this.m22=1;this.m23=0;this.m24=0;this.m31=0;this.m32=0;this.m33=1;this.m34=0;this.m41=0;this.m42=0;this.m43=0;this.m44=1};CanvasMatrix4.prototype.transpose=function(){var tmp=this.m12;this.m12=this.m21;this.m21=tmp;tmp=this.m13;this.m13=this.m31;this.m31=tmp;tmp=this.m14;this.m14=this.m41;this.m41=tmp;tmp=this.m23;this.m23=this.m32;this.m32=tmp;tmp=this.m24;this.m24=this.m42;this.m42=tmp;tmp=this.m34;this.m34=this.m43;this.m43=tmp};CanvasMatrix4.prototype.invert=function(){var det=this._determinant4x4();if(Math.abs(det)<1e-8)return null;this._makeAdjoint();this.m11/=det;this.m12/=det;this.m13/=det;this.m14/=det;this.m21/=det;this.m22/=det;this.m23/=det;this.m24/=det;this.m31/=det;this.m32/=det;this.m33/=det;this.m34/=det;this.m41/=det;this.m42/=det;this.m43/=det;this.m44/=det};CanvasMatrix4.prototype.translate=function(x,y,z){if(x==undefined)x=0;if(y==undefined)y=0;if(z==undefined)z=0;var matrix=new CanvasMatrix4();matrix.m41=x;matrix.m42=y;matrix.m43=z;this.multRight(matrix)};CanvasMatrix4.prototype.scale=function(x,y,z){if(x==undefined)x=1;if(z==undefined){if(y==undefined){y=x;z=x}else z=1}else if(y==undefined)y=x;var matrix=new CanvasMatrix4();matrix.m11=x;matrix.m22=y;matrix.m33=z;this.multRight(matrix)};CanvasMatrix4.prototype.rotate=function(angle,x,y,z){angle=angle/180*Math.PI;angle/=2;var sinA=Math.sin(angle);var cosA=Math.cos(angle);var sinA2=sinA*sinA;var length=Math.sqrt(x*x+y*y+z*z);if(length==0){x=0;y=0;z=1}else if(length!=1){x/=length;y/=length;z/=length}var mat=new CanvasMatrix4();if(x==1&&y==0&&z==0){mat.m11=1;mat.m12=0;mat.m13=0;mat.m21=0;mat.m22=1-2*sinA2;mat.m23=2*sinA*cosA;mat.m31=0;mat.m32=-2*sinA*cosA;mat.m33=1-2*sinA2;mat.m14=mat.m24=mat.m34=0;mat.m41=mat.m42=mat.m43=0;mat.m44=1}else if(x==0&&y==1&&z==0){mat.m11=1-2*sinA2;mat.m12=0;mat.m13=-2*sinA*cosA;mat.m21=0;mat.m22=1;mat.m23=0;mat.m31=2*sinA*cosA;mat.m32=0;mat.m33=1-2*sinA2;mat.m14=mat.m24=mat.m34=0;mat.m41=mat.m42=mat.m43=0;mat.m44=1}else if(x==0&&y==0&&z==1){mat.m11=1-2*sinA2;mat.m12=2*sinA*cosA;mat.m13=0;mat.m21=-2*sinA*cosA;mat.m22=1-2*sinA2;mat.m23=0;mat.m31=0;mat.m32=0;mat.m33=1;mat.m14=mat.m24=mat.m34=0;mat.m41=mat.m42=mat.m43=0;mat.m44=1}else{var x2=x*x;var y2=y*y;var z2=z*z;mat.m11=1-2*(y2+z2)*sinA2;mat.m12=2*(x*y*sinA2+z*sinA*cosA);mat.m13=2*(x*z*sinA2-y*sinA*cosA);mat.m21=2*(y*x*sinA2-z*sinA*cosA);mat.m22=1-2*(z2+x2)*sinA2;mat.m23=2*(y*z*sinA2+x*sinA*cosA);mat.m31=2*(z*x*sinA2+y*sinA*cosA);mat.m32=2*(z*y*sinA2-x*sinA*cosA);mat.m33=1-2*(x2+y2)*sinA2;mat.m14=mat.m24=mat.m34=0;mat.m41=mat.m42=mat.m43=0;mat.m44=1}this.multRight(mat)};CanvasMatrix4.prototype.multRight=function(mat){var m11=(this.m11*mat.m11+this.m12*mat.m21+this.m13*mat.m31+this.m14*mat.m41);var m12=(this.m11*mat.m12+this.m12*mat.m22+this.m13*mat.m32+this.m14*mat.m42);var m13=(this.m11*mat.m13+this.m12*mat.m23+this.m13*mat.m33+this.m14*mat.m43);var m14=(this.m11*mat.m14+this.m12*mat.m24+this.m13*mat.m34+this.m14*mat.m44);var m21=(this.m21*mat.m11+this.m22*mat.m21+this.m23*mat.m31+this.m24*mat.m41);var m22=(this.m21*mat.m12+this.m22*mat.m22+this.m23*mat.m32+this.m24*mat.m42);var m23=(this.m21*mat.m13+this.m22*mat.m23+this.m23*mat.m33+this.m24*mat.m43);var m24=(this.m21*mat.m14+this.m22*mat.m24+this.m23*mat.m34+this.m24*mat.m44);var m31=(this.m31*mat.m11+this.m32*mat.m21+this.m33*mat.m31+this.m34*mat.m41);var m32=(this.m31*mat.m12+this.m32*mat.m22+this.m33*mat.m32+this.m34*mat.m42);var m33=(this.m31*mat.m13+this.m32*mat.m23+this.m33*mat.m33+this.m34*mat.m43);var m34=(this.m31*mat.m14+this.m32*mat.m24+this.m33*mat.m34+this.m34*mat.m44);var m41=(this.m41*mat.m11+this.m42*mat.m21+this.m43*mat.m31+this.m44*mat.m41);var m42=(this.m41*mat.m12+this.m42*mat.m22+this.m43*mat.m32+this.m44*mat.m42);var m43=(this.m41*mat.m13+this.m42*mat.m23+this.m43*mat.m33+this.m44*mat.m43);var m44=(this.m41*mat.m14+this.m42*mat.m24+this.m43*mat.m34+this.m44*mat.m44);this.m11=m11;this.m12=m12;this.m13=m13;this.m14=m14;this.m21=m21;this.m22=m22;this.m23=m23;this.m24=m24;this.m31=m31;this.m32=m32;this.m33=m33;this.m34=m34;this.m41=m41;this.m42=m42;this.m43=m43;this.m44=m44};CanvasMatrix4.prototype.multLeft=function(mat){var m11=(mat.m11*this.m11+mat.m12*this.m21+mat.m13*this.m31+mat.m14*this.m41);var m12=(mat.m11*this.m12+mat.m12*this.m22+mat.m13*this.m32+mat.m14*this.m42);var m13=(mat.m11*this.m13+mat.m12*this.m23+mat.m13*this.m33+mat.m14*this.m43);var m14=(mat.m11*this.m14+mat.m12*this.m24+mat.m13*this.m34+mat.m14*this.m44);var m21=(mat.m21*this.m11+mat.m22*this.m21+mat.m23*this.m31+mat.m24*this.m41);var m22=(mat.m21*this.m12+mat.m22*this.m22+mat.m23*this.m32+mat.m24*this.m42);var m23=(mat.m21*this.m13+mat.m22*this.m23+mat.m23*this.m33+mat.m24*this.m43);var m24=(mat.m21*this.m14+mat.m22*this.m24+mat.m23*this.m34+mat.m24*this.m44);var m31=(mat.m31*this.m11+mat.m32*this.m21+mat.m33*this.m31+mat.m34*this.m41);var m32=(mat.m31*this.m12+mat.m32*this.m22+mat.m33*this.m32+mat.m34*this.m42);var m33=(mat.m31*this.m13+mat.m32*this.m23+mat.m33*this.m33+mat.m34*this.m43);var m34=(mat.m31*this.m14+mat.m32*this.m24+mat.m33*this.m34+mat.m34*this.m44);var m41=(mat.m41*this.m11+mat.m42*this.m21+mat.m43*this.m31+mat.m44*this.m41);var m42=(mat.m41*this.m12+mat.m42*this.m22+mat.m43*this.m32+mat.m44*this.m42);var m43=(mat.m41*this.m13+mat.m42*this.m23+mat.m43*this.m33+mat.m44*this.m43);var m44=(mat.m41*this.m14+mat.m42*this.m24+mat.m43*this.m34+mat.m44*this.m44);this.m11=m11;this.m12=m12;this.m13=m13;this.m14=m14;this.m21=m21;this.m22=m22;this.m23=m23;this.m24=m24;this.m31=m31;this.m32=m32;this.m33=m33;this.m34=m34;this.m41=m41;this.m42=m42;this.m43=m43;this.m44=m44};CanvasMatrix4.prototype.ortho=function(left,right,bottom,top,near,far){var tx=(left+right)/(left-right);var ty=(top+bottom)/(top-bottom);var tz=(far+near)/(far-near);var matrix=new CanvasMatrix4();matrix.m11=2/(left-right);matrix.m12=0;matrix.m13=0;matrix.m14=0;matrix.m21=0;matrix.m22=2/(top-bottom);matrix.m23=0;matrix.m24=0;matrix.m31=0;matrix.m32=0;matrix.m33=-2/(far-near);matrix.m34=0;matrix.m41=tx;matrix.m42=ty;matrix.m43=tz;matrix.m44=1;this.multRight(matrix)};CanvasMatrix4.prototype.frustum=function(left,right,bottom,top,near,far){var matrix=new CanvasMatrix4();var A=(right+left)/(right-left);var B=(top+bottom)/(top-bottom);var C=-(far+near)/(far-near);var D=-(2*far*near)/(far-near);matrix.m11=(2*near)/(right-left);matrix.m12=0;matrix.m13=0;matrix.m14=0;matrix.m21=0;matrix.m22=2*near/(top-bottom);matrix.m23=0;matrix.m24=0;matrix.m31=A;matrix.m32=B;matrix.m33=C;matrix.m34=-1;matrix.m41=0;matrix.m42=0;matrix.m43=D;matrix.m44=0;this.multRight(matrix)};CanvasMatrix4.prototype.perspective=function(fovy,aspect,zNear,zFar){var top=Math.tan(fovy*Math.PI/360)*zNear;var bottom=-top;var left=aspect*bottom;var right=aspect*top;this.frustum(left,right,bottom,top,zNear,zFar)};CanvasMatrix4.prototype.lookat=function(eyex,eyey,eyez,centerx,centery,centerz,upx,upy,upz){var matrix=new CanvasMatrix4();var zx=eyex-centerx;var zy=eyey-centery;var zz=eyez-centerz;var mag=Math.sqrt(zx*zx+zy*zy+zz*zz);if(mag){zx/=mag;zy/=mag;zz/=mag}var yx=upx;var yy=upy;var yz=upz;xx=yy*zz-yz*zy;xy=-yx*zz+yz*zx;xz=yx*zy-yy*zx;yx=zy*xz-zz*xy;yy=-zx*xz+zz*xx;yx=zx*xy-zy*xx;mag=Math.sqrt(xx*xx+xy*xy+xz*xz);if(mag){xx/=mag;xy/=mag;xz/=mag}mag=Math.sqrt(yx*yx+yy*yy+yz*yz);if(mag){yx/=mag;yy/=mag;yz/=mag}matrix.m11=xx;matrix.m12=xy;matrix.m13=xz;matrix.m14=0;matrix.m21=yx;matrix.m22=yy;matrix.m23=yz;matrix.m24=0;matrix.m31=zx;matrix.m32=zy;matrix.m33=zz;matrix.m34=0;matrix.m41=0;matrix.m42=0;matrix.m43=0;matrix.m44=1;matrix.translate(-eyex,-eyey,-eyez);this.multRight(matrix)};CanvasMatrix4.prototype._determinant2x2=function(a,b,c,d){return a*d-b*c};CanvasMatrix4.prototype._determinant3x3=function(a1,a2,a3,b1,b2,b3,c1,c2,c3){return a1*this._determinant2x2(b2,b3,c2,c3)-b1*this._determinant2x2(a2,a3,c2,c3)+c1*this._determinant2x2(a2,a3,b2,b3)};CanvasMatrix4.prototype._determinant4x4=function(){var a1=this.m11;var b1=this.m12;var c1=this.m13;var d1=this.m14;var a2=this.m21;var b2=this.m22;var c2=this.m23;var d2=this.m24;var a3=this.m31;var b3=this.m32;var c3=this.m33;var d3=this.m34;var a4=this.m41;var b4=this.m42;var c4=this.m43;var d4=this.m44;return a1*this._determinant3x3(b2,b3,b4,c2,c3,c4,d2,d3,d4)-b1*this._determinant3x3(a2,a3,a4,c2,c3,c4,d2,d3,d4)+c1*this._determinant3x3(a2,a3,a4,b2,b3,b4,d2,d3,d4)-d1*this._determinant3x3(a2,a3,a4,b2,b3,b4,c2,c3,c4)};CanvasMatrix4.prototype._makeAdjoint=function(){var a1=this.m11;var b1=this.m12;var c1=this.m13;var d1=this.m14;var a2=this.m21;var b2=this.m22;var c2=this.m23;var d2=this.m24;var a3=this.m31;var b3=this.m32;var c3=this.m33;var d3=this.m34;var a4=this.m41;var b4=this.m42;var c4=this.m43;var d4=this.m44;this.m11=this._determinant3x3(b2,b3,b4,c2,c3,c4,d2,d3,d4);this.m21=-this._determinant3x3(a2,a3,a4,c2,c3,c4,d2,d3,d4);this.m31=this._determinant3x3(a2,a3,a4,b2,b3,b4,d2,d3,d4);this.m41=-this._determinant3x3(a2,a3,a4,b2,b3,b4,c2,c3,c4);this.m12=-this._determinant3x3(b1,b3,b4,c1,c3,c4,d1,d3,d4);this.m22=this._determinant3x3(a1,a3,a4,c1,c3,c4,d1,d3,d4);this.m32=-this._determinant3x3(a1,a3,a4,b1,b3,b4,d1,d3,d4);this.m42=this._determinant3x3(a1,a3,a4,b1,b3,b4,c1,c3,c4);this.m13=this._determinant3x3(b1,b2,b4,c1,c2,c4,d1,d2,d4);this.m23=-this._determinant3x3(a1,a2,a4,c1,c2,c4,d1,d2,d4);this.m33=this._determinant3x3(a1,a2,a4,b1,b2,b4,d1,d2,d4);this.m43=-this._determinant3x3(a1,a2,a4,b1,b2,b4,c1,c2,c4);this.m14=-this._determinant3x3(b1,b2,b3,c1,c2,c3,d1,d2,d3);this.m24=this._determinant3x3(a1,a2,a3,c1,c2,c3,d1,d2,d3);this.m34=-this._determinant3x3(a1,a2,a3,b1,b2,b3,d1,d2,d3);this.m44=this._determinant3x3(a1,a2,a3,b1,b2,b3,c1,c2,c3)}
 </script>
-
-
-
 <div id="description" class="section level3">
 <h3>Description</h3>
 <p>One of the most appealing features in the analysis of repertory grids is the joint spatial representation of elements and constructs, i. e. row and column points, in a single plot. These plots visualize inter-construct, inter-element and element-construct relations. They can be a helpful tool as they allow insights into the interviewee’s world, support the formulation of clinical hypotheses or and foster the client-therapist interaction.</p>
@@ -257,19 +254,19 @@ CanvasMatrix4=function(m){if(typeof m=='object'){if("length"in m&&m.length>=16){
 <h4><code>biplotSimple</code></h4>
 <p><code>biplotSimple</code> is a graphically unsophisticated version of a biplot. It will draw elements and constructs vectors using similar arguments as <code>biplot2d</code>. It is a version for quick exploration used during development. The colors of the constructs has been set to <code>darkred</code> to make it easier to differentiate between constructs and element labels.</p>
 <pre class="r"><code>biplotSimple(boeker, c.label.col=&quot;darkred&quot;)</code></pre>
-<p><img src="visualization_biplot_files/figure-html/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="672" /></p>
+<p><img src="visualization_biplot_files/figure-html/biplot-simple.png" title="" alt="" width="672" /></p>
 </div>
 <div id="biplot2d" class="section level4">
 <h4><code>biplot2d</code></h4>
 <p>Draws a two-dimensional biplot with a more sophisticated look. Depending on the parameters chosen it contains information on the distances between elements and constructs. Also the relative values the elements have on a construct can be read off by projetion the element onto the construct vector. A lot of parameters can be changed rendering different types of biplots (ESA, Slater’s) and different looks (colors, text size).</p>
 <pre class="r"><code>biplot2d(boeker)</code></pre>
-<p><img src="visualization_biplot_files/figure-html/unnamed-chunk-2.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="672" /></p>
+<p><img src="visualization_biplot_files/figure-html/biplot2d.png" title="" alt="" width="672" /></p>
 </div>
 <div id="biplotpseudo3d" class="section level4">
 <h4><code>biplotPseudo3d</code></h4>
 <p>Draws a biplot of the grid in 2D with depth impression (pseudo 3D). This version is basically a 2D biplot. It only modifies the color and size of the symbols in order to create a 3D impression of the data points. Lighter and smaller labels are more to the back, darker and bigger labels more to the front. This function will call the standard biplot2d function with some modified arguments. For the whole set of arguments that can be used see <code>?biplot2d</code>.</p>
 <pre class="r"><code>biplotPseudo3d(boeker)</code></pre>
-<p><img src="visualization_biplot_files/figure-html/unnamed-chunk-3.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="672" /></p>
+<p><img src="visualization_biplot_files/figure-html/biploPseudo3d.png" title="" alt="" width="672" /></p>
 </div>
 <div id="biplot3d" class="section level4">
 <h4><code>biplot3d</code></h4>
@@ -303,6 +300,7 @@ precision highp float;
 varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
 varying vec3 vNormal;
+void main(void) {
 vec3 eye = normalize(-vPosition.xyz);
 const vec3 emission = vec3(0., 0., 0.);
 const vec3 ambient1 = vec3(0., 0., 0.);
@@ -311,7 +309,6 @@ const float shininess1 = 50.;
 vec4 colDiff1 = vec4(vCol.rgb * vec3(1., 1., 1.), vCol.a);
 const vec3 lightDir1 = vec3(0., 0., 1.);
 vec3 halfVec1 = normalize(lightDir1 + eye);
-void main(void) {
 vec4 lighteffect = vec4(emission, 0.);
 vec3 n = normalize(vNormal);
 n = -faceforward(n, n, eye);
@@ -322,7 +319,7 @@ col1 = col1 + pow(max(dot(halfVec1, n), 0.), shininess1) * specular1;
 lighteffect = lighteffect + vec4(col1, colDiff1.a);
 gl_FragColor = lighteffect;
 }
-</script> 
+</script>
 <!-- ****** text object 9 ****** -->
 <script id="biplot3vshader9" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -350,8 +347,8 @@ varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
 varying vec2 vTexcoord;
 uniform sampler2D uSampler;
-vec4 colDiff = vCol;
 void main(void) {
+vec4 colDiff = vCol;
 vec4 lighteffect = colDiff;
 vec4 textureColor = lighteffect*texture2D(uSampler, vTexcoord);
 if (textureColor.a < 0.1)
@@ -359,7 +356,7 @@ discard;
 else
 gl_FragColor = textureColor;
 }
-</script> 
+</script>
 <!-- ****** lines object 10 ****** -->
 <script id="biplot3vshader10" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -380,12 +377,12 @@ precision highp float;
 #endif
 varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
-vec4 colDiff = vCol;
 void main(void) {
+vec4 colDiff = vCol;
 vec4 lighteffect = colDiff;
 gl_FragColor = lighteffect;
 }
-</script> 
+</script>
 <!-- ****** text object 11 ****** -->
 <script id="biplot3vshader11" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -413,8 +410,8 @@ varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
 varying vec2 vTexcoord;
 uniform sampler2D uSampler;
-vec4 colDiff = vCol;
 void main(void) {
+vec4 colDiff = vCol;
 vec4 lighteffect = colDiff;
 vec4 textureColor = lighteffect*texture2D(uSampler, vTexcoord);
 if (textureColor.a < 0.1)
@@ -422,7 +419,7 @@ discard;
 else
 gl_FragColor = textureColor;
 }
-</script> 
+</script>
 <!-- ****** linestrip object 12 ****** -->
 <script id="biplot3vshader12" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -443,12 +440,12 @@ precision highp float;
 #endif
 varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
-vec4 colDiff = vCol;
 void main(void) {
+vec4 colDiff = vCol;
 vec4 lighteffect = colDiff;
 gl_FragColor = lighteffect;
 }
-</script> 
+</script>
 <!-- ****** linestrip object 13 ****** -->
 <script id="biplot3vshader13" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -469,12 +466,12 @@ precision highp float;
 #endif
 varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
-vec4 colDiff = vCol;
 void main(void) {
+vec4 colDiff = vCol;
 vec4 lighteffect = colDiff;
 gl_FragColor = lighteffect;
 }
-</script> 
+</script>
 <!-- ****** linestrip object 14 ****** -->
 <script id="biplot3vshader14" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -495,12 +492,12 @@ precision highp float;
 #endif
 varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
-vec4 colDiff = vCol;
 void main(void) {
+vec4 colDiff = vCol;
 vec4 lighteffect = colDiff;
 gl_FragColor = lighteffect;
 }
-</script> 
+</script>
 <!-- ****** text object 15 ****** -->
 <script id="biplot3vshader15" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -528,8 +525,8 @@ varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
 varying vec2 vTexcoord;
 uniform sampler2D uSampler;
-vec4 colDiff = vCol;
 void main(void) {
+vec4 colDiff = vCol;
 vec4 lighteffect = colDiff;
 vec4 textureColor = lighteffect*texture2D(uSampler, vTexcoord);
 if (textureColor.a < 0.1)
@@ -537,7 +534,7 @@ discard;
 else
 gl_FragColor = textureColor;
 }
-</script> 
+</script>
 <!-- ****** text object 16 ****** -->
 <script id="biplot3vshader16" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -565,8 +562,8 @@ varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
 varying vec2 vTexcoord;
 uniform sampler2D uSampler;
-vec4 colDiff = vCol;
 void main(void) {
+vec4 colDiff = vCol;
 vec4 lighteffect = colDiff;
 vec4 textureColor = lighteffect*texture2D(uSampler, vTexcoord);
 if (textureColor.a < 0.1)
@@ -574,7 +571,7 @@ discard;
 else
 gl_FragColor = textureColor;
 }
-</script> 
+</script>
 <!-- ****** text object 17 ****** -->
 <script id="biplot3vshader17" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -602,8 +599,8 @@ varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
 varying vec2 vTexcoord;
 uniform sampler2D uSampler;
-vec4 colDiff = vCol;
 void main(void) {
+vec4 colDiff = vCol;
 vec4 lighteffect = colDiff;
 vec4 textureColor = lighteffect*texture2D(uSampler, vTexcoord);
 if (textureColor.a < 0.1)
@@ -611,7 +608,7 @@ discard;
 else
 gl_FragColor = textureColor;
 }
-</script> 
+</script>
 <!-- ****** spheres object 18 ****** -->
 <script id="biplot3vshader18" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -637,6 +634,7 @@ precision highp float;
 varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
 varying vec3 vNormal;
+void main(void) {
 vec3 eye = normalize(-vPosition.xyz);
 const vec3 emission = vec3(0., 0., 0.);
 const vec3 ambient1 = vec3(0., 0., 0.);
@@ -645,7 +643,6 @@ const float shininess1 = 50.;
 vec4 colDiff1 = vec4(vCol.rgb * vec3(1., 1., 1.), vCol.a);
 const vec3 lightDir1 = vec3(0., 0., 1.);
 vec3 halfVec1 = normalize(lightDir1 + eye);
-void main(void) {
 vec4 lighteffect = vec4(emission, 0.);
 vec3 n = normalize(vNormal);
 n = -faceforward(n, n, eye);
@@ -656,7 +653,7 @@ col1 = col1 + pow(max(dot(halfVec1, n), 0.), shininess1) * specular1;
 lighteffect = lighteffect + vec4(col1, colDiff1.a);
 gl_FragColor = lighteffect;
 }
-</script> 
+</script>
 <!-- ****** spheres object 19 ****** -->
 <script id="biplot3vshader19" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -682,6 +679,7 @@ precision highp float;
 varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
 varying vec3 vNormal;
+void main(void) {
 vec3 eye = normalize(-vPosition.xyz);
 const vec3 emission = vec3(0., 0., 0.);
 const vec3 ambient1 = vec3(0., 0., 0.);
@@ -690,7 +688,6 @@ const float shininess1 = 50.;
 vec4 colDiff1 = vec4(vCol.rgb * vec3(1., 1., 1.), vCol.a);
 const vec3 lightDir1 = vec3(0., 0., 1.);
 vec3 halfVec1 = normalize(lightDir1 + eye);
-void main(void) {
 vec4 lighteffect = vec4(emission, 0.);
 vec3 n = normalize(vNormal);
 n = -faceforward(n, n, eye);
@@ -701,7 +698,7 @@ col1 = col1 + pow(max(dot(halfVec1, n), 0.), shininess1) * specular1;
 lighteffect = lighteffect + vec4(col1, colDiff1.a);
 gl_FragColor = lighteffect;
 }
-</script> 
+</script>
 <!-- ****** lines object 20 ****** -->
 <script id="biplot3vshader20" type="x-shader/x-vertex">
 attribute vec3 aPos;
@@ -722,12 +719,12 @@ precision highp float;
 #endif
 varying vec4 vCol; // carries alpha
 varying vec4 vPosition;
-vec4 colDiff = vCol;
 void main(void) {
+vec4 colDiff = vCol;
 vec4 lighteffect = colDiff;
 gl_FragColor = lighteffect;
 }
-</script> 
+</script>
 <script type="text/javascript"> 
 function getShader ( gl, id ){
 var shaderScript = document.getElementById ( id );
@@ -789,6 +786,8 @@ var normMatrix = new CanvasMatrix4();
 var saveMat = new CanvasMatrix4();
 saveMat.makeIdentity();
 var distance;
+var posLoc = 0;
+var colLoc = 1;
 var zoom = 0.75;
 var fov = 60;
 var userMatrix = new CanvasMatrix4();
@@ -1077,6 +1076,9 @@ gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, f, gl.STATIC_DRAW);
 var prog8  = gl.createProgram();
 gl.attachShader(prog8, getShader( gl, "biplot3vshader8" ));
 gl.attachShader(prog8, getShader( gl, "biplot3fshader8" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog8, 0, "aPos");
+gl.bindAttribLocation(prog8, 1, "aCol");
 gl.linkProgram(prog8);
 var v=new Float32Array([
 -3.01998, 0.2990217, 0.1367679, 0.156318,
@@ -1096,8 +1098,6 @@ var v=new Float32Array([
 -2.029774, 2.103241, 0.2322887, 0.156318
 ]);
 var values8 = v;
-var posLoc8 = gl.getAttribLocation(prog8, "aPos");
-var colLoc8 = gl.getAttribLocation(prog8, "aCol");
 var normLoc8 = gl.getAttribLocation(prog8, "aNorm");
 var mvMatLoc8 = gl.getUniformLocation(prog8,"mvMatrix");
 var prMatLoc8 = gl.getUniformLocation(prog8,"prMatrix");
@@ -1106,6 +1106,9 @@ var normMatLoc8 = gl.getUniformLocation(prog8,"normMatrix");
 var prog9  = gl.createProgram();
 gl.attachShader(prog9, getShader( gl, "biplot3vshader9" ));
 gl.attachShader(prog9, getShader( gl, "biplot3fshader9" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog9, 0, "aPos");
+gl.bindAttribLocation(prog9, 1, "aCol");
 gl.linkProgram(prog9);
 var texts = [
 "self",
@@ -1203,8 +1206,6 @@ v[ind] *= texinfo.widths[i]/texinfo.canvasX;
 v[ind+1] = 1.0-(texinfo.offset + i*texinfo.skip 
 - v[ind+1]*texinfo.textHeight)/texinfo.canvasY;
 }
-var posLoc9 = gl.getAttribLocation(prog9, "aPos");
-var colLoc9 = gl.getAttribLocation(prog9, "aCol");
 var f=new Uint16Array([
 0, 1, 2, 0, 2, 3,
 4, 5, 6, 4, 6, 7,
@@ -1234,6 +1235,9 @@ var prMatLoc9 = gl.getUniformLocation(prog9,"prMatrix");
 var prog10  = gl.createProgram();
 gl.attachShader(prog10, getShader( gl, "biplot3vshader10" ));
 gl.attachShader(prog10, getShader( gl, "biplot3fshader10" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog10, 0, "aPos");
+gl.bindAttribLocation(prog10, 1, "aCol");
 gl.linkProgram(prog10);
 var v=new Float32Array([
 0.386304, -0.06258269, -0.3346449,
@@ -1293,8 +1297,6 @@ var v=new Float32Array([
 -0.5320792, 0.01888357, 0.1897967,
 -9.564703, 0.3394527, 3.411803
 ]);
-var posLoc10 = gl.getAttribLocation(prog10, "aPos");
-var colLoc10 = gl.getAttribLocation(prog10, "aCol");
 var buf10 = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, buf10);
 gl.bufferData(gl.ARRAY_BUFFER, v, gl.STATIC_DRAW);
@@ -1304,6 +1306,9 @@ var prMatLoc10 = gl.getUniformLocation(prog10,"prMatrix");
 var prog11  = gl.createProgram();
 gl.attachShader(prog11, getShader( gl, "biplot3vshader11" ));
 gl.attachShader(prog11, getShader( gl, "biplot3fshader11" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog11, 0, "aPos");
+gl.bindAttribLocation(prog11, 1, "aCol");
 gl.linkProgram(prog11);
 var texts = [
 "get along with conflicts",
@@ -1466,8 +1471,6 @@ v[ind] *= texinfo.widths[i]/texinfo.canvasX;
 v[ind+1] = 1.0-(texinfo.offset + i*texinfo.skip 
 - v[ind+1]*texinfo.textHeight)/texinfo.canvasY;
 }
-var posLoc11 = gl.getAttribLocation(prog11, "aPos");
-var colLoc11 = gl.getAttribLocation(prog11, "aCol");
 var f=new Uint16Array([
 0, 1, 2, 0, 2, 3,
 4, 5, 6, 4, 6, 7,
@@ -1510,13 +1513,14 @@ var prMatLoc11 = gl.getUniformLocation(prog11,"prMatrix");
 var prog12  = gl.createProgram();
 gl.attachShader(prog12, getShader( gl, "biplot3vshader12" ));
 gl.attachShader(prog12, getShader( gl, "biplot3fshader12" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog12, 0, "aPos");
+gl.bindAttribLocation(prog12, 1, "aCol");
 gl.linkProgram(prog12);
 var v=new Float32Array([
 0, 0, 0,
 10.16067, 0, 0
 ]);
-var posLoc12 = gl.getAttribLocation(prog12, "aPos");
-var colLoc12 = gl.getAttribLocation(prog12, "aCol");
 var buf12 = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, buf12);
 gl.bufferData(gl.ARRAY_BUFFER, v, gl.STATIC_DRAW);
@@ -1526,13 +1530,14 @@ var prMatLoc12 = gl.getUniformLocation(prog12,"prMatrix");
 var prog13  = gl.createProgram();
 gl.attachShader(prog13, getShader( gl, "biplot3vshader13" ));
 gl.attachShader(prog13, getShader( gl, "biplot3fshader13" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog13, 0, "aPos");
+gl.bindAttribLocation(prog13, 1, "aCol");
 gl.linkProgram(prog13);
 var v=new Float32Array([
 0, 0, 0,
 0, 10.16067, 0
 ]);
-var posLoc13 = gl.getAttribLocation(prog13, "aPos");
-var colLoc13 = gl.getAttribLocation(prog13, "aCol");
 var buf13 = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, buf13);
 gl.bufferData(gl.ARRAY_BUFFER, v, gl.STATIC_DRAW);
@@ -1542,13 +1547,14 @@ var prMatLoc13 = gl.getUniformLocation(prog13,"prMatrix");
 var prog14  = gl.createProgram();
 gl.attachShader(prog14, getShader( gl, "biplot3vshader14" ));
 gl.attachShader(prog14, getShader( gl, "biplot3fshader14" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog14, 0, "aPos");
+gl.bindAttribLocation(prog14, 1, "aCol");
 gl.linkProgram(prog14);
 var v=new Float32Array([
 0, 0, 0,
 0, 0, 10.16067
 ]);
-var posLoc14 = gl.getAttribLocation(prog14, "aPos");
-var colLoc14 = gl.getAttribLocation(prog14, "aCol");
 var buf14 = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, buf14);
 gl.bufferData(gl.ARRAY_BUFFER, v, gl.STATIC_DRAW);
@@ -1558,6 +1564,9 @@ var prMatLoc14 = gl.getUniformLocation(prog14,"prMatrix");
 var prog15  = gl.createProgram();
 gl.attachShader(prog15, getShader( gl, "biplot3vshader15" ));
 gl.attachShader(prog15, getShader( gl, "biplot3fshader15" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog15, 0, "aPos");
+gl.bindAttribLocation(prog15, 1, "aCol");
 gl.linkProgram(prog15);
 var texts = [
 "X"
@@ -1585,8 +1594,6 @@ v[ind] *= texinfo.widths[i]/texinfo.canvasX;
 v[ind+1] = 1.0-(texinfo.offset + i*texinfo.skip 
 - v[ind+1]*texinfo.textHeight)/texinfo.canvasY;
 }
-var posLoc15 = gl.getAttribLocation(prog15, "aPos");
-var colLoc15 = gl.getAttribLocation(prog15, "aCol");
 var f=new Uint16Array([
 0, 1, 2, 0, 2, 3
 ]);
@@ -1602,6 +1609,9 @@ var prMatLoc15 = gl.getUniformLocation(prog15,"prMatrix");
 var prog16  = gl.createProgram();
 gl.attachShader(prog16, getShader( gl, "biplot3vshader16" ));
 gl.attachShader(prog16, getShader( gl, "biplot3fshader16" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog16, 0, "aPos");
+gl.bindAttribLocation(prog16, 1, "aCol");
 gl.linkProgram(prog16);
 var texts = [
 "Y"
@@ -1629,8 +1639,6 @@ v[ind] *= texinfo.widths[i]/texinfo.canvasX;
 v[ind+1] = 1.0-(texinfo.offset + i*texinfo.skip 
 - v[ind+1]*texinfo.textHeight)/texinfo.canvasY;
 }
-var posLoc16 = gl.getAttribLocation(prog16, "aPos");
-var colLoc16 = gl.getAttribLocation(prog16, "aCol");
 var f=new Uint16Array([
 0, 1, 2, 0, 2, 3
 ]);
@@ -1646,6 +1654,9 @@ var prMatLoc16 = gl.getUniformLocation(prog16,"prMatrix");
 var prog17  = gl.createProgram();
 gl.attachShader(prog17, getShader( gl, "biplot3vshader17" ));
 gl.attachShader(prog17, getShader( gl, "biplot3fshader17" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog17, 0, "aPos");
+gl.bindAttribLocation(prog17, 1, "aCol");
 gl.linkProgram(prog17);
 var texts = [
 "Z"
@@ -1673,8 +1684,6 @@ v[ind] *= texinfo.widths[i]/texinfo.canvasX;
 v[ind+1] = 1.0-(texinfo.offset + i*texinfo.skip 
 - v[ind+1]*texinfo.textHeight)/texinfo.canvasY;
 }
-var posLoc17 = gl.getAttribLocation(prog17, "aPos");
-var colLoc17 = gl.getAttribLocation(prog17, "aCol");
 var f=new Uint16Array([
 0, 1, 2, 0, 2, 3
 ]);
@@ -1690,6 +1699,9 @@ var prMatLoc17 = gl.getUniformLocation(prog17,"prMatrix");
 var prog18  = gl.createProgram();
 gl.attachShader(prog18, getShader( gl, "biplot3vshader18" ));
 gl.attachShader(prog18, getShader( gl, "biplot3fshader18" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog18, 0, "aPos");
+gl.bindAttribLocation(prog18, 1, "aCol");
 gl.linkProgram(prog18);
 var v=new Float32Array([
 0.386304, -0.06258269, -0.3346449, 0.03907949,
@@ -1722,8 +1734,6 @@ var v=new Float32Array([
 -0.5320792, 0.01888357, 0.1897967, 0.03907949
 ]);
 var values18 = v;
-var posLoc18 = gl.getAttribLocation(prog18, "aPos");
-var colLoc18 = gl.getAttribLocation(prog18, "aCol");
 var normLoc18 = gl.getAttribLocation(prog18, "aNorm");
 var mvMatLoc18 = gl.getUniformLocation(prog18,"mvMatrix");
 var prMatLoc18 = gl.getUniformLocation(prog18,"prMatrix");
@@ -1732,6 +1742,9 @@ var normMatLoc18 = gl.getUniformLocation(prog18,"normMatrix");
 var prog19  = gl.createProgram();
 gl.attachShader(prog19, getShader( gl, "biplot3vshader19" ));
 gl.attachShader(prog19, getShader( gl, "biplot3fshader19" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog19, 0, "aPos");
+gl.bindAttribLocation(prog19, 1, "aCol");
 gl.linkProgram(prog19);
 var v=new Float32Array([
 10.16067, 0, 0, 0,
@@ -1742,8 +1755,6 @@ var v=new Float32Array([
 -0, -0, -10.16067, 0
 ]);
 var values19 = v;
-var posLoc19 = gl.getAttribLocation(prog19, "aPos");
-var colLoc19 = gl.getAttribLocation(prog19, "aCol");
 var normLoc19 = gl.getAttribLocation(prog19, "aNorm");
 var mvMatLoc19 = gl.getUniformLocation(prog19,"mvMatrix");
 var prMatLoc19 = gl.getUniformLocation(prog19,"prMatrix");
@@ -1752,6 +1763,9 @@ var normMatLoc19 = gl.getUniformLocation(prog19,"normMatrix");
 var prog20  = gl.createProgram();
 gl.attachShader(prog20, getShader( gl, "biplot3vshader20" ));
 gl.attachShader(prog20, getShader( gl, "biplot3fshader20" ));
+//  Force aPos to location 0, aCol to location 1 
+gl.bindAttribLocation(prog20, 0, "aPos");
+gl.bindAttribLocation(prog20, 1, "aCol");
 gl.linkProgram(prog20);
 var v=new Float32Array([
 10.16067, 10.16067, 10.16067,
@@ -1779,8 +1793,6 @@ var v=new Float32Array([
 10.16067, -10.16067, 10.16067,
 10.16067, -10.16067, -10.16067
 ]);
-var posLoc20 = gl.getAttribLocation(prog20, "aPos");
-var colLoc20 = gl.getAttribLocation(prog20, "aCol");
 var buf20 = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, buf20);
 gl.bufferData(gl.ARRAY_BUFFER, v, gl.STATIC_DRAW);
@@ -1827,16 +1839,16 @@ gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, sphereIbuf);
 gl.uniformMatrix4fv( prMatLoc8, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc8, false, new Float32Array(mvMatrix.getAsArray()) );
 gl.uniformMatrix4fv( normMatLoc8, false, new Float32Array(normMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc8 );
-gl.vertexAttribPointer(posLoc8,  3, gl.FLOAT, false, 12,  0);
+gl.enableVertexAttribArray( posLoc );
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 12,  0);
 gl.enableVertexAttribArray(normLoc8 );
 gl.vertexAttribPointer(normLoc8,  3, gl.FLOAT, false, 12,  0);
-gl.disableVertexAttribArray( colLoc8 );
+gl.disableVertexAttribArray( colLoc );
 var sphereNorm = new CanvasMatrix4();
 sphereNorm.scale(1, 1, 1);
 sphereNorm.multRight(normMatrix);
 gl.uniformMatrix4fv( normMatLoc8, false, new Float32Array(sphereNorm.getAsArray()) );
-gl.vertexAttrib4f( colLoc8, 0, 0, 0, 1);
+gl.vertexAttrib4f( colLoc, 0, 0, 0, 1);
 for (var i = 0; i < 15; i++) {
 var sphereMV = new CanvasMatrix4();
 var baseofs = i*4
@@ -1856,9 +1868,9 @@ gl.bindBuffer(gl.ARRAY_BUFFER, buf9);
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibuf9);
 gl.uniformMatrix4fv( prMatLoc9, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc9, false, new Float32Array(mvMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc9 );
-gl.disableVertexAttribArray( colLoc9 );
-gl.vertexAttrib4f( colLoc9, 0, 0, 0, 1 );
+gl.enableVertexAttribArray( posLoc );
+gl.disableVertexAttribArray( colLoc );
+gl.vertexAttrib4f( colLoc, 0, 0, 0, 1 );
 gl.enableVertexAttribArray( texLoc9 );
 gl.vertexAttribPointer(texLoc9, 2, gl.FLOAT, false, 28, 12);
 gl.activeTexture(gl.TEXTURE0);
@@ -1866,18 +1878,18 @@ gl.bindTexture(gl.TEXTURE_2D, texture9);
 gl.uniform1i( sampler9, 0);
 gl.enableVertexAttribArray( ofsLoc9 );
 gl.vertexAttribPointer(ofsLoc9, 2, gl.FLOAT, false, 28, 20);
-gl.vertexAttribPointer(posLoc9,  3, gl.FLOAT, false, 28,  0);
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 28,  0);
 gl.drawElements(gl.TRIANGLES, 90, gl.UNSIGNED_SHORT, 0);
 // ****** lines object 10 *******
 gl.useProgram(prog10);
 gl.bindBuffer(gl.ARRAY_BUFFER, buf10);
 gl.uniformMatrix4fv( prMatLoc10, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc10, false, new Float32Array(mvMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc10 );
-gl.disableVertexAttribArray( colLoc10 );
-gl.vertexAttrib4f( colLoc10, 0.7450981, 0.7450981, 0.7450981, 1 );
+gl.enableVertexAttribArray( posLoc );
+gl.disableVertexAttribArray( colLoc );
+gl.vertexAttrib4f( colLoc, 0.7450981, 0.7450981, 0.7450981, 1 );
 gl.lineWidth( 1 );
-gl.vertexAttribPointer(posLoc10,  3, gl.FLOAT, false, 12,  0);
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 12,  0);
 gl.drawArrays(gl.LINES, 0, 56);
 // ****** text object 11 *******
 gl.useProgram(prog11);
@@ -1885,9 +1897,9 @@ gl.bindBuffer(gl.ARRAY_BUFFER, buf11);
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibuf11);
 gl.uniformMatrix4fv( prMatLoc11, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc11, false, new Float32Array(mvMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc11 );
-gl.disableVertexAttribArray( colLoc11 );
-gl.vertexAttrib4f( colLoc11, 0.4, 0.4, 0.4, 1 );
+gl.enableVertexAttribArray( posLoc );
+gl.disableVertexAttribArray( colLoc );
+gl.vertexAttrib4f( colLoc, 0.4, 0.4, 0.4, 1 );
 gl.enableVertexAttribArray( texLoc11 );
 gl.vertexAttribPointer(texLoc11, 2, gl.FLOAT, false, 28, 12);
 gl.activeTexture(gl.TEXTURE0);
@@ -1895,40 +1907,40 @@ gl.bindTexture(gl.TEXTURE_2D, texture11);
 gl.uniform1i( sampler11, 0);
 gl.enableVertexAttribArray( ofsLoc11 );
 gl.vertexAttribPointer(ofsLoc11, 2, gl.FLOAT, false, 28, 20);
-gl.vertexAttribPointer(posLoc11,  3, gl.FLOAT, false, 28,  0);
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 28,  0);
 gl.drawElements(gl.TRIANGLES, 168, gl.UNSIGNED_SHORT, 0);
 // ****** linestrip object 12 *******
 gl.useProgram(prog12);
 gl.bindBuffer(gl.ARRAY_BUFFER, buf12);
 gl.uniformMatrix4fv( prMatLoc12, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc12, false, new Float32Array(mvMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc12 );
-gl.disableVertexAttribArray( colLoc12 );
-gl.vertexAttrib4f( colLoc12, 0, 0, 0, 1 );
+gl.enableVertexAttribArray( posLoc );
+gl.disableVertexAttribArray( colLoc );
+gl.vertexAttrib4f( colLoc, 0, 0, 0, 1 );
 gl.lineWidth( 1 );
-gl.vertexAttribPointer(posLoc12,  3, gl.FLOAT, false, 12,  0);
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 12,  0);
 gl.drawArrays(gl.LINE_STRIP, 0, 2);
 // ****** linestrip object 13 *******
 gl.useProgram(prog13);
 gl.bindBuffer(gl.ARRAY_BUFFER, buf13);
 gl.uniformMatrix4fv( prMatLoc13, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc13, false, new Float32Array(mvMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc13 );
-gl.disableVertexAttribArray( colLoc13 );
-gl.vertexAttrib4f( colLoc13, 0, 0, 0, 1 );
+gl.enableVertexAttribArray( posLoc );
+gl.disableVertexAttribArray( colLoc );
+gl.vertexAttrib4f( colLoc, 0, 0, 0, 1 );
 gl.lineWidth( 1 );
-gl.vertexAttribPointer(posLoc13,  3, gl.FLOAT, false, 12,  0);
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 12,  0);
 gl.drawArrays(gl.LINE_STRIP, 0, 2);
 // ****** linestrip object 14 *******
 gl.useProgram(prog14);
 gl.bindBuffer(gl.ARRAY_BUFFER, buf14);
 gl.uniformMatrix4fv( prMatLoc14, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc14, false, new Float32Array(mvMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc14 );
-gl.disableVertexAttribArray( colLoc14 );
-gl.vertexAttrib4f( colLoc14, 0, 0, 0, 1 );
+gl.enableVertexAttribArray( posLoc );
+gl.disableVertexAttribArray( colLoc );
+gl.vertexAttrib4f( colLoc, 0, 0, 0, 1 );
 gl.lineWidth( 1 );
-gl.vertexAttribPointer(posLoc14,  3, gl.FLOAT, false, 12,  0);
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 12,  0);
 gl.drawArrays(gl.LINE_STRIP, 0, 2);
 // ****** text object 15 *******
 gl.useProgram(prog15);
@@ -1936,9 +1948,9 @@ gl.bindBuffer(gl.ARRAY_BUFFER, buf15);
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibuf15);
 gl.uniformMatrix4fv( prMatLoc15, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc15, false, new Float32Array(mvMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc15 );
-gl.disableVertexAttribArray( colLoc15 );
-gl.vertexAttrib4f( colLoc15, 0, 0, 0, 1 );
+gl.enableVertexAttribArray( posLoc );
+gl.disableVertexAttribArray( colLoc );
+gl.vertexAttrib4f( colLoc, 0, 0, 0, 1 );
 gl.enableVertexAttribArray( texLoc15 );
 gl.vertexAttribPointer(texLoc15, 2, gl.FLOAT, false, 28, 12);
 gl.activeTexture(gl.TEXTURE0);
@@ -1946,7 +1958,7 @@ gl.bindTexture(gl.TEXTURE_2D, texture15);
 gl.uniform1i( sampler15, 0);
 gl.enableVertexAttribArray( ofsLoc15 );
 gl.vertexAttribPointer(ofsLoc15, 2, gl.FLOAT, false, 28, 20);
-gl.vertexAttribPointer(posLoc15,  3, gl.FLOAT, false, 28,  0);
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 28,  0);
 gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
 // ****** text object 16 *******
 gl.useProgram(prog16);
@@ -1954,9 +1966,9 @@ gl.bindBuffer(gl.ARRAY_BUFFER, buf16);
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibuf16);
 gl.uniformMatrix4fv( prMatLoc16, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc16, false, new Float32Array(mvMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc16 );
-gl.disableVertexAttribArray( colLoc16 );
-gl.vertexAttrib4f( colLoc16, 0, 0, 0, 1 );
+gl.enableVertexAttribArray( posLoc );
+gl.disableVertexAttribArray( colLoc );
+gl.vertexAttrib4f( colLoc, 0, 0, 0, 1 );
 gl.enableVertexAttribArray( texLoc16 );
 gl.vertexAttribPointer(texLoc16, 2, gl.FLOAT, false, 28, 12);
 gl.activeTexture(gl.TEXTURE0);
@@ -1964,7 +1976,7 @@ gl.bindTexture(gl.TEXTURE_2D, texture16);
 gl.uniform1i( sampler16, 0);
 gl.enableVertexAttribArray( ofsLoc16 );
 gl.vertexAttribPointer(ofsLoc16, 2, gl.FLOAT, false, 28, 20);
-gl.vertexAttribPointer(posLoc16,  3, gl.FLOAT, false, 28,  0);
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 28,  0);
 gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
 // ****** text object 17 *******
 gl.useProgram(prog17);
@@ -1972,9 +1984,9 @@ gl.bindBuffer(gl.ARRAY_BUFFER, buf17);
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibuf17);
 gl.uniformMatrix4fv( prMatLoc17, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc17, false, new Float32Array(mvMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc17 );
-gl.disableVertexAttribArray( colLoc17 );
-gl.vertexAttrib4f( colLoc17, 0, 0, 0, 1 );
+gl.enableVertexAttribArray( posLoc );
+gl.disableVertexAttribArray( colLoc );
+gl.vertexAttrib4f( colLoc, 0, 0, 0, 1 );
 gl.enableVertexAttribArray( texLoc17 );
 gl.vertexAttribPointer(texLoc17, 2, gl.FLOAT, false, 28, 12);
 gl.activeTexture(gl.TEXTURE0);
@@ -1982,7 +1994,7 @@ gl.bindTexture(gl.TEXTURE_2D, texture17);
 gl.uniform1i( sampler17, 0);
 gl.enableVertexAttribArray( ofsLoc17 );
 gl.vertexAttribPointer(ofsLoc17, 2, gl.FLOAT, false, 28, 20);
-gl.vertexAttribPointer(posLoc17,  3, gl.FLOAT, false, 28,  0);
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 28,  0);
 gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
 // ****** spheres object 18 *******
 gl.useProgram(prog18);
@@ -1991,16 +2003,16 @@ gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, sphereIbuf);
 gl.uniformMatrix4fv( prMatLoc18, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc18, false, new Float32Array(mvMatrix.getAsArray()) );
 gl.uniformMatrix4fv( normMatLoc18, false, new Float32Array(normMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc18 );
-gl.vertexAttribPointer(posLoc18,  3, gl.FLOAT, false, 12,  0);
+gl.enableVertexAttribArray( posLoc );
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 12,  0);
 gl.enableVertexAttribArray(normLoc18 );
 gl.vertexAttribPointer(normLoc18,  3, gl.FLOAT, false, 12,  0);
-gl.disableVertexAttribArray( colLoc18 );
+gl.disableVertexAttribArray( colLoc );
 var sphereNorm = new CanvasMatrix4();
 sphereNorm.scale(1, 1, 1);
 sphereNorm.multRight(normMatrix);
 gl.uniformMatrix4fv( normMatLoc18, false, new Float32Array(sphereNorm.getAsArray()) );
-gl.vertexAttrib4f( colLoc18, 0.4, 0.4, 0.4, 1);
+gl.vertexAttrib4f( colLoc, 0.4, 0.4, 0.4, 1);
 for (var i = 0; i < 28; i++) {
 var sphereMV = new CanvasMatrix4();
 var baseofs = i*4
@@ -2021,16 +2033,16 @@ gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, sphereIbuf);
 gl.uniformMatrix4fv( prMatLoc19, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc19, false, new Float32Array(mvMatrix.getAsArray()) );
 gl.uniformMatrix4fv( normMatLoc19, false, new Float32Array(normMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc19 );
-gl.vertexAttribPointer(posLoc19,  3, gl.FLOAT, false, 12,  0);
+gl.enableVertexAttribArray( posLoc );
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 12,  0);
 gl.enableVertexAttribArray(normLoc19 );
 gl.vertexAttribPointer(normLoc19,  3, gl.FLOAT, false, 12,  0);
-gl.disableVertexAttribArray( colLoc19 );
+gl.disableVertexAttribArray( colLoc );
 var sphereNorm = new CanvasMatrix4();
 sphereNorm.scale(1, 1, 1);
 sphereNorm.multRight(normMatrix);
 gl.uniformMatrix4fv( normMatLoc19, false, new Float32Array(sphereNorm.getAsArray()) );
-gl.vertexAttrib4f( colLoc19, 1, 1, 1, 1);
+gl.vertexAttrib4f( colLoc, 1, 1, 1, 1);
 for (var i = 0; i < 6; i++) {
 var sphereMV = new CanvasMatrix4();
 var baseofs = i*4
@@ -2049,11 +2061,11 @@ gl.useProgram(prog20);
 gl.bindBuffer(gl.ARRAY_BUFFER, buf20);
 gl.uniformMatrix4fv( prMatLoc20, false, new Float32Array(prMatrix.getAsArray()) );
 gl.uniformMatrix4fv( mvMatLoc20, false, new Float32Array(mvMatrix.getAsArray()) );
-gl.enableVertexAttribArray( posLoc20 );
-gl.disableVertexAttribArray( colLoc20 );
-gl.vertexAttrib4f( colLoc20, 0.6, 0.6, 0.6, 1 );
+gl.enableVertexAttribArray( posLoc );
+gl.disableVertexAttribArray( colLoc );
+gl.vertexAttrib4f( colLoc, 0.6, 0.6, 0.6, 1 );
 gl.lineWidth( 1 );
-gl.vertexAttribPointer(posLoc20,  3, gl.FLOAT, false, 12,  0);
+gl.vertexAttribPointer(posLoc,  3, gl.FLOAT, false, 12,  0);
 gl.drawArrays(gl.LINES, 0, 24);
 gl.flush ();
 }
@@ -2174,12 +2186,12 @@ canvas.addEventListener("DOMMouseScroll", wheelHandler, false);
 canvas.addEventListener("mousewheel", wheelHandler, false);
 }
 </script>
-<canvas id="biplot3canvas" width="1" height="1"></canvas> 
+<canvas id="biplot3canvas" width="1" height="1">
+</canvas>
 <p id="biplot3debug">
 You must enable Javascript to view this page properly.
 </p>
 <script>biplot3webGLStart();</script>
-
 </div>
 </div>
 <div id="pre-transformations" class="section level3">
@@ -2188,11 +2200,11 @@ You must enable Javascript to view this page properly.
 <p>In OpenRepGrid different options for centering and normalization (also called scaling) are included. The <strong>centering</strong> option for rows and columns of a matrix in yields four possible combinations: 1) construct centering, 2) element centering, 3) double-centering and 4) construct midpoint centering. The last option is also denoted “double-centering” of a grid. For normalization three options can be chosen: 0) no normalization, 1) normalization of constructs and 2) normalization of elements. A simultaneous normalization of rows and columns is not possible.</p>
 <p>If the output is affected by pre-scaling the corresponding function in OpenRepGrid offers an argument to specify the form of pre-scaling to be used. The following figures demonstrate how different forms of pre-scaling lead to different representation.</p>
 <pre class="r"><code>biplot2d(boeker, center=1, normalize=0)</code></pre>
-<p><img src="visualization_biplot_files/figure-html/unnamed-chunk-51.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="672" /></p>
+<p><img src="visualization_biplot_files/figure-html/biplot2d-transforms-1.png" title="" alt="" width="672" /></p>
 <pre class="r"><code>biplot2d(boeker, center=2, normalize=0)</code></pre>
-<p><img src="visualization_biplot_files/figure-html/unnamed-chunk-52.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="672" /></p>
+<p><img src="visualization_biplot_files/figure-html/biplot2d-transforms-2.png" title="" alt="" width="672" /></p>
 <pre class="r"><code>biplot2d(boeker, center=1, normalize=2)</code></pre>
-<p><img src="visualization_biplot_files/figure-html/unnamed-chunk-53.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" width="672" /></p>
+<p><img src="visualization_biplot_files/figure-html/biplot2d-transforms-3.png" title="" alt="" width="672" /></p>
 </div>
 <div id="standard-biplot-types" class="section level3">
 <h3>Standard biplot types</h3>
@@ -2268,7 +2280,7 @@ biplot2d(boeker, c.labels.devangle=20)                    # plot16: only show co
 <ul>
 <li>Fransella, F., Bell, R. C., &amp; Bannister, D. (2003). A Manual for Repertory Grid Technique (2. ed.). Chichester: John Wiley &amp; Sons.</li>
 <li>Gower, J., Lubbe, S. G., Gardner, S., &amp; Roux, N. L. (2011). Understanding Biplots. John Wiley and Sons.</li>
-<li>Greenacre, M. (2010). Biplots in practice. Madrid: BBVA Foundation. Retrieved from <a href="http://www.multivariatestatistics.org/biplots.html">http://www.multivariatestatistics.org/biplots.html</a></li>
+<li>Greenacre, M. (2010). Biplots in practice. Madrid: BBVA Foundation. Retrieved from <a href="http://www.multivariatestatistics.org/biplots.html" class="uri">http://www.multivariatestatistics.org/biplots.html</a></li>
 <li>Hope, K. (1966). Cos and Cosmos: Considerations on Patrick Slater’s Monograph The Principal Components of a Repertory Grid. British Journal of Psychiatry, 66(112), 1155 - 1163.</li>
 <li>Raeithel, A. (1998). Kooperative Modellproduktion von Professionellen und Klienten – erläutert am Beispiel des Repertory Grid. In Selbstorganisation, Kooperation, Zeichenprozeß : Arbeiten zu einer kulturwissenschaftlichen, anwendungsbezogenen Psychologie (pp. 209-254). Opladen: Westdeutscher Verlag.</li>
 <li>Slater, P. (1964). The Principal Components of a Repertory. London: Vincent Andrews &amp; Co.</li>

@@ -6,7 +6,7 @@ output:
     toc_depth: 4
 ---
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(comment=NA)
 library(OpenRepGrid)
 settings(show.scale=FALSE, show.meta=FALSE)
@@ -47,43 +47,45 @@ The distance and cluster methods can be combined as wished.
 
 When the function `cluster` is called dendrograms of the construct and element clustering are drawn.
 
-```{r message=FALSE, warning=FALSE}
+```{r cluster-simple, message=FALSE, warning=FALSE}
 cluster(bell2010)
 ```
 
-The function also returns the reordered matrix invisibly. To see the reordered grid save it into a new object.
+The function also returns the reordered matrix invisibly. To see the reordered grid save it into a new object. To oppress the creation of a graphic set `print = FALSE`. 
 
 ```{r message=FALSE, warning=FALSE}
-x <- cluster(bell2010)
+x <- cluster(bell2010, print=FALSE)
 x
 ```
 
 The function also allows to only cluster constructs or elements. To only cluster the constructs us the following code. Again a dendrogram is drawn and a grid with reordered constructs is returned.
 
 ```{r message=FALSE, warning=FALSE}
-x <- cluster(bell2010, along=1)
+x <- cluster(bell2010, along=1, print=FALSE)
 x
 ```
 
 To only cluster the elements set `along=2`.
 
 ```{r message=FALSE, warning=FALSE}
-x <- cluster(bell2010, along=2)
+x <- cluster(bell2010, along=2, print=FALSE)
 x
 ```
 
 To apply different distance measures and cluster methods us the arguments `dmethod` and `cmethod` (here `manhattan` distance and `single` linkage clustering).
 
 ```{r message=FALSE, warning=FALSE}
-x <- cluster(bell2010, dmethod="manh", cmethod="single")
+x <- cluster(bell2010, dmethod="manh", cmethod="single", print=FALSE)
 x
 ```
 
 To apply different methods to the constructs and the rows, use a two-step approach.
 
 ```{r message=FALSE, warning=FALSE}
-x <- cluster(bell2010, along=1)                    # cluster constructs using default methods
-x <- cluster(x, along=2, dm="manh", cm="single")   # cluster elements using manhattan distance and single linkage clustering
+# cluster constructs using default methods
+x <- cluster(bell2010, along=1, print=FALSE)       
+# cluster elements using manhattan distance and single linkage clustering
+x <- cluster(x, along=2, dm="manh", cm="single", print=FALSE)  
 x
 ```
 
@@ -107,7 +109,7 @@ TODO
 
 The following figure shows a clustered Bertin matrix. The full explanation is found under the section [Bertin display]().
 
-```{r message=FALSE, warning=FALSE}
+```{r cluster-bertin, message=FALSE, warning=FALSE}
 bertinCluster(bell2010)
 ```
 

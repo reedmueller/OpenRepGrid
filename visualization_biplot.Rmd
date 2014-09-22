@@ -46,7 +46,7 @@ All of these functions allow to change a lot of their settings. To see the whole
 
 `biplotSimple` is a graphically unsophisticated version of a biplot. It will draw elements and constructs vectors using similar arguments as `biplot2d`. It is a version for quick exploration used during development. The colors of the constructs has been set to `darkred` to make it easier to differentiate between constructs and element labels.
 
-```{r}
+```{r biplot-simple}
 biplotSimple(boeker, c.label.col="darkred")
 ```
 
@@ -55,7 +55,7 @@ biplotSimple(boeker, c.label.col="darkred")
 
 Draws a two-dimensional biplot with a more sophisticated look. Depending on the parameters chosen it contains information on the distances between elements and constructs. Also the relative values the elements have on a construct can be read off by projetion the element onto the construct vector. A lot of parameters can be changed rendering different types of biplots (ESA, Slater's) and different looks (colors, text size).
 
-```{r}
+```{r biplot2d}
 biplot2d(boeker)
 ```
 
@@ -63,7 +63,7 @@ biplot2d(boeker)
 
 Draws a biplot of the grid in 2D with depth impression (pseudo 3D). This version is basically a 2D biplot. It only modifies the color and size of the symbols in order to create a 3D impression of the data points. Lighter and smaller labels are more to the back, darker and bigger labels more to the front. This function will call the standard biplot2d function with some modified arguments. For the whole set of arguments that can be used see `?biplot2d`.
 
-```{r}
+```{r biploPseudo3d}
 biplotPseudo3d(boeker)
 ```
 
@@ -71,7 +71,7 @@ biplotPseudo3d(boeker)
 
 Renders an interactive 3D biplot. You will only see the interactive 3D plot below if your browser supports WebGL (like e.g. Google Chrome).
 
-```{r eval=FALSE}
+```{r biplot3d, eval=FALSE}
 biplot3d(boeker)
 ```
 
@@ -88,9 +88,15 @@ In OpenRepGrid different options for centering and normalization (also called sc
 
 If the output is affected by pre-scaling the corresponding function in OpenRepGrid offers an argument to specify the form of pre-scaling to be used. The following figures demonstrate how different forms of pre-scaling lead to different representation.
 
-```{r}
+```{r biplot2d-transforms-1}
 biplot2d(boeker, center=1, normalize=0)
+```
+
+```{r biplot2d-transforms-2}
 biplot2d(boeker, center=2, normalize=0)
+```
+
+```{r biplot2d-transforms-3}
 biplot2d(boeker, center=1, normalize=2)
 ```
 

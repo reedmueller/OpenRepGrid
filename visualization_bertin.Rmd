@@ -21,7 +21,7 @@ One of the most popular ways of displaying grid data has been adopted from Berti
 
 #### Bertin display (standard)
 
-```{r}
+```{r bertin}
 bertin(boeker)
 ```
 
@@ -31,7 +31,7 @@ Various settings can be modified in the `bertin` function. To see the whole set 
 
 E.g. to change the color of the display use the argument color.
 
-```{r}
+```{r bertin-color}
 bertin(boeker, color=c("white", "darkred"))
 ```
 
@@ -39,7 +39,7 @@ bertin(boeker, color=c("white", "darkred"))
 
 To suppress the printing of the scores and only plot the colors use
 
-```{r}
+```{r bertin-color-no-values}
 bertin(boeker, showvalues=FALSE)
 ```
 
@@ -61,19 +61,19 @@ Beside the standard Bertin display also a clustered version is available. It con
 
 As a default Euclidean distance and ward clustering is applied to the grid.
 
-```{r warning=FALSE, message=FALSE}
+```{r bertin-cluster-1, warning=FALSE, message=FALSE}
 bertinCluster(feixas2004)
 ```
 
 To apply different distance and cluster methods use the arguments `dmethod` (abbreveated: `dm`) and `cmethod` (abbreveated: cm). For more information on clustering go to here. The following code uses `manhattan` distance and `single` linkage clustering.
 
-```{r warning=FALSE, message=FALSE}
+```{r bertin-cluster-2, warning=FALSE, message=FALSE}
 bertinCluster(feixas2004, dmethod="manhattan", cm="single")  
 ```
 
 Sometimes it is desirable to spot structures by eye-balling the colors. For this purpose the printing of the scores can be surpressed.
 
-```{r eval=FALSE}
+```{r bertin-no-ratings, eval=FALSE}
 bertinCluster(feixas2004, showvalues=FALSE)  
 ```
 
@@ -86,7 +86,7 @@ bertinCluster(feixas2004, draw.axis=F)        # no axis drawn for dendrogram
 
 or to chose a rectangular type of dendrogram.
 
-```{r warning=FALSE, message=FALSE}       
+```{r bertin-rectangular, warning=FALSE, message=FALSE}       
 bertinCluster(feixas2004, type="rectangle")   # rectangle type dendrogram 
 ```
 

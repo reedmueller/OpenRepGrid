@@ -227,16 +227,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="bertin-display-standard" class="section level4">
 <h4>Bertin display (standard)</h4>
 <pre class="r"><code>bertin(boeker)</code></pre>
-<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-2.png" title="" alt="" width="672" /></p>
+<p><img src="visualization_bertin_files/figure-html/bertin.png" title="" alt="" width="672" /></p>
 <p>Various settings can be modified in the <code>bertin</code> function. To see the whole set of options type <code>?bertin</code> to the R console.</p>
 <p><strong>Color</strong></p>
 <p>E.g. to change the color of the display use the argument color.</p>
 <pre class="r"><code>bertin(boeker, color=c(&quot;white&quot;, &quot;darkred&quot;))</code></pre>
-<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-3.png" title="" alt="" width="672" /></p>
+<p><img src="visualization_bertin_files/figure-html/bertin-color.png" title="" alt="" width="672" /></p>
 <p><strong>Printing of Scores</strong></p>
 <p>To suppress the printing of the scores and only plot the colors use</p>
 <pre class="r"><code>bertin(boeker, showvalues=FALSE)</code></pre>
-<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-4.png" title="" alt="" width="672" /></p>
+<p><img src="visualization_bertin_files/figure-html/bertin-color-no-values.png" title="" alt="" width="672" /></p>
 <p>** Construct / Element Index **</p>
 <p>The argument <code>id</code> allows to manage the printing of an index number of the elements and constructs.</p>
 <pre class="r"><code>bertin(boeker, id=c(T, F))          # only index numbers for constructs
@@ -248,17 +248,17 @@ bertin(boeker, id=c(F, F))          # no index numbers</code></pre>
 <p>Beside the standard Bertin display also a clustered version is available. It contains a standard Bertin display in its center and dendrograms at the sides. How to cluster a grid is described <a href="constructs_cluster.html">here</a>. You should read the cluster section first to understand the following code.</p>
 <p>As a default Euclidean distance and ward clustering is applied to the grid.</p>
 <pre class="r"><code>bertinCluster(feixas2004)</code></pre>
-<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-6.png" title="" alt="" width="672" /></p>
+<p><img src="visualization_bertin_files/figure-html/bertin-cluster-1.png" title="" alt="" width="672" /></p>
 <p>To apply different distance and cluster methods use the arguments <code>dmethod</code> (abbreveated: <code>dm</code>) and <code>cmethod</code> (abbreveated: cm). For more information on clustering go to here. The following code uses <code>manhattan</code> distance and <code>single</code> linkage clustering.</p>
 <pre class="r"><code>bertinCluster(feixas2004, dmethod=&quot;manhattan&quot;, cm=&quot;single&quot;)  </code></pre>
-<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-7.png" title="" alt="" width="672" /></p>
+<p><img src="visualization_bertin_files/figure-html/bertin-cluster-2.png" title="" alt="" width="672" /></p>
 <p>Sometimes it is desirable to spot structures by eye-balling the colors. For this purpose the printing of the scores can be surpressed.</p>
 <pre class="r"><code>bertinCluster(feixas2004, showvalues=FALSE)  </code></pre>
 <p>Other options include to suppress the axis of the dendrogram</p>
 <pre class="r"><code>bertinCluster(feixas2004, draw.axis=F)        # no axis drawn for dendrogram  </code></pre>
 <p>or to chose a rectangular type of dendrogram.</p>
 <pre class="r"><code>bertinCluster(feixas2004, type=&quot;rectangle&quot;)   # rectangle type dendrogram </code></pre>
-<p><img src="visualization_bertin_files/figure-html/unnamed-chunk-10.png" title="" alt="" width="672" /></p>
+<p><img src="visualization_bertin_files/figure-html/bertin-rectangular.png" title="" alt="" width="672" /></p>
 </div>
 </div>
 <div id="literature" class="section level3">

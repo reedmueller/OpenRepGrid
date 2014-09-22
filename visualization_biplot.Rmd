@@ -4,14 +4,23 @@ output:
   html_document:
     toc: true
     toc_depth: 4
+    self_contained: no
 ---
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-knitr::opts_chunk$set(comment=NA)
+```{r setup, echo=FALSE, results='asis', message=FALSE, warning=FALSE}
 options(width=120)
+library(rgl)
 library(OpenRepGrid)
 settings(show.scale=FALSE, show.meta=FALSE)
+library(knitr)
+opts_chunk$set(comment=NA)
+knit_hooks$set(webgl = hook_webgl)
+cat('<script type="text/javascript">', 
+    readLines(system.file('WebGL', 'CanvasMatrix.js', package = 'rgl')), 
+    '</script>', sep = '\n')
 ```
+
+
 
 ### Description
 
@@ -60,12 +69,16 @@ biplotPseudo3d(boeker)
 
 #### `biplot3d`
 
-Renders an interactive 3D biplot.
+Renders an interactive 3D biplot. You will only see the interactive 3D plot below if your browser supports WebGL (like e.g. Google Chrome).
 
 ```{r eval=FALSE}
 biplot3d(boeker)
 ```
 
+```{r biplot3, echo=FALSE, webgl=TRUE, results='hide', fig.width=3, fig.height=3}
+biplot3d(boeker)
+view3d( theta = 0, phi = 0, zoom=.75)
+```
 
 ### Pre-transformations
 

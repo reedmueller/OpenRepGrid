@@ -1,0 +1,7 @@
+---
+title: "Feature request"
+output: html_document
+---
+
+Please enter a feature you would like to see in OpenRepGrid
+in the comment section below. You can upvote other suggestions.

@@ -40,7 +40,7 @@ There are several ways of how to participate in the project.
 You can get in touch in several ways:
 
 * Post your ideas, remarks and suggestions in the comment section at the bottom of each page. We will get back to your comments ASAP.
-* Write an email to openrepgrid@gmail.com.
+* Write an email to team@openrepgrid.org.
 * There is a [shared Dropbox folder for contributors](https://www.dropbox.com/sh/453dhcf2b0i2tq6/AAC09Qkg5jMGl2ZAh2EYi7-Da?dl=0). Have a look at it. If you want to get access to it e.g. to add some stuff, write an email.
 * (Expert level): Post a bug, issue or enhancement directly on [github](https://github.com/markheckmann/OpenRepGrid/issues).
 

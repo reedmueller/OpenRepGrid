@@ -7,7 +7,7 @@ There are several ways of how to participate in the project.
 
 **<i class="icon-comment"></i> Make suggestions**
 
-* In order to make `OpenRepGrid` suit your needs we need to know what features you need, what you miss and what you feel needs improvement. So please don't hesitate to [tell us](#get-in-touch). Just share your ideas in the comment section at the bottom of each page. 
+* In order to make `OpenRepGrid` suit your needs we need to know what features you need, what you miss and what you feel needs improvement. So please don't hesitate to [tell us](#get-in-touch). E.g. just share your ideas in the comment section at the bottom of each page. 
 
        
 **<i class="icon-pencil"></i> Build the documentation** 

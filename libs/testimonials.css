@@ -1,0 +1,61 @@
+blockquote {
+  font-style: italic
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+#testimonials-container
+{
+  width: 500px;
+  display: block;
+  /* background: #f6f6f6;*/
+  margin-left: auto;
+  margin-right: auto;
+  border-radius:12px;
+}
+
+#testimonials{
+  padding: 10px;
+  /* background: #EBEBEB;
+  border-radius:12px; */
+}
+
+#testimonials blockquote {
+  font-size: 25px;
+  font-style: italic;
+  text-align: left;
+  line-height: 150%;
+  border: 0px;
+  margin: 0px;
+  padding: 20px 20px 10px 20px;
+  color: #777;
+}
+
+#testimonials p.user {
+  color: #97310e;
+  font-size: 16px;
+  font-style: italic;
+  text-align: right;
+  margin:10px;
+}
+
+#testimonial-user {
+  font-style: italic; 
+  text-align: right;
+  padding-right: 20px;
+}
+
+#heading-testimonials{
+  font-size: 50px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  color: #777;
+}
+
+

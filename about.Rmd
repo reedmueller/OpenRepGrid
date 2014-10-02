@@ -1,0 +1,47 @@
+---
+title: "About the OpenRepGrid R package"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 4
+---
+<hr>
+
+Without doubt, there are several very good grid programs already on the market (Gridstat, Gridcor, Idiogrid, sci:vesco etc.). So ...
+
+#### Why do we need OpenRepGrid at all? 
+
+* No grid software offers **all** the analysis methods devised in the literature. There are even methods in the literature, e.g. the [structural quadrants methods](http://www.tandfonline.com/doi/abs/10.1080/107205300265955), that have even never been implemented in any software.
+* With most programs it is tedious to analyse batches of grids. You will often find that you have to copy and paste your results.
+* Most of the programs are not Open Source. You cannot see what is going on inside. One might argue, that science should be transparent. 
+* Discontinued development: Over the last decades many grid programs have vanished after their initiators have retired. We should try to put development in the hands of many to ensure continuity.
+* There is no joint community effort to build a tool that suits everyones needs as it is hard to participate in the development.
+* None of the available softwares is extensible by researchers themselves. You have to hope for a few people to implement your ideas and thus to provide a new method to the comunity. This slows down scientific progress. 
+* The programs do not have an underlying framework that supports fast development of new features.
+
+
+#### Why is it an R package?
+
+* [R](http://www.r-project.org/) is an Open Source framework for statistical programming. It will probably become one of the [most popoular statistical tools](http://r4stats.com/articles/popularity/) also in the social sciences within a decade. So people will probably be familiar with R in the future anyway.
+* Being Open Source and under a [general public license](http://en.wikipedia.org/wiki/GNU_General_Public_License), everybody is free to continue, modify or expand the software. 
+* R provides a wealth of functions. This makes it easy to expand the functionality of `OpenRepgrid`.
+* R syntax is simple to learn. With some R training you can easily add new features yourself and provide them to grid users around the world. This way many researchers can participate in the development of the tool. 
+* The package has some functions to facilitate the development of new features.
+* Using the R framework, analyzing batches of grids becomes a straightforward task.
+* Using the [shiny package](http://shiny.rstudio.com/), one can easily build graphical user interfaces on top of `OpenRepgrid`. Have a look at this [http://onair.openrepgrid.org](example).
+
+
+#### Future directions
+
+* Note that the tool is far from being ready. We need your input to make it a tool that really suits the needs fo the community. So come and [join us!](contribute.html)
+* In a first phase `OpenRepGrid` will be a command line tool. This will be the case until a comprehensive set of features has been implemented. In a second phase more and more graphical user interfaces (GUI) will be added. Features for administration of grids are currently not part of the project though.
+
+
+#### Citing OpenRepGrid
+
+If you use `OpenRepGrid` for calculations in your publications, please cite it as below.
+
+* Heckmann, M. (2014). OpenRepGrid: An R package for the analysis of repertory grids. *ZENODO*. doi:10.5281/zenodo.8492
+
+[![DOI](https://zenodo.org/badge/5972/markheckmann/OpenRepGrid.png)](http://dx.doi.org/10.5281/zenodo.11623)
+

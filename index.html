@@ -10,13 +10,15 @@
 
 
 
-<title>The OpenRepGrid R package</title>
+<title></title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="libs/bootstrap-2.3.2/css/united.min.css" rel="stylesheet" />
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style type="text/css">
 
@@ -82,7 +84,7 @@ body .modal {
   width: 500px;
   /* must be half of the width, minus scrollbar on the left (30px) */
   /* margin-left: -280px; */
-  border: 10px solid #CA301A;
+  border: 10px solid #CF522E; /*#CA301A; */
   border-radius: 25px;
 }
 
@@ -175,6 +177,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="news.html">News</a></li>
           <li><a href="basics_installation.html">Installation</a></li>
           <!-- <li><a href="quickstart.html">Quick start</a></li> -->
@@ -254,7 +257,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
         <ul class="nav pull-right">
         <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">
             <i class="fa fa-envelope-o fa-lg"></i>
-            Subscribe
+            &nbsp;Newsletter
           </a>
           <!--
           <a class="btn btn-primary" href="https://github.com/markheckmann/openrepgrid">
@@ -309,46 +312,230 @@ Don't worry! There will be only a few mails per year ;)</p><br>
 
 <!------------------  END mailchimp mailing list popover  ----------------->
 
-<div id="header">
-<h1 class="title">The OpenRepGrid R package</h1>
-</div>
 
 
-<div id="tools-for-the-analysis-of-repertory-grid-data" class="section level3">
-<h3><em>Tools for the analysis of repertory grid data</em></h3>
-<div id="openrepgrid" class="section level4">
-<h4>OpenRepGrid</h4>
-<ul>
-<li>The <a href="http://en.wikipedia.org/wiki/Repertory_grid"><em>repertory grid</em></a> (also <em>grid</em> or <em>repgrid</em>) is an interview method that originated from <a href="http://en.wikipedia.org/wiki/Personal_construct_theory">Personal Construct Psychology</a>. It is applied in different academic and practical fields (clinical psychology, market research etc.). <code>OpenRepGrid</code> provides tools to analyze repertory grid data. It is a ‘plug-in’ for the statistical software <a href="http://www.r-project.org/">R</a>. Both are free and Open Source and will run on Windows, MacOS and Linux.</li>
-</ul>
+<style>
+
+/* Faded out hr */
+hr.soften {
+  height: 2px;
+  margin: 70px 0;
+  fill: #ff0000;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  border: 0;
+}
+
+hr.top {
+  margin: 70px 0px 30px 0px ;
+}
+
+hr.bottom {
+  margin: 30px 0px 50px 0px ;
+}
+body {
+  padding-bottom: 0px;
+}
+.marketing{
+  margin-top: 50px;
+}
+.marketing-byline {
+  margin-bottom: 50px;
+  font-size: 22px;
+  line-height: 140%;
+  color: #777;
+}
+#heading{
+  font-size: 60px;
+  margin-bottom: 40px;
+  margin-top: 60px;
+}
+#features-box{
+  width: 900px;
+}
+.features {
+  margin-top: 20px;
+}
+
+.devborderx {
+  border: 4px solid #999;
+  margin: 0px;
+}
+
+.devbgx {
+  background-color: #eee;
+}
+
+.features .fa {
+  color: #CF522E;   /* #CA301A; */
+}
+</style>
+<!--  Information -->
+<div class="container devborder" style="width: 100%;">
+
+<div class="marketing" style="text-align: center;">
+<div id="heading">
+OpenRepGrid Docu
 </div>
-<div id="why-an-r-package" class="section level4">
-<h4>Why an R package?</h4>
-<ul>
-<li><a href="http://www.r-project.org/">R</a> is an Open Source framework for statistical programming. Its syntax is simple and it provides a wealth of functionality. This means that any ideas you might come up with can be implemented easily and be provided to other grid users around the world. That’s why R is a strong basis to build <code>OpenRepGrid</code> upon.</li>
-</ul>
+<p class="marketing-byline devborder devbg">
+You love repertory grids? So do we! Find out about a new <br> powerful way to analyze your grids!
+</p>
+<hr class="soften">
+<div id="features-box" class="container features">
+
+<div class="row-fluid">
+
+<!-- About -->
+<div class="span4 devborder devbg">
+<i class="fa fa-star fa-5x"></i>
+<h2>
+Analyze grids!
+</h2>
+<p class="marketingtext">
+<a href="http://www.openrepgrid.org">OpenRepGrid</a> is a software for <a href="http://en.wikipedia.org/wiki/Repertory_grid">repertory grids</a>, a qualitative-quantitative research technique used across various domains from clinical psychology to marketing.
+</p>
 </div>
-<div id="join-in" class="section level4">
-<h4>Join in!</h4>
-<ul>
-<li>The OpenRepGrid project is supposed to be an endeavor of <em>collaborative construing</em>. Anyone who is interested in supporting the project is invited to <a href="participate.html">join in</a>. We hope that many participators will make <code>OpenRepGrid</code> a tool that really suits the needs of the community.</li>
-</ul>
+<!-- Desktop / Systems -->
+<div class="span4 devborder devbg">
+<i class="fa fa-desktop fa-5x"></i>
+<h2>
+All system.
+</h2>
+<p class="marketingtext">
+All systems - no constraints. Whether you use MacOS, Windows or Linux. OpenRepGrid runs on every major operating system.
+</p>
 </div>
-<div id="future-developments" class="section level4">
-<h4>Future developments</h4>
-<ul>
-<li>In a first phase <code>OpenRepGrid</code> will be a command line tool. In a second phase a graphical user interface (GUI) will be added. Features for administration of grids are currently not part of the project.</li>
-</ul>
-</div>
-<div id="citing-openrepgrid" class="section level4">
-<h4>Citing OpenRepGrid</h4>
-<p>If you use <code>OpenRepGrid</code> for calculations in your publications, please cite it as below.</p>
-<ul>
-<li>Heckmann, M. (2014). OpenRepGrid: An R package for the analysis of repertory grids. <em>ZENODO</em>. <a href="doi:10.5281/zenodo.8492" class="uri">doi:10.5281/zenodo.8492</a></li>
-</ul>
-<p><a href="http://dx.doi.org/10.5281/zenodo.11623"><img src="https://zenodo.org/badge/5972/markheckmann/OpenRepGrid.png" alt="DOI" /></a></p>
+<!-- It's an add-on -->
+<div class="span4 devborder devbg">
+<i class="fa fa-download fa-5x"></i>
+<h2>
+It’s an add-on.
+</h2>
+<p class="marketingtext">
+OpenRepGrid is a free add-on package for the statistical <a href="http://www.r-project.org/">R software</a>. Sounds difficult? It’s not! Just go ahead and install it.
 </div>
 </div>
+<div class="row-fluid">
+<!-- Features  -->
+<div class="span4 devborder devbg">
+<i class="fa fa-cubes fa-5x"></i>
+<h2>
+Features.
+</h2>
+<p class="marketingtext">
+OpenRepGrid already offers a variety of <a href="features.html">analysis features</a> for grids. The long term goal is to create a software that offers about anything you need.
+</p>
+</div>
+<!-- Documentation -->
+<div class="span4 devborder devbg">
+<i class="fa fa-book fa-5x"></i>
+<h2>
+Documented.
+</h2>
+<p class="marketingtext">
+There is an evergrowing documentation containing descriptions and examples for all analysis features. You have another great example? Just <a href="contribute.html">add it!</a>
+</p>
+</div>
+<!-- Join the community -->
+<div class="span4 devborder devbg">
+<i class="fa fa-users fa-5x"></i>
+<h2>
+Get on board.
+</h2>
+<p class="marketingtext">
+OpenRepGrid is a collaborative project. You have great ideas, feature requests, general questions or suggestions? <a href="contribute.html">Just get on board!</a>
+</p>
+</div>
+</div>
+<div class="row-fluid">
+<!-- Build features -->
+<div class="span4 devborder devbg">
+<i class="fa fa-wrench fa-5x"></i>
+<h2>
+Add features.
+</h2>
+<p class="marketingtext">
+If you know some R, you can easily program new features for OpenRepGrid yourself. This way you can spread your ideas within the grid community.
+</p>
+</div>
+<!-- Generating reports -->
+<div class="span4 devborder devbg">
+<i class="fa fa-file-photo-o fa-5x"></i> <!-- <img class="marketing-img" src="assets/img/bs-docs-bootstrap-features.png"> -->
+<h2>
+Generate reports.
+</h2>
+<p class="marketingtext">
+You need to regularly generate reports based on grid data, e.g. for clinical assessment. OpenRepGrid makes this an easy task.
+</p>
+</div>
+<!-- Newsletter -->
+<div class="span4 devborder devbg">
+<i class="fa fa-envelope-o fa-5x"></i>
+<h2>
+Newsletter.
+</h2>
+<p class="marketingtext">
+You want to stay up to date on OpenRepGrid? <a href="#" data-toggle="modal" data-target="#myModal">Subsribe to the newsletter!</a>. Don’t worry! There will be a few mails per year only.
+</p>
+</div>
+</div>
+<!--
+
+<div class="row-fluid">
+
+Utter your wishes 
+<div class="span4 devborder devbg">
+<i class="fa fa-comments fa-5x"></i>
+<h2>Get on board.</h2>
+<p class="marketingtext"></p>
+</div>
+
+By user, for users 
+<div class="span4 devborder devbg">
+<i class="fa fa-retweet fa-5x"></i>
+<h2>By users, for users.</h2>
+<p class="marketingtext">Here, you will find open source software developed by repertory grid enthusiasts to facilitate the analysis of grids.</p>
+</div>
+
+<div class="span4 devborder devbg">
+<i class="fa fa-calculator fa-5x"></i>
+<h2>Get on board.</h2>
+<p class="marketingtext">You have feature requests, questions or suggestions? Visit the OpenRepGrid 
+<a href="https://groups.google.com/forum/?hl=en#!forum/openrepgrid">discussion site</a>. 
+Open Source projects live from contributions. 
+You want to join in? Get in touch!</p>
+</div>
+       
+</div>    
+
+-->
+</div>
+<!--------------------------  Testimonials ---------------------->
+<!-- <div id="heading-testimonials"> User voices </div>-->
+<!-- 
+
+<hr class="soften top"> 
+ <div class="container " id="testimonials-container"> 
+
+ <div id="testimonials">
+  <blockquote id="testimonial-statement">  </blockquote>
+  <p class="user" id="testimonial-user">  </p>
+ </div>  
+
+</div>
+
+<hr class="soften bottom">
+
+-->
+<!-- user testimonials -->
+<script type="text/javascript" src="libs/testimonials.js"></script>
+<p><link href="libs/testimonials.css" rel="stylesheet" /></p>
+</div>
+<!-- marketing -->
+</div>
+<!-- container -->
 
 
 <!-- some extra javascript for older browsers -->
@@ -376,7 +563,7 @@ $(document).ready(function () {
 
 </script>
 
-<!-- disqus -->
+<!-- disqus 
 <div id="disqus_thread"></div>
     <script type="text/javascript">
         var disqus_shortname = 'docu-openrepgrid'; 
@@ -390,7 +577,7 @@ $(document).ready(function () {
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
+-->
 
 <!--- google analytics -->
 
@@ -437,5 +624,48 @@ $(document).ready(function () {
   })();
 </script>
 
-</body>
+</body><style>
+  /* Footer
+-------------------------------------------------- */
+
+.footer {
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 40px;
+  border-top: 1px solid #e5e5e5;
+  background-color: #f5f5f5;
+}
+.footer p {
+  margin-bottom: 0;
+  color: #777;
+}
+.footer-links {
+  margin: 10px 0;
+}
+.footer-links li {
+  display: inline;
+  padding: 0 2px;
+}
+.footer-links li:first-child {
+  padding-left: 0;
+}
+</style>
+
+<!-- Footer -->
+
+    <footer class="footer">
+      <div class="container">  
+        <p>Powered by <a href="http://getbootstrap.com/2.3.2/index.html" target="_blank">bootstrap</a>, <a href="http://bootswatch.com/" target="_blank">bootswatch</a>, <a href="http://fortawesome.github.io/Font-Awesome/">font awesome</a>, <a href="https://swiftype.com/">swiftype</a>, <a href="https://disqus.com/">disqus</a>, and the marvellous <a href="http://rmarkdown.rstudio.com/" target="_blank">RMarkdown</a> and <a href="http://yihui.name/knitr/" target="_blank">knitr</a> packages.</p>
+        <p>All content on this site is licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        <ul class="footer-links">
+          <li><a href="#" data-toggle="modal" data-target="#myModal">Newsletter</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://groups.google.com/forum/?hl=en#!forum/openrepgrid">Discussion site</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="https://github.com/markheckmann/OpenRepGrid">Github</a></li>
+          <li class="muted">&middot;</li>
+          <li><a href="about.html">Citation</a></li>
+        </ul>
+      </div>
+    </footer>
 </html>

@@ -18,10 +18,10 @@ data set name   | description and source
 `boeker`  | 	grid from seventeen year old female schizophrenic patient undergoing last stage of psychoanalytically oriented psychotherapy (Böker, 1996, p. 163).
 `fbb2003`  |  	dataset used in *A manual for Repertory Grid Technique* (Fransella, Bell, & Bannister, 2003b, p. 60).
 `feixas2004`  | 	grid from a 22 year old Spanish girl suffering self-worth problems (Feixas & Saúl, 2004, p. 77).
-`mackkay1992`  | 	dataset *Grid C* used in Mackay's paper on inter-element correlation (1992, p. 65).
+`mackay1992`  | 	dataset *Grid C* used in Mackay's paper on inter-element correlation (1992, p. 65).
 `leach2001a`, `leach2001b` |  pre- (a) and post-therapy (b) dataset from sexual child abuse survivor (Leach, Freshwater, Aldridge, & Sunderland, 2001, p. 227).
 `raeithel` |	grid data to demonstrate the use of Bertin diagrams (Raeithel, 1998, p. 223). The context of its administration is unknown.
-`slater1997a`  | 	drug addict’s grid dataset from (Slater, 1977, p. 32).
+`slater1977a`  | 	drug addict’s grid dataset from (Slater, 1977, p. 32).
 `slater1977b`   | 	grid dataset (ranked) from a seventeen year old female psychiatric patient (Slater, 1977, p. 110) showing depression, anxiety and self-mutilation. The data was originally reported by Watson (1970).
 
 ### R-Code

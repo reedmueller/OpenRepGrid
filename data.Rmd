@@ -12,7 +12,7 @@ library(OpenRepGrid)
 `OpenRepGrid` comes with several datsets already included. The data can serve as a starting point to make your first steps using the software. The following table contains the names of the datasets and a short description where the grid comes from.
 
 data set name   | description and source
-------------- | -------------
+------------- | -------------------------------------------------------------------
 `bell2010`	|  grid data from a study by Haritos et al. (2004) on role titles; used for demonstration of construct alignment in Bell (2010, p. 46).
 `bellmcgorry1992`   | 	grid from a psychotic patient used in Bell (1997, p. 6). Data originated from a study by Bell and McGorry (1992).
 `boeker`  | 	grid from seventeen year old female schizophrenic patient undergoing last stage of psychoanalytically oriented psychotherapy (Böker, 1996, p. 163).

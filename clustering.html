@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Clustering of constructs and elements</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OpenRepGrid</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="installation.html">Installation</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="data.html">Data</a></li>
+        <li><a href="contribute.html">Contribute</a></li>
+      </ul>
+      
+      <!-- Mailchimp signup page: http://eepurl.com/4h0t9 -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://eepurl.com/4h0t9" target="_blank"><span class="glyphicon glyphicon-envelope"></span> &nbsp;Newsletter</a></li>
+      </ul>
+    
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Clustering of constructs and elements</h1>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#r-code">R-Code</a><ul>
+<li><a href="#clustering">Clustering</a></li>
+<li><a href="#bootsrapped-clustering">Bootsrapped clustering</a></li>
+<li><a href="#clustered-bertin">Clustered Bertin</a></li>
+</ul></li>
+<li><a href="#literature">Literature</a></li>
+</ul>
+</div>
+
+<div id="description" class="section level3">
+<h3>Description</h3>
+<p>A method for identifying structures in construct system is <em>cluster analysis</em>. Any distance or similarity measure accounting for a certain type of association could be used as a cluster criterion. Traditionally mostly Euclidean and Manhattan distances have been used. The earliest implementation of a cluster algorithm for repertory grids was incorporated in the program FOCUS (Shaw &amp; Thomas, 1978).</p>
+<p>Several distance measure can be selected (explanations from <code>?dist</code> dcoumentation):</p>
+<ul>
+<li><code>euclidean</code>: Squared distance between the two vectors (L2 norm)</li>
+<li><code>manhattan</code>: Also called city-block-distance, absolute distance between the two vectors (L1 norm).</li>
+<li><code>minkowski</code>: The p norm, the pth root of the sum of the pth powers of the differences of the components.</li>
+<li><code>maximum</code>: Maximum distance between two components of x and y (supremum norm)</li>
+<li><code>canberra</code>: <span class="math inline">\(\sum(|x_i - y_i| / |x_i + y_i|)\)</span> Terms with zero numerator and denominator are omitted from the sum and treated as if the values were missing. This is intended for non-negative values (e.g. counts).</li>
+<li><code>binary</code>: The vectors are regarded as binary bits, so non-zero elements are on and zero elements are off. The distance is the proportion of bits in which only one is on amongst those in which at least one is on.</li>
+</ul>
+<p>Also several cluster methods can be selected (explanations from ?hclust documentation).</p>
+<ul>
+<li><code>ward.D</code>, <code>ward.D2</code>: Ward’s minimum variance method aims at finding compact, spherical clusters.</li>
+<li><code>complete</code>: The complete linkage method finds similar clusters.</li>
+<li><code>single</code>: The single linkage method (which is closely related to the minimal spanning tree) adopts a ‘friends of friends’ clustering strategy.</li>
+</ul>
+<p>The other methods can be regarded as aiming for clusters with characteristics somewhere between the single and complete link methods:</p>
+<ul>
+<li><code>average</code></li>
+<li><code>mcquitty</code></li>
+<li><code>median</code></li>
+<li><code>centroid</code></li>
+</ul>
+<p>The distance and cluster methods can be combined as wished.</p>
+</div>
+<div id="r-code" class="section level3">
+<h3>R-Code</h3>
+<div id="clustering" class="section level4">
+<h4>Clustering</h4>
+<p>When the function <code>cluster</code> is called dendrograms of the construct and element clustering are drawn.</p>
+<pre class="r"><code>cluster(bell2010)</code></pre>
+<p><img src="clustering_files/figure-html/cluster-simple-1.png" width="672" /></p>
+<p>The function also returns the reordered matrix invisibly. To see the reordered grid save it into a new object. To oppress the creation of a graphic set <code>print = FALSE</code>.</p>
+<pre class="r"><code>x &lt;- cluster(bell2010, print=FALSE)
+x</code></pre>
+<pre><code>
+RATINGS:
+er (or the person who fill - 5 6 - A person of the opposite 
+ A teacher you respected - 4 | | 7 - the unhappiest person y
+friend of the same sex - 3 | | | | 8 - A person of the oppos
+ you did not respect - 2 | | | | | | 9 - A person you work w
+fident person you  - 1 | | | | | | | | 10 - self            
+                     | | | | | | | | | |                    
+  loves sports (1)   5 5 5 4 4 6 1 2 2 2   (1) dislikes spor
+   transparent (2)   3 5 4 5 1 2 3 1 2 2   (2) not transpare
+orried &amp; tense (3)   6 2 4 5 2 3 2 3 6 4   (3) relaxed      
+        gentle (4)   5 2 2 3 1 1 2 4 3 3   (4) rough        
+     sensitive (5)   5 6 2 4 2 3 3 4 4 4   (5) insensitive  
+(academically) (6)   1 1 1 1 4 2 2 3 4 2   (6) not so smart 
+  loves people (7)   1 4 1 2 3 2 3 2 1 2   (7) not interacti
+      fearless (8)   2 3 4 3 5 3 4 2 3 3   (8) fearful&amp;timid
+loves to argue (9)   1 3 3 4 4 2 2 1 3 3   (9) accept as it </code></pre>
+<p>The function also allows to only cluster constructs or elements. To only cluster the constructs us the following code. Again a dendrogram is drawn and a grid with reordered constructs is returned.</p>
+<pre class="r"><code>x &lt;- cluster(bell2010, along=1, print=FALSE)
+x</code></pre>
+<pre><code>
+RATINGS:
+er (or the person who fill - 5 6 - A person of the opposite 
+ A teacher you respected - 4 | | 7 - the unhappiest person y
+friend of the same sex - 3 | | | | 8 - A person you work wel
+ you did not respect - 2 | | | | | | 9 - self               
+fident person you  - 1 | | | | | | | | 10 - A person of the 
+                     | | | | | | | | | |                    
+  loves sports (1)   5 5 5 4 4 6 1 2 2 2   (1) dislikes spor
+   transparent (2)   3 5 4 5 1 2 3 2 2 1   (2) not transpare
+orried &amp; tense (3)   6 2 4 5 2 3 2 6 4 3   (3) relaxed      
+        gentle (4)   5 2 2 3 1 1 2 3 3 4   (4) rough        
+     sensitive (5)   5 6 2 4 2 3 3 4 4 4   (5) insensitive  
+(academically) (6)   1 1 1 1 4 2 2 4 2 3   (6) not so smart 
+  loves people (7)   1 4 1 2 3 2 3 1 2 2   (7) not interacti
+      fearless (8)   2 3 4 3 5 3 4 3 3 2   (8) fearful&amp;timid
+loves to argue (9)   1 3 3 4 4 2 2 3 3 1   (9) accept as it </code></pre>
+<p>To only cluster the elements set <code>along=2</code>.</p>
+<pre class="r"><code>x &lt;- cluster(bell2010, along=2, print=FALSE)
+x</code></pre>
+<pre><code>
+RATINGS:
+er (or the person who fill - 5 6 - A person of the opposite 
+ A teacher you respected - 4 | | 7 - the unhappiest person y
+friend of the same sex - 3 | | | | 8 - A person of the oppos
+ you did not respect - 2 | | | | | | 9 - A person you work w
+fident person you  - 1 | | | | | | | | 10 - self            
+                     | | | | | | | | | |                    
+   transparent (1)   3 5 4 5 1 2 3 1 2 2   (1) not transpare
+  loves sports (2)   5 5 5 4 4 6 1 2 2 2   (2) dislikes spor
+        gentle (3)   5 2 2 3 1 1 2 4 3 3   (3) rough        
+orried &amp; tense (4)   6 2 4 5 2 3 2 3 6 4   (4) relaxed      
+     sensitive (5)   5 6 2 4 2 3 3 4 4 4   (5) insensitive  
+  loves people (6)   1 4 1 2 3 2 3 2 1 2   (6) not interacti
+(academically) (7)   1 1 1 1 4 2 2 3 4 2   (7) not so smart 
+loves to argue (8)   1 3 3 4 4 2 2 1 3 3   (8) accept as it 
+      fearless (9)   2 3 4 3 5 3 4 2 3 3   (9) fearful&amp;timid</code></pre>
+<p>To apply different distance measures and cluster methods us the arguments <code>dmethod</code> and <code>cmethod</code> (here <code>manhattan</code> distance and <code>single</code> linkage clustering).</p>
+<pre class="r"><code>x &lt;- cluster(bell2010, dmethod=&quot;manh&quot;, cmethod=&quot;single&quot;, print=FALSE)
+x</code></pre>
+<pre><code>
+RATINGS:
+rson of the opposite sex t - 5 6 - A person you work well wi
+ (or the person who fill - 4 | | 7 - A teacher you respected
+friend of the same sex - 3 | | | | 8 - the unhappiest person
+onfident person you  - 2 | | | | | | 9 - A person of the opp
+ou did not respect - 1 | | | | | | | | 10 - self            
+                     | | | | | | | | | |                    
+(academically) (1)   7 7 7 4 5 4 7 6 6 6   (1) smart (academ
+ot interactive (2)   4 7 7 5 6 7 6 5 6 6   (2) loves people 
+ fearful&amp;timid (3)   5 6 4 3 6 5 5 4 5 5   (3) fearless     
+ccept as it is (4)   5 7 5 4 7 5 4 6 6 5   (4) loves to argu
+ot transparent (5)   3 5 4 7 7 6 3 5 6 6   (5) transparent  
+     sensitive (6)   6 5 2 2 4 4 4 3 3 4   (6) insensitive  
+        gentle (7)   2 5 2 1 4 3 3 2 1 3   (7) rough        
+orried &amp; tense (8)   2 6 4 2 3 6 5 2 3 4   (8) relaxed      
+  loves people (9)   4 1 1 3 2 1 2 3 2 2   (9) not interacti</code></pre>
+<p>To apply different methods to the constructs and the rows, use a two-step approach.</p>
+<pre class="r"><code># cluster constructs using default methods
+x &lt;- cluster(bell2010, along=1, print=FALSE)       
+# cluster elements using manhattan distance and single linkage clustering
+x &lt;- cluster(x, along=2, dm=&quot;manh&quot;, cm=&quot;single&quot;, print=FALSE)  
+x</code></pre>
+<pre><code>
+RATINGS:
+rson of the opposite sex t - 5 6 - the unhappiest person you
+t friend of the same sex - 4 | | 7 - A teacher you respected
+er you did not respect - 3 | | | | 8 - A person of the oppos
+ the person who fill - 2 | | | | | | 9 - A person you work w
+fident person you  - 1 | | | | | | | | 10 - self            
+                     | | | | | | | | | |                    
+   insensitive (1)   3 6 2 6 5 5 4 4 4 4   (1) sensitive    
+         rough (2)   3 7 6 6 7 6 5 4 5 5   (2) gentle       
+       relaxed (3)   2 6 6 4 5 6 3 5 2 4   (3) worried &amp; ten
+  loves people (4)   1 3 4 1 2 3 2 2 1 2   (4) not interacti
+(academically) (5)   1 4 1 1 2 2 1 3 4 2   (5) not so smart 
+loves to argue (6)   1 4 3 3 2 2 4 1 3 3   (6) accept as it 
+      fearless (7)   2 5 3 4 3 4 3 2 3 3   (7) fearful&amp;timid
+   transparent (8)   3 1 5 4 2 3 5 1 2 2   (8) not transpare
+  loves sports (9)   5 4 5 5 6 1 4 2 2 2   (9) dislikes spor</code></pre>
+<p>Some other options can be set. Paste the code into the R console to try it out. See <code>?cluster</code> for more information.</p>
+<pre class="r"><code>cluster(bell2010, main=&quot;My cluster analysis&quot;)   # new title
+cluster(bell2010, type=&quot;t&quot;)                     # different drawing style
+cluster(bell2010, dmethod=&quot;manhattan&quot;)          # using manhattan metric
+cluster(bell2010, cmethod=&quot;single&quot;)             # do single linkage clustering
+cluster(bell2010, cex=1, lab.cex=1)             # change appearance
+cluster(bell2010, lab.cex=.7,                   # advanced appearance changes
+        edgePar = list(lty=1:2, col=2:1))</code></pre>
+</div>
+<div id="bootsrapped-clustering" class="section level4">
+<h4>Bootsrapped clustering</h4>
+<p>TODO</p>
+</div>
+<div id="clustered-bertin" class="section level4">
+<h4>Clustered Bertin</h4>
+<p>The following figure shows a clustered Bertin matrix. The full explanation is found under the section <a href="">Bertin display</a>.</p>
+<pre class="r"><code>bertinCluster(bell2010)</code></pre>
+<p><img src="clustering_files/figure-html/cluster-bertin-1.png" width="672" /></p>
+</div>
+</div>
+<div id="literature" class="section level3">
+<h3>Literature</h3>
+<ul>
+<li>Shaw, M. L., &amp; Thomas, L. F. (1978). FOCUS on education - an interactive computer system for the development and analysis of repertory grids. International Journal of Man-Machine Studies, 10(2), 139-173.</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

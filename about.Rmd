@@ -39,9 +39,10 @@ Without doubt, there are several very good grid programs already on the market (
 
 #### Citing OpenRepGrid
 
-If you use `OpenRepGrid` for calculations in your publications, please cite it as below.
+If you use `OpenRepGrid` in your work, please cite it as follows.
 
-* Heckmann, M. (2014). OpenRepGrid: An R package for the analysis of repertory grids. *ZENODO*. doi:10.5281/zenodo.8492
+Heckmann, M. (2016). *OpenRepGrid: An R package for the analysis of repertory grids*. R package version 0.1.10. Available from: https://cran.r-project.org/package=OpenRepGrid.
 
-[![DOI](https://zenodo.org/badge/5972/markheckmann/OpenRepGrid.png)](http://dx.doi.org/10.5281/zenodo.11623)
+
+ 
 

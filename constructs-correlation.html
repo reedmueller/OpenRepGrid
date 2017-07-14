@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Construct correlations</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OpenRepGrid</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="installation.html">Installation</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="data.html">Data</a></li>
+        <li><a href="contribute.html">Contribute</a></li>
+      </ul>
+      
+      <!-- Mailchimp signup page: http://eepurl.com/4h0t9 -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://eepurl.com/4h0t9" target="_blank"><span class="glyphicon glyphicon-envelope"></span> &nbsp;Newsletter</a></li>
+      </ul>
+    
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Construct correlations</h1>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#description">Description</a><ul>
+<li><a href="#correlation-measures">Correlation measures</a></li>
+<li><a href="#root-mean-square-correlation">Root mean square correlation</a></li>
+<li><a href="#somers-d">Somers’ D</a></li>
+</ul></li>
+<li><a href="#r-code">R-Code</a><ul>
+<li><a href="#correlation-measures-1">Correlation measures</a></li>
+<li><a href="#root-mean-square-correlation-1">Root mean square correlation</a></li>
+<li><a href="#somers-d-1">Somers’ D</a></li>
+</ul></li>
+<li><a href="#literature">Literature</a></li>
+</ul>
+</div>
+
+<div id="description" class="section level3">
+<h3>Description</h3>
+<div id="correlation-measures" class="section level4">
+<h4>Correlation measures</h4>
+<p>The correlations between constructs are used in a lot of occasions, indices etc, and present a standard statistic. Several types of correlations can be requested via the function <code>constructCor</code>.</p>
+<ul>
+<li><strong>Pearson</strong> or Product-moment correlation (PMC)</li>
+<li><strong>Kendall</strong>’s tau rank correlation</li>
+<li><strong>Spearman</strong>’s rank correlation</li>
+</ul>
+</div>
+<div id="root-mean-square-correlation" class="section level4">
+<h4>Root mean square correlation</h4>
+<p>Also, the Root mean square (RMS) correlation, also known as ‘quadratic mean’ of the inter-construct correlations, can be calculated using the function <code>constructRmsCor</code>. The RMS serves as a simplification of the correlation table. It reflects the average relation of one construct with all other constructs. Note that as the correlations are squared during its calculation, the RMS is not affected by the sign of the correlation (cf. Fransella, Bell &amp; Bannister, 2003, p. 86).</p>
+</div>
+<div id="somers-d" class="section level4">
+<h4>Somers’ D</h4>
+<p>As suggested by Hinkle (1965) the relationships between constructs may take several different forms (reciprocal, hierarchical etc.). Several authors have suggested the use of asymmetric measures of association as an indicator for the type of relationship present (cf. Fransella et al., 2003). Currently only the software <em>Gridstat</em> (Bell, 2009) allows to calculate the asymmetric measure Somers’ D (Somers, 1962). The calculation of Somers’ D in <code>OpenRepGrid</code> is prompted via the function <code>constructD</code>.</p>
+</div>
+</div>
+<div id="r-code" class="section level3">
+<h3>R-Code</h3>
+<div id="correlation-measures-1" class="section level4">
+<h4>Correlation measures</h4>
+<pre class="r"><code>constructCor(mackay1992) </code></pre>
+<pre><code>
+##############################
+Correlation between constructs
+##############################
+
+Type of correlation:  pearson 
+
+                        1    2    3    4    5    6
+Quick - *Slow       1     0.38 0.77 0.13 0.52 0.29
+*Satisfied - Bitter 2          0.18 0.82 0.56 0.29
+Talkative - *Quiet  3               0.14 0.72 0.58
+*Succesful - Loser  4                    0.64 0.47
+Emotional - *Calm   5                         0.92
+*Caring - Selfish   6                             </code></pre>
+<p>you can select between the different types of correlation by setting the argument <code>method</code> to <code>&quot;pearson&quot;</code>, <code>&quot;kendall&quot;</code> or <code>&quot;spearman&quot;</code>. To request a Spearman rank correlation type</p>
+<pre class="r"><code>constructCor(mackay1992, method=&quot;spearman&quot;) </code></pre>
+<pre><code>
+##############################
+Correlation between constructs
+##############################
+
+Type of correlation:  spearman 
+
+                        1    2    3    4    5    6
+Quick - *Slow       1     0.50 0.83 0.00 0.56 0.19
+*Satisfied - Bitter 2          0.09 0.56 0.64 0.13
+Talkative - *Quiet  3               0.00 0.39 0.21
+*Succesful - Loser  4                    0.69 0.49
+Emotional - *Calm   5                         0.81
+*Caring - Selfish   6                             </code></pre>
+<p>To format the output several arguments are available. See <code>?print.constructCor</code> for more printing options.</p>
+<pre class="r"><code>r &lt;- constructCor(mackay1992)
+print(r, digits=5, col.index=F)</code></pre>
+<pre><code>
+##############################
+Correlation between constructs
+##############################
+
+Type of correlation:  pearson 
+
+                         1       2       3       4       5       6
+Quick - *Slow              0.37709 0.77226 0.12913 0.51682 0.28911
+*Satisfied - Bitter                0.18383 0.81969 0.56239 0.28917
+Talkative - *Quiet                         0.13771 0.71984 0.57656
+*Succesful - Loser                                 0.63623 0.47133
+Emotional - *Calm                                          0.92394
+*Caring - Selfish                                                 </code></pre>
+</div>
+<div id="root-mean-square-correlation-1" class="section level4">
+<h4>Root mean square correlation</h4>
+<p>To calulate the RMS correlation</p>
+<pre class="r"><code>constructRmsCor(fbb2003)  </code></pre>
+<pre><code>
+##########################################
+Root-mean-square correlation of constructs
+##########################################
+
+                                        RMS
+(1) clever - not bright                0.66
+(2) disorganized - organized           0.58
+(3) listens - doesn&#39;t hear             0.61
+(4) no clear view - clear view of life 0.46
+(5) understands me - no understanding  0.53
+(6) ambitious - no ambition            0.30
+(7) respected - not respected          0.62
+(8) distant - warm                     0.25
+(9) rather aggressive - not aggressive 0.29
+
+Average of statistic 0.48 
+Standard deviation of statistic 0.15 </code></pre>
+</div>
+<div id="somers-d-1" class="section level4">
+<h4>Somers’ D</h4>
+<p>Somers’ D is an asymmetric measure. As a default the columns are the dependent the rows the independent variables.</p>
+<pre class="r"><code>constructD(fbb2003)</code></pre>
+<pre><code>
+############################
+Somers&#39; D between constructs
+############################
+
+Direction: columns are set as dependent
+                                          1    2    3    4    5    6    7
+(1) clever - not bright              1  1.0 -0.6  0.9 -0.5  0.6  0.2  0.8
+(2) disorganized - organized         2 -0.7  1.0 -0.6  0.4 -0.3 -0.2 -0.7
+(3) listens - doesn&#39;t hear           3  1.0 -0.5  1.0 -0.4  0.8  0.1  0.7
+(4) no clear view - clear view of l  4 -0.6  0.4 -0.5  1.0 -0.2 -0.6 -0.5
+(5) understands me - no understandin 5  0.8 -0.3  0.9 -0.2  1.0  0.0  0.6
+(6) ambitious - no ambition          6  0.2 -0.2  0.1 -0.5  0.0  1.0  0.3
+(7) respected - not respected        7  0.8 -0.7  0.7 -0.4  0.5  0.3  1.0
+(8) distant - warm                   8  0.0 -0.1  0.0 -0.2  0.0  0.2 -0.1
+(9) rather aggressi - not aggressive 9 -0.1 -0.4 -0.2 -0.2 -0.2  0.1  0.0
+                                        8    9
+(1) clever - not bright               0.0 -0.1
+(2) disorganized - organized         -0.1 -0.4
+(3) listens - doesn&#39;t hear            0.0 -0.2
+(4) no clear view - clear view of l  -0.2 -0.2
+(5) understands me - no understandin  0.0 -0.2
+(6) ambitious - no ambition           0.2  0.1
+(7) respected - not respected        -0.1  0.0
+(8) distant - warm                    1.0  0.5
+(9) rather aggressi - not aggressive  0.5  1.0</code></pre>
+<p>To set the rows as dependent, type</p>
+<pre class="r"><code>constructD(fbb2003, dep=&quot;r&quot;)</code></pre>
+<p>The returned data is in all cases a <code>matrix</code> or a <code>data.frame</code>, so you can easily extract the data you need for further calculations.</p>
+</div>
+</div>
+<div id="literature" class="section level3">
+<h3>Literature</h3>
+<ul>
+<li>Bell, R. C. (2009). Gridstat version 5 - A Program for Analyzing the Data of A Repertory Grid (manual). University of Melbourne, Australia: Department of Psychology.</li>
+<li>Fransella, F., Bell, R. C., &amp; Bannister, D. (2003). A Manual for Repertory Grid Technique (2. ed.). Chichester: John Wiley &amp; Sons.</li>
+<li>Hinkle, D. (1965). The Change of Personal Constructs from the Viewpoint of a Theory of Construct Implications (Unpublished Ph.D. thesis). Ohio State University, Ohio.</li>
+<li>Somers, R. H. (1962). A New Asymmetric Measure of Association for Ordinal Variables. American Sociological Review, 27(6), 799-811.</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

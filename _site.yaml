@@ -1,0 +1,10 @@
+name: "my-website"
+html_document:
+  self_contained: false
+  theme: united
+  highlight: textmate
+  mathjax: default
+  toc_depth: 3
+  lib_dir: site_libs
+    
+  

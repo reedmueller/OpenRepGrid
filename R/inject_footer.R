@@ -1,6 +1,6 @@
 # inject lines of code into HTML document
 
-library(stringr)
+#library(stringr)
 
 # from htmltools
 HTML <- function (text, ...) 
@@ -19,16 +19,14 @@ inject_code_after_body_tag <- function(file, include)
   file.lines <- readLines(file, warn = FALSE, encoding = "UTF-8")
   include.lines <- readLines(include, warn = FALSE, encoding = "UTF-8")
   inc <- HTML(paste(include.lines, collapse = "\r\n"))
-  l <- str_replace(file.lines,
-                   perl("(?<=</body>)"),
-                   inc)
+  l <- stringr::str_replace(file.lines, "(?<=</body>)", inc)
   HTML(paste(l, collapse = "\r\n"))
 }
 
 files <- c("index.html")   # currently only inject in index.html
 for (f in files) {
   code <- inject_code_after_body_tag(file = f, include = "include/footer.html")  
-  writeLines(code, f)
+  writeLines(code, f, useBytes=T)
 }
 
 # str_replace("your  <!--  TAG1  --> stuff", 

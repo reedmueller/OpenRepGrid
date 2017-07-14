@@ -1,64 +1,87 @@
 ---
 title: "Features"
-output:
-  html_document:
-    toc: true
 ---
 
-This page gives an overview over the features currently implemented in the OpenRepGrid R package. Note that the most accurate list of features in always found in the documentation of the R package itself. We try to keep this list up-to-date though.
-As the package development is an ongoing process there might be forms of analysis that have not yet been implemented. If you miss any features please make a suggestion for a new feature or for an enhancement or modification of an old features here.
+<style>
+.overview-box h2 {
+  margin-bottom: 20px;
+}
 
-## Single grid
+.overview-box ul{
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    color: #dd4814;
+}
+</style>
 
-* Basics
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-* Installing the package [more]
-    + Basic package handling [more]
-    + Basic grid manipulations [more]
+This page gives an overview over the features currently implemented in the OpenRepGrid R package. Note that the most accurate list of features in always found in the documentation of the R package itself. We try to keep this list up-to-date though. As the package development is an ongoing process there might be forms of analysis that have not yet been implemented. If you miss any features please [make a suggestion](contribute.html) for a new feature or for an enhancement or modification of an old features here.
 
+<div class="container overview-box">
+<div class="row">
 
-* Loading and saving data
-    + Import data files from other grid programs and standard formats [more]
-    + Saving a grid [more]
-
-
-* Analyzing constructs
-    + Descriptive statistics of constructs [more]
-    + Construct correlations [more]
-    + Distances between constructs [more]
-    + Root mean square of inter-construct correlations [more]
-    + Somers' D [more]
-    + Principal component analysis (PCA) of construct correlation matrix [more]
-    + Cluster analysis of constructs [more]
-
-
-* Analyzing elements
-    + Descriptive statistics of elements [more]
-    + Element correlations [more]
-    + Distances between elements [more]
-    + Slater and Hartmann distance [more]
-    + Normalized Hartmann distance [more]
-    + Cluster analysis of elements [more]
+<h2>Single grids</h2>
+<hr class="soften">
 
 
-* Visual representation
-    + Bertin plots [more]
-    + Biplots [more]
+<div class="col-md-3">
+
+  <!-- Basics -->
+  <h3>Basics</h3>
+  * [Installation](installation.html)
+  * [Basic package handling](basics-manipulations.html)
+  * [Settings](settings.html)
+  * [Loading and saving grids](loading.html)
+  
+  <!-- Analyzing constructs -->
+  <h3>Analyzing constructs</h3>
+  * [Descriptive statistics](descriptives.html)
+  * [Construct correlations](constructs-correlation.html)
+  * [Distances between constructs](constructs-distances.html)
+  * [PCA of construct correlations](constructs-pca.html)
+  * [Cluster analysis of constructs](clustering.html)
+  
+</div>
+  
+
+<!-- col 2 -->
+<div class="col-md-3">
+
+  <!-- Analyzing elements -->
+  <h3>Analyzing elements</h3>
+  * [Descriptive statistics of elements](descriptives.html)
+  * [Element correlations](elements-correlation.html)
+  * [Distances between elements](elements-distances.html)
+  * [Standardized elements distances](elements-distances-standardized.html)
+  * [Cluster analysis of elements](clustering.html)
+  
+  <h3>Visualization</h3>
+  * [Bertin plots](visualization-bertin.html)
+  * [Biplots](visualization-biplot.html)
+  
+</div>
+  
+
+<div class="col-md-3">
+
+  <h3>Index measures</h3>
+  * [Intensity index](measures-intensity.html)
+  * [PVAFF](measures-pvaff.html)
+  * [Conflicts: based on correlations or distances](measures-conflict.html)
+  * [Implicative dilemmas](measures-implicative.html)
+  
+  <h3>Reordering</h3>
+  * [Reorder and align constructs](reordering.html)
+  
+  
+</div>
+
+</div>
+</div>
 
 
-* Index measures
-    + Intensity index [more]
-    + PVAFF [more]
-    + Conflicts: based on correlations [more]
-    + Conflicts: based on distances [more]
-    + Implicative dilemmas [more]
 
-
-* Special features
-    + Align constructs [more]
-    + Reorder grid by polar angles in 2D [more]
-
-
-## Multiple grids
-
-Multiple grid analysis is not yet available.

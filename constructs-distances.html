@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Distances between constructs and elements</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OpenRepGrid</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="installation.html">Installation</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="data.html">Data</a></li>
+        <li><a href="contribute.html">Contribute</a></li>
+      </ul>
+      
+      <!-- Mailchimp signup page: http://eepurl.com/4h0t9 -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://eepurl.com/4h0t9" target="_blank"><span class="glyphicon glyphicon-envelope"></span> &nbsp;Newsletter</a></li>
+      </ul>
+    
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Distances between constructs and elements</h1>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#r-code">R-Code</a></li>
+</ul>
+</div>
+
+<div id="description" class="section level3">
+<h3>Description</h3>
+<p>Distances between constructs are used as a measure of similarity. They have the disadvantage that they are not invariant to construct reflection. The following distance measures are available:</p>
+<ul>
+<li><code>euclidean</code>: Squared distance between the two vectors (L2 norm)</li>
+<li><code>manhattan</code>: Also called city-block-distance, absolute distance between the two vectors (L1 norm).</li>
+<li><code>minkowski</code>: The p norm, the pth root of the sum of the pth powers of the differences of the components.</li>
+<li><code>maximum</code>: Maximum distance between two components of x and y (supremum norm)</li>
+<li><code>canberra</code>: <span class="math inline">\(\sum(|x_i - y_i| / |x_i + y_i|)\)</span> Terms with zero numerator and denominator are omitted from the sum and treated as if the values were missing. This is intended for non-negative values (e.g. counts).</li>
+<li><code>binary</code>: The vectors are regarded as binary bits, so non-zero elements are on and zero elements are off. The distance is the proportion of bits in which only one is on amongst those in which at least one is on.</li>
+</ul>
+<p>For most grid purposes, the first two options will suffice.</p>
+</div>
+<div id="r-code" class="section level3">
+<h3>R-Code</h3>
+<p>In <code>OpenRepGrid</code> the function <code>distance</code> calculates various types of distances for constructs and for elements (the default is <code>euclidean</code>). The argument <code>along</code> determines if distances for 1) constructs or 2) elements are calculated. The default is to calculate distances for constructs:</p>
+<pre class="r"><code>distance(fbb2003)</code></pre>
+<pre><code>
+############################
+Distances between constructs
+############################
+
+Distance method:  euclidean 
+
+                                  1     2     3     4     5     6     7     8     9
+(1) clever - not bright     1       10.39  2.45  9.54  3.74  6.78  2.83  8.19  7.68
+(2) disorganiz - organized  2              9.38  4.58  8.49  7.07  9.27  7.14  8.54
+(3) listens - doesn&#39;t he    3                    8.89  2.45  7.21  3.46  8.43  8.43
+(4) no clear v - clear view 4                          7.81  7.42  8.31  7.35  7.62
+(5) understand - no underst 5                                7.07  4.00  7.28  7.28
+(6) ambitious - no ambitio  6                                      6.32  5.57  6.56
+(7) respected - not respec  7                                            7.94  6.71
+(8) distant - warm          8                                                  5.10
+(9) rather agg - not aggres 9                                                      </code></pre>
+<p>Distance for elements:</p>
+<pre class="r"><code>distance(fbb2003, along=2)</code></pre>
+<pre><code>
+##########################
+Distances between elements
+##########################
+
+Distance method:  euclidean 
+
+                               1     2     3     4     5     6     7     8
+(1) self                 1        4.47  8.19  3.87  7.75  9.80  6.78  8.89
+(2) my father            2             10.15  4.36  8.83 11.22  4.00  9.33
+(3) an old flame         3                    7.48  6.56  7.42 10.05  5.48
+(4) an ethical person    4                          6.24  9.11  6.24  6.93
+(5) my mother            5                                9.06  8.83  4.36
+(6) a rejected teacher   6                                     12.65  8.19
+(7) as I would love to b 7                                            8.77
+(8) a pitied person      8                                                </code></pre>
+<p>To change the distance measure supply any unambigous string of the available distance methods to the argument dmethod. E.g. for the manhattan distance bewteen constructs:</p>
+<pre class="r"><code>distance(fbb2003, dmethod=&quot;manhattan&quot;)</code></pre>
+<pre><code>
+############################
+Distances between constructs
+############################
+
+Distance method:  manhattan 
+
+                                  1     2     3     4     5     6     7     8     9
+(1) clever - not bright     1       28.00  4.00 23.00  8.00 16.00  6.00 15.00 17.00
+(2) disorganiz - organized  2             24.00 11.00 22.00 16.00 24.00 19.00 19.00
+(3) listens - doesn&#39;t he    3                   19.00  6.00 18.00  8.00 17.00 21.00
+(4) no clear v - clear view 4                         19.00 19.00 19.00 18.00 18.00
+(5) understand - no underst 5                               16.00  8.00 15.00 19.00
+(6) ambitious - no ambitio  6                                     16.00 13.00 15.00
+(7) respected - not respec  7                                           17.00 15.00
+(8) distant - warm          8                                                 10.00
+(9) rather agg - not aggres 9                                                      </code></pre>
+<p>For other distance metrics:</p>
+<pre class="r"><code>distance(fbb2003, dm=&quot;canb&quot;)            # canberra distance for constructs
+distance(fbb2003, dm=&quot;mink&quot;, p=3)       # minkowski metric to the power of 3  for constructs</code></pre>
+<p>If the distances are calculated for further processing, the printing to the console can be surpressed distance and the results can be saved into an object (here d).</p>
+<pre class="r"><code>d &lt;- distance(fbb2003)</code></pre>
+<p>The object is a matrix. So we can look at the distances for the first construct only by</p>
+<pre class="r"><code>d[1, ]</code></pre>
+<pre><code>    (1) clever - not bright  (2) disorganiz - organized    (3) listens - doesn&#39;t he (4) no clear v - clear view 
+                   0.000000                   10.392305                    2.449490                    9.539392 
+(5) understand - no underst  (6) ambitious - no ambitio  (7) respected - not respec          (8) distant - warm 
+                   3.741657                    6.782330                    2.828427                    8.185353 
+(9) rather agg - not aggres 
+                   7.681146 </code></pre>
+<p><strong>Lack of invariance to construct reflection</strong></p>
+<p>Note that when you inverse a construct the distance measure will change. Reversing the frist consstruct of <code>fbb2003</code> will yield different values than before.</p>
+<pre class="r"><code>x &lt;- swapPoles(fbb2003, 1)
+d &lt;- distance(x)
+d[1, ]</code></pre>
+<pre><code>    (1) not bright - clever  (2) disorganiz - organized    (3) listens - doesn&#39;t he (4) no clear v - clear view 
+                   0.000000                    3.464102                   11.747340                    4.795832 
+(5) understand - no underst  (6) ambitious - no ambitio  (7) respected - not respec          (8) distant - warm 
+                  10.677078                    8.124038                   10.954451                    7.937254 
+(9) rather agg - not aggres 
+                   8.426150 </code></pre>
+<p>Make sure you are aware of this fact when using distance measures and constructs.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

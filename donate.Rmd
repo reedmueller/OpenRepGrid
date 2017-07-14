@@ -1,6 +1,0 @@
----
-title: "donate"
-output: html_document
----
-
-<a href='https://pledgie.com/campaigns/26844'><img alt='Click here to lend your support to: Test campaign and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/26844.png?skin_name=chrome' border='0' ></a>

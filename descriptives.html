@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Descriptive statistics for constructs and elements</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OpenRepGrid</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="installation.html">Installation</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="data.html">Data</a></li>
+        <li><a href="contribute.html">Contribute</a></li>
+      </ul>
+      
+      <!-- Mailchimp signup page: http://eepurl.com/4h0t9 -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://eepurl.com/4h0t9" target="_blank"><span class="glyphicon glyphicon-envelope"></span> &nbsp;Newsletter</a></li>
+      </ul>
+    
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Descriptive statistics for constructs and elements</h1>
+
+</div>
+
+
+<p>Sometimes basic descriptive measures for constructs and elements, e.g. mean, standard deviation, are neeeded. To prompt descriptive statistics for the constructs and elements of a grid use the function <code>statsConstructs</code> and <code>statsElements</code>. The following measures are returned:</p>
+<ul>
+<li>item name</li>
+<li>item number</li>
+<li>number of valid cases</li>
+<li>mean</li>
+<li>standard deviation</li>
+<li>trimmed mean (with trim defaulting to <code>.1</code>)</li>
+<li>median (standard or interpolated)</li>
+<li>mad: median absolute deviation (from the median)</li>
+<li>minimum</li>
+<li>maximum</li>
+<li>skew</li>
+<li>kurtosis</li>
+<li>standard error</li>
+</ul>
+<div id="r-code" class="section level1">
+<h1>R-Code</h1>
+<p>The following examples are identical for <code>statsElements</code>. Just replace <code>statsConstructs</code> by <code>statsElements</code> in order to analyze elements.</p>
+<pre class="r"><code>d &lt;- statsConstructs(fbb2003)
+d</code></pre>
+<pre><code>
+####################################
+Desriptive statistics for constructs
+####################################
+
+                            vars n mean   sd median trimmed  mad min max range  skew kurtosis   se
+(1) clever - not bright        1 8 3.75 2.31    4.0    3.75 2.97   1   7     6  0.02    -1.84 0.82
+(2) disorganiz - organized     2 8 4.00 1.77    4.5    4.00 2.22   2   6     4 -0.13    -1.96 0.63
+(3) listens - doesn&#39;t he       3 8 3.50 2.14    3.0    3.50 2.22   1   7     6  0.35    -1.40 0.76
+(4) no clear v - clear view    4 8 4.38 1.60    4.0    4.38 1.48   3   7     4  0.38    -1.68 0.56
+(5) understand - no underst    5 8 3.50 1.85    2.5    3.50 0.74   2   6     4  0.41    -1.90 0.65
+(6) ambitious - no ambitio     6 8 4.50 1.51    4.5    4.50 2.22   3   7     4  0.33    -1.58 0.53
+(7) respected - not respec     7 8 3.25 1.75    3.0    3.25 1.48   1   6     5  0.23    -1.67 0.62
+(8) distant - warm             8 8 4.12 1.96    4.0    4.12 1.48   1   7     6 -0.05    -1.46 0.69
+(9) rather agg - not aggres    9 8 3.62 1.92    3.0    3.62 2.22   1   7     6  0.36    -1.25 0.68</code></pre>
+<p>The returned object is a dataframe, so you may access them as usual. E.g. to retrieve the means of the constructs, type</p>
+<pre class="r"><code>d$mean</code></pre>
+<pre><code>[1] 3.750 4.000 3.500 4.375 3.500 4.500 3.250 4.125 3.625</code></pre>
+<pre class="r"><code>statsConstructs(fbb2003, trim = 10)</code></pre>
+<pre><code>
+####################################
+Desriptive statistics for constructs
+####################################
+
+                  vars n mean   sd median trimmed  mad min max range  skew kurtosis   se
+(1) cleve - not b    1 8 3.75 2.31    4.0    3.75 2.97   1   7     6  0.02    -1.84 0.82
+(2) disor - organ    2 8 4.00 1.77    4.5    4.00 2.22   2   6     4 -0.13    -1.96 0.63
+(3) liste - doesn    3 8 3.50 2.14    3.0    3.50 2.22   1   7     6  0.35    -1.40 0.76
+(4) no cl - clear    4 8 4.38 1.60    4.0    4.38 1.48   3   7     4  0.38    -1.68 0.56
+(5) under - no un    5 8 3.50 1.85    2.5    3.50 0.74   2   6     4  0.41    -1.90 0.65
+(6) ambit - no am    6 8 4.50 1.51    4.5    4.50 2.22   3   7     4  0.33    -1.58 0.53
+(7) respe - not r    7 8 3.25 1.75    3.0    3.25 1.48   1   6     5  0.23    -1.67 0.62
+(8) dista - warm     8 8 4.12 1.96    4.0    4.12 1.48   1   7     6 -0.05    -1.46 0.69
+(9) rathe - not a    9 8 3.62 1.92    3.0    3.62 2.22   1   7     6  0.36    -1.25 0.68</code></pre>
+<pre class="r"><code>statsConstructs(fbb2003, index=F)</code></pre>
+<pre><code>
+####################################
+Desriptive statistics for constructs
+####################################
+
+                        vars n mean   sd median trimmed  mad min max range  skew kurtosis   se
+clever - not bright        1 8 3.75 2.31    4.0    3.75 2.97   1   7     6  0.02    -1.84 0.82
+disorganiz - organized     2 8 4.00 1.77    4.5    4.00 2.22   2   6     4 -0.13    -1.96 0.63
+listens - doesn&#39;t he       3 8 3.50 2.14    3.0    3.50 2.22   1   7     6  0.35    -1.40 0.76
+no clear v - clear view    4 8 4.38 1.60    4.0    4.38 1.48   3   7     4  0.38    -1.68 0.56
+understand - no underst    5 8 3.50 1.85    2.5    3.50 0.74   2   6     4  0.41    -1.90 0.65
+ambitious - no ambitio     6 8 4.50 1.51    4.5    4.50 2.22   3   7     4  0.33    -1.58 0.53
+respected - not respec     7 8 3.25 1.75    3.0    3.25 1.48   1   6     5  0.23    -1.67 0.62
+distant - warm             8 8 4.12 1.96    4.0    4.12 1.48   1   7     6 -0.05    -1.46 0.69
+rather agg - not aggres    9 8 3.62 1.92    3.0    3.62 2.22   1   7     6  0.36    -1.25 0.68</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>PCA of constructs</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OpenRepGrid</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="installation.html">Installation</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="data.html">Data</a></li>
+        <li><a href="contribute.html">Contribute</a></li>
+      </ul>
+      
+      <!-- Mailchimp signup page: http://eepurl.com/4h0t9 -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://eepurl.com/4h0t9" target="_blank"><span class="glyphicon glyphicon-envelope"></span> &nbsp;Newsletter</a></li>
+      </ul>
+    
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">PCA of constructs</h1>
+
+</div>
+
+
+<div id="description" class="section level3">
+<h3>Description</h3>
+<p>Principal component analysis (PCA) is a method to identify structures in data. It is a well known method of data reduction which can also be applied to any squared matrix. It is applied to the inter-construct correlations in order to explore structures in the relations between constructs in the case of grids. The default type of rotation used is Varimax. Other methods can be chosen (see <code>?constructPca</code>). In comparison to the Root-mean-square statistic, a PCA accounts for the sign of the correlation thus allowing the .</p>
+</div>
+<div id="r-code" class="section level3">
+<h3>R-Code</h3>
+<p>The following codes calculates a PCA with three factors (default) and <code>varimax</code> rotation (default).</p>
+<pre class="r"><code>constructPca(fbb2003)</code></pre>
+<pre><code>
+#################
+PCA of constructs
+#################
+
+Number of components extracted: 3
+Type of rotation: varimax 
+
+Loadings:
+                                   RC1   RC2   RC3  
+clever - not bright                 0.96  0.02  0.25
+disorganized - organized           -0.82 -0.40 -0.17
+listens - doesn&#39;t hear              0.92 -0.26  0.12
+no clear view - clear view of life -0.45 -0.15 -0.76
+understands me - no understanding   0.87 -0.07 -0.08
+ambitious - no ambition             0.02  0.13  0.94
+respected - not respected           0.91 -0.01  0.22
+distant - warm                     -0.13  0.74  0.25
+rather aggressive - not aggressive  0.07  0.96  0.00
+
+                RC1  RC2  RC3
+SS loadings    4.27 1.74 1.69
+Proportion Var 0.47 0.19 0.19
+Cumulative Var 0.47 0.67 0.86</code></pre>
+<p>You can specify the number of components to extract. The following code yields the examples from Fransella et al. (2003, p.87). Two components are extracted using varimax rotation.</p>
+<pre class="r"><code>constructPca(fbb2003, nf=2)</code></pre>
+<pre><code>
+#################
+PCA of constructs
+#################
+
+Number of components extracted: 2
+Type of rotation: varimax 
+
+Loadings:
+                                   RC1   RC2  
+clever - not bright                 0.98  0.13
+disorganized - organized           -0.79 -0.40
+listens - doesn&#39;t hear              0.95 -0.17
+no clear view - clear view of life -0.57 -0.54
+understands me - no understanding   0.84 -0.13
+ambitious - no ambition             0.20  0.64
+respected - not respected           0.93  0.09
+distant - warm                     -0.16  0.75
+rather aggressive - not aggressive -0.03  0.79
+
+                RC1  RC2
+SS loadings    4.47 2.13
+Proportion Var 0.50 0.24
+Cumulative Var 0.50 0.73</code></pre>
+<p>In case the results are needed for further processing you can save the ouput.</p>
+<pre class="r"><code>r &lt;- constructPca(fbb2003, nf=2)</code></pre>
+<p>To gain an easier overview of the data, a cutoff level can be set to surpress the printing of small loadings.</p>
+<pre class="r"><code>print(r, cut=.3)</code></pre>
+<pre><code>
+#################
+PCA of constructs
+#################
+
+Number of components extracted: 2
+Type of rotation: varimax 
+
+Loadings:
+                                   RC1   RC2  
+clever - not bright                 0.98      
+disorganized - organized           -0.79 -0.40
+listens - doesn&#39;t hear              0.95      
+no clear view - clear view of life -0.57 -0.54
+understands me - no understanding   0.84      
+ambitious - no ambition                   0.64
+respected - not respected           0.93      
+distant - warm                            0.75
+rather aggressive - not aggressive        0.79
+
+                RC1  RC2
+SS loadings    4.47 2.13
+Proportion Var 0.50 0.24
+Cumulative Var 0.50 0.73</code></pre>
+<p>Different methods of rotation can be chosen: <code>none</code>, <code>varimax</code>, <code>promax</code>, <code>cluster</code>.</p>
+<pre class="r"><code>constructPca(fbb2003, rotate=&quot;none&quot;)
+constructPca(fbb2003, rotate=&quot;varimax&quot;)
+constructPca(fbb2003, rotate=&quot;promax&quot;)
+constructPca(fbb2003, rotate=&quot;cluster&quot;)</code></pre>
+<p>As a default, the correlation matrix is calculated using product-moment correlation. The methods that can be selected are <code>pearson</code>, <code>kendall</code>, <code>spearman</code>.</p>
+<pre class="r"><code>constructPca(fbb2003, method=&quot;pearson&quot;)    # default setting
+constructPca(fbb2003, method=&quot;kendall&quot;)   
+constructPca(fbb2003, method=&quot;spearman&quot;)  </code></pre>
+</div>
+<div id="literature" class="section level3">
+<h3>Literature</h3>
+<p>Fransella, F., Bell, R. C., &amp; Bannister, D. (2003). A Manual for Repertory Grid Technique (2. ed.). Chichester: John Wiley &amp; Sons.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

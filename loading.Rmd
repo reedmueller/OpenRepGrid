@@ -15,10 +15,33 @@ settings(show.scale=FALSE, show.meta=FALSE)
 ```
 
 
-The `OpenRepGrid` R package is able to read files from different other grid programs as well as standard formats (i. e. `.txt`). All import functions follow the same naming scheme. They start with the word `import` followed by the program the file is imported from, e.g. `Gridstat`. Hence the function to import a Gridstat file is called `importGridstat`.
+The `OpenRepGrid` R package is able to read files from different other grid programs as well as standard formats (i. e. `.txt`, `.xlsx`). All import functions follow the same naming scheme. They start with the word `import` followed by the program the file is imported from, e.g. `Gridstat`. Hence the function to import a Gridstat file is called `importGridstat`.
 
 
 ### Loading OpenRepGrid files
+
+
+#### Microsoft Excel files
+
+You can define a grid file using Microsoft Excel. The `.xlsx` file has to be in a fixed format. See an example of a correct file below. The first row contains the minimum of the rating scale (red), the names of the elements (green) and the maximum of the rating scale (red). Below, every row contains the left construct pole (blue), the ratings (black) and the right construct pole (blue).  
+
+![](images/excel2.png)
+
+
+To load the `.xlsx` file and save it into the object `x` type the following code to the R console.
+
+```{r eval=FALSE}
+x <- importExcel("example.xlsx")
+```
+
+The `OpenRepGrid` package comes with an example Excel file. If you have Excel installed, you should be able to open it by typing
+
+```{r eval=FALSE}
+file <- system.file("extdata", "excel_grid_001.xlsx", package = "OpenRepGrid")
+system2("open", file)
+```
+
+
 
 #### .txt files
 

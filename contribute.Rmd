@@ -1,26 +1,81 @@
 ---
-title: "Join in!"
+title: "You can contribute!"
 output: html_document
 ---
 
-There are several ways of how to participate in the project.
+<!-- CSS -->
 
-**<i class="icon-comment"></i> Make suggestions**
+<style>
+/* additional margin for h3 */
+h3 {
+ margin-top:20px;
+}
+</style>
 
-* In order to make `OpenRepGrid` suit your needs we need to know what features you need, what you miss and what you feel needs improvement. So please don't hesitate to [tell us](#get-in-touch). E.g. just share your ideas in the comment section at the bottom of each page. 
+<!-- END CSS  -->
 
-       
-**<i class="icon-pencil"></i> Build the documentation** 
+```{r setup, include=FALSE}
+# Add fontawesome (ships with rmarkdown) to site_lib 
+# Currently it does not seem to work to include font-awesome in the site_libs folder.
+# However, a temporary workaround appears to be this one: 
+# https://github.com/rstudio/rmarkdown/issues/813
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
 
-* If you feel the documentation needs improvement or you have a use case you would like to see in the documentation, just [tell us](#get-in-touch) in the comment section. Or if you have a draft you would like to add, [send it to us](#get-in-touch).
+<div id="contribute-box" class="container features" style="text-align: center; padding-top:20px;">
 
-**<i class="icon-align-justify"></i> Supply code snippets** 
+<!-- ----------- ROW 1 ------------- -->
+<div class="row">
 
-* If have some basic R knowledge and come up with some code snippets just [send them](#get-in-touch) and we will take care to integrate your ideas into the package.
+<!-- Make suggestions -->
+<div class="col-md-2 devborder devbg">
+  <i class="fa fa-comment fa-4x"></i>
+  <h3>Make suggestions</h3>
+  <p class="marketingtext"> In order to make `OpenRepGrid` suit your needs we need to know what features you need, what you miss and what you feel needs improvement. So please don't hesitate to [tell us](#get-in-touch).</p>
+</div>
 
-**<i class="icon-user"></i> Join us on github** 
+<!-- Build documentation -->
+<div class="col-md-2 devborder devbg">
+  <i class="fa fa-pencil fa-4x"></i>
+  <h3>Build documentation</h3>
+  <p class="marketingtext">If you feel the documentation needs improvement or you have a use case you would like to see in the documentation, just <a href="href="mailto:youremailaddress">[get in touch](#get-in-touch). Or if you have a draft you would like to add, [send it to us](#get-in-touch).</p>
+</div>
 
-* If you have solid R knowledge just hammer out some code and [send it to us](#get-in-touch) :) Or, if you are familiar with git, fork the [OpenRepGrid repo](https://github.com/markheckmann/OpenRepGrid), make some changes and submit a pull request. Please also [report bugs and suggest enhancements](https://github.com/markheckmann/OpenRepGrid/issues) here.
+<!--  Supply code snippets -->
+<div class="col-md-2 devborder devbg">
+  <i class="fa fa-code fa-4x"></i>
+  <h3> Supply code snippets</h3>
+  <p class="marketingtext">If have some basic R knowledge and come up with some code snippets just [send them](#get-in-touch) and we will take care to integrate your ideas into the package.</p>
+</div>
+
+<!-- Join the dev team -->
+<div class="col-md-2 devborder devbg">
+  <i class="fa fa-user fa-4x"></i>
+  <h3>Join the dev team</h3>
+  <p class="marketingtext">If you have solid R knowledge just hammer out some code and [send it to us](#get-in-touch) :) Or, if you are familiar with git, fork the [OpenRepGrid repo](https://github.com/markheckmann/OpenRepGrid), make some changes and submit a pull request. Please also [report bugs and suggest enhancements](https://github.com/markheckmann/OpenRepGrid/issues) here.</p>
+</div>
+
+</div> 
+</div> 
+
+
+<!-- There are several ways of how to participate in the project. -->
+
+<!-- **<i class="icon-comment"></i> Make suggestions** -->
+
+<!-- * In order to make `OpenRepGrid` suit your needs we need to know what features you need, what you miss and what you feel needs improvement. So please don't hesitate to [tell us](#get-in-touch). E.g. just share your ideas in the comment section at the bottom of each page.  -->
+
+<!-- **<i class="icon-pencil"></i> Build the documentation**  -->
+
+<!-- * If you feel the documentation needs improvement or you have a use case you would like to see in the documentation, just [tell us](#get-in-touch) in the comment section. Or if you have a draft you would like to add, [send it to us](#get-in-touch). -->
+
+<!-- **<i class="icon-code"></i> Supply code snippets**  -->
+
+<!-- * If have some basic R knowledge and come up with some code snippets just [send them](#get-in-touch) and we will take care to integrate your ideas into the package. -->
+
+<!-- **<i class="icon-user"></i> Join us on github**  -->
+
+<!-- * If you have solid R knowledge just hammer out some code and [send it to us](#get-in-touch) :) Or, if you are familiar with git, fork the [OpenRepGrid repo](https://github.com/markheckmann/OpenRepGrid), make some changes and submit a pull request. Please also [report bugs and suggest enhancements](https://github.com/markheckmann/OpenRepGrid/issues) here. -->
 
 <!--
 **<i class="icon-gift"></i> Give financial support**
@@ -37,9 +92,6 @@ There are several ways of how to participate in the project.
 
 ### Get in touch
 
-You can get in touch in several ways:
-
-* Post your ideas, remarks and suggestions in the comment section at the bottom of each page. We will get back to your comments ASAP.
 * Write an email to `heckmann (dot) mark (at) gmail (dot) com`.
 * There is a [shared Dropbox folder for contributors](https://www.dropbox.com/sh/453dhcf2b0i2tq6/AAC09Qkg5jMGl2ZAh2EYi7-Da?dl=0). Have a look at it. If you want to get access to it e.g. to add some stuff, write an email.
 * (Expert level): Post a bug, issue or enhancement directly on [github](https://github.com/markheckmann/OpenRepGrid/issues).
@@ -47,10 +99,9 @@ You can get in touch in several ways:
 
 ### Contributors
 
-The following people have contributed to the development of `OpenRepGrid` in one of the above ways. Become one of them!
-
-* [Mark Heckmann](http://www.markheckmann.de) (package maintainer)
-* Richard C. Bell (thanks for some FORTRAN code and for the joint work on [bootstrap clustering](slideshare.net/markheckmann/a-new-development-in-the-hierarchical-clustering-of-repertory-grid-data-24444362)) 
+* [Mark Heckmann](http://www.markheckmann.de) (University of Bremen, Germany, package maintainer)
+* Richard C. Bell (University of Melbourne, Australia, thanks for some FORTRAN code and for the joint work on [bootstrap clustering](slideshare.net/markheckmann/a-new-development-in-the-hierarchical-clustering-of-repertory-grid-data-24444362)) 
+* Alejandro García (University of Barcelona, Spain, thanks for new code on implicative dilemmas)
 
 
 

@@ -1,6 +1,0 @@
----
-title: "Quick start"
-output: html_document
----
-
-Just type it in!

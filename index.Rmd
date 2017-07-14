@@ -2,9 +2,18 @@
 output:
   html_document:
     theme: united
-    includes:
-      after_body: include/after_body_no_disqus.html
 ---
+
+```{r setup, include=FALSE}
+# Add fontawesome (ships with rmarkdown) to site_lib 
+# Currently it does not seem to work to include font-awesome in the site_libs folder.
+# However, a temporary workaround appears to be this one: 
+# https://github.com/rstudio/rmarkdown/issues/813
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+
+<!-- CSS -->
 
 <style>
 
@@ -34,15 +43,15 @@ body {
   margin-top: 50px;
 }
 .marketing-byline {
-  margin-bottom: 50px;
+  margin-bottom: 0px;
   font-size: 22px;
   line-height: 140%;
   color: #777;
 }
 #heading{
   font-size: 60px;
-  margin-bottom: 40px;
-  margin-top: 60px;
+  margin-top: 40px;
+  margin-bottom: 10px;
 }
 #features-box{
   width: 900px;
@@ -65,55 +74,78 @@ body {
 }
 </style>
 
+<!-- END CSS  -->
+
+
+
+<!-- --------------------------- ROW INFO BOXES ------------------------------- -->
+
+
 <!--  Information -->
 
-<div class="container devborder" style="width: 100%;">
 
-<div class="marketing" style="text-align: center;">
-<div id="heading"> OpenRepGrid Docu </div>
-<p class="marketing-byline devborder devbg">
-You love repertory grids? So do we! Find out about a new <br>
-powerful way to analyze your grids!</p>
+<!-- <div id="top-part" class=" devborder" style="width: 100%;"> -->
+<!--   <div class="marketing" style="text-align: center;"> -->
+<!--     <div id="heading"> OpenRepGrid Docu </div> -->
+  <!--   <p class="marketing-byline devborder devbg"> -->
+  <!--     You love repertory grids? So do we! Find out about a new <br> -->
+  <!--     powerful way to analyze your grids! -->
+  <!--   </p> -->
+  
 
-<hr class="soften">
 
-<div id="features-box" class="container features">
 
-<div class="row-fluid">
+<div id="features-box" class="container features" style="text-align: center;">
+
+<!-- Heading -->
+<div class="row">
+<div class="col-md-8  col-md-offset-2 devborder devbg">
+
+  <p id="heading">OpenRepGrid Docu</p>
+  
+  <p class="marketing-byline devborder devbg">You love repertory grids? So do we! 
+  Find out about a powerful tool to analyze your grids!</p>
+  
+  <hr class="soften">
+  
+</div>   
+</div>
+
+<!-- ----------- ROW 1 ------------- -->
+<div class="row">
 
 <!-- About -->
-<div class="span4 devborder devbg">
-<i class="fa fa-star fa-5x"></i>
-<h2>Analyze grids!</h2>
-<p class="marketingtext">
-<a href="http://www.openrepgrid.org">OpenRepGrid</a> is a software for <a href="http://en.wikipedia.org/wiki/Repertory_grid">repertory grids</a>, 
-	a qualitative-quantitative research technique used across various domains from clinical psychology to marketing.</p>
+<div class="col-md-4 devborder devbg">
+  <i class="fa fa-star fa-5x"></i>
+  <h2>Analyze grids!</h2>
+  <p class="marketingtext">
+  <a href="http://www.openrepgrid.org">OpenRepGrid</a> is a software for <a href="http://en.wikipedia.org/wiki/Repertory_grid">repertory grids</a>, 
+  	a qualitative-quantitative research technique used across various domains from clinical psychology to marketing.</p>
 </div>   
 
 <!-- Desktop / Systems -->
-<div class="span4 devborder devbg">
-<i class="fa fa-desktop fa-5x"></i>
-<h2>All system.</h2>
-<p class="marketingtext">
-All systems - no constraints. Whether you use MacOS, Windows or Linux. OpenRepGrid runs on every major operating system.</p>
+<div class="col-md-4 devborder devbg">
+  <i class="fa fa-desktop fa-5x"></i>
+  <h2>All system.</h2>
+  <p class="marketingtext">
+  All systems - no constraints. Whether you use MacOS, Windows or Linux. OpenRepGrid runs on every major operating system.</p>
 </div>
 
 <!-- It's an add-on -->
-<div class="span4 devborder devbg">
+<div class="col-md-4 devborder devbg">
 <i class="fa fa-download fa-5x"></i>
 <h2>It's an add-on.</h2>
 <p class="marketingtext">
-OpenRepGrid is a free add-on package for the statistical [R software](http://www.r-project.org/). Sounds difficult? It’s not! Just go ahead and install it.
+OpenRepGrid is a free add-on package for the statistical [R software](http://www.r-project.org/). Sounds difficult? It's not! Just go ahead and <a href="installation.html">install</a> it.
 </div>
 
 </div>
 
-
-
-<div class="row-fluid">
+<!-- ----------- ROW 2 ------------- -->
+<div class="row">
 
 <!-- Features  -->
-<div class="span4 devborder devbg">
+<div class="col-md-4 devborder devbg">
 <i class="fa fa-cubes fa-5x"></i>
 <h2>Features.</h2>
 <p class="marketingtext">
@@ -122,7 +154,7 @@ The long term goal is to create a software that offers about anything you need.<
 </div>
 
 <!-- Documentation -->
-<div class="span4 devborder devbg">
+<div class="col-md-4 devborder devbg">
 <i class="fa fa-book fa-5x"></i>
 <h2>Documented.</h2>
 <p class="marketingtext">
@@ -130,7 +162,7 @@ There is an evergrowing documentation containing descriptions and examples for a
 </div>
 
 <!-- Join the community -->
-<div class="span4 devborder devbg">
+<div class="col-md-4 devborder devbg">
 <i class="fa fa-users fa-5x"></i>
 <h2>Get on board.</h2>
 <p class="marketingtext">
@@ -139,19 +171,18 @@ OpenRepGrid is a collaborative project. You have great ideas, feature requests, 
 
 </div>  
 
-
-
-<div class="row-fluid">
+<!-- ----------- ROW 3 ------------- -->
+<div class="row">
 
 <!-- Build features -->
-<div class="span4 devborder devbg">
+<div class="col-md-4 devborder devbg">
 <i class="fa fa-wrench fa-5x"></i>
 <h2>Add features.</h2>
 <p class="marketingtext">If you know some R, you can easily program new features for OpenRepGrid yourself. This way you can spread your ideas within the grid community.</p>
 </div>
 
 <!-- Generating reports -->
-<div class="span4 devborder devbg">
+<div class="col-md-4 devborder devbg">
 <i class="fa fa-file-photo-o fa-5x"></i>
 <!-- <img class="marketing-img" src="assets/img/bs-docs-bootstrap-features.png"> -->
 <h2>Generate reports.</h2>
@@ -159,12 +190,12 @@ OpenRepGrid is a collaborative project. You have great ideas, feature requests, 
 </div>
       
 <!-- Newsletter -->
-<div class="span4 devborder devbg">
+<div class="col-md-4 devborder devbg">
 <i class="fa fa-envelope-o fa-5x"></i>
 <h2>Newsletter.</h2>
 <p class="marketingtext">
 You want to stay up to date on OpenRepGrid? 
-<a href="#" data-toggle="modal" data-target="#myModal">Subsribe to the newsletter!</a>. 
+<a href="http://eepurl.com/4h0t9" target="_blank">Subsribe to the newsletter!</a>
 Don't worry! There will be a few mails per year only.
 </p>
 </div>
@@ -172,9 +203,12 @@ Don't worry! There will be a few mails per year only.
 </div>     
 
 
+        
+
+
 <!--
 
-<div class="row-fluid">
+<div class="row">
 
 Utter your wishes 
 <div class="span4 devborder devbg">
@@ -229,5 +263,6 @@ You want to join in? Get in touch!</p>
 <script type="text/javascript" src="libs/testimonials.js"></script> 
 <link href="libs/testimonials.css" rel="stylesheet" />
 
-</div> <!-- marketing -->
+<!-- </div> <!-- marketing --> 
 </div> <!-- container -->
+

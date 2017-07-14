@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Distances between elements (standardized)</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OpenRepGrid</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="installation.html">Installation</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="data.html">Data</a></li>
+        <li><a href="contribute.html">Contribute</a></li>
+      </ul>
+      
+      <!-- Mailchimp signup page: http://eepurl.com/4h0t9 -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://eepurl.com/4h0t9" target="_blank"><span class="glyphicon glyphicon-envelope"></span> &nbsp;Newsletter</a></li>
+      </ul>
+    
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Distances between elements (standardized)</h1>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#slater-distances-1977">Slater distances (1977)</a><ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#r-code">R-Code</a></li>
+<li><a href="#calculation">Calculation</a></li>
+</ul></li>
+<li><a href="#hartmann-distances-1992">Hartmann distances (1992)</a><ul>
+<li><a href="#description-1">Description</a></li>
+<li><a href="#r-code-1">R-Code</a></li>
+</ul></li>
+<li><a href="#heckmanns-approach-2012">Heckmann’s approach (2012)</a><ul>
+<li><a href="#description-2">Description</a></li>
+<li><a href="#r-code-2">R-Code</a></li>
+<li><a href="#calculation-1">Calculation</a></li>
+</ul></li>
+<li><a href="#literature">Literature</a></li>
+</ul>
+</div>
+
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>As a similarity measure in grids different types of Minkowski metrics, especially the Euclidean and city-block metric are frequently used. The Euclidean distance is the sum of squared differences between the ratings on two different elements. They are, however, no standardized measure. The distances strongly depend on the number of constructs and the rating range. The figure below demonstrates this fact. Note how the distance changes although the rating pattern remains identical.</p>
+<div class="figure">
+<img src="images/elements_distances.png" />
+
+</div>
+<p>In order to be able to compare distances across grids of different size and rating range a standardization is desireable. Also, the notion of <em>significance of a distance</em>, i.e. a distance which is unusually big, is easier with a standard reference measure. Different suggestions have been made in the literature of how to standardize Euclidean interelement distances <span class="citation">(Hartmann, 1992; Heckmann, 2012; Slater, 1977)</span>. The three variants will be briefly discussed and the corresponing R-Code is demonstrated.</p>
+</div>
+<div id="slater-distances-1977" class="section level3">
+<h3>Slater distances (1977)</h3>
+<div id="description" class="section level4">
+<h4>Description</h4>
+<p>The first suggestion to standardization was made by Slater <span class="citation">(1977)</span>. He essentially calculated an expected average Euclidean distance <span class="math inline">\(U\)</span> for the case if the ratings are randomly distributed. To standardize the grids he suggested to divide the matrix of Euclidean distances <span class="math inline">\(E\)</span> by this <em>unit of expected distance</em> <span class="math inline">\(U\)</span>. The Slater standardization thus is the division of the Euclidean distances by the distance expected on average. Hence, distances bigger than 1 are greater than expected, distances smaller than 1 are smaller than expected.</p>
+</div>
+<div id="r-code" class="section level4">
+<h4>R-Code</h4>
+<p>The function <code>distanceSlater</code> calculates Slater distances for a grid.</p>
+<pre class="r"><code>distanceSlater(boeker)</code></pre>
+<pre><code>
+##########################
+Distances between elements
+##########################
+
+Distance method:  Slater (standardized Euclidean) 
+
+                               1    2    3    4    5    6    7    8    9   10   11   12   13   14   15
+(1) self                  1      1.03 0.75 0.69 0.87 1.19 0.80 1.03 0.99 0.59 1.79 0.58 0.55 0.64 0.54
+(2) ideal self            2           1.11 0.78 1.06 1.31 1.07 0.97 1.14 0.97 1.56 1.22 1.21 1.24 1.25
+(3) mother                3                0.73 0.53 0.95 0.55 0.81 0.64 0.67 1.58 0.69 0.83 0.77 0.69
+(4) father                4                     0.63 1.15 0.65 0.90 0.83 0.69 1.66 0.84 0.91 0.98 0.89
+(5) kurt                  5                          0.89 0.57 0.79 0.57 0.72 1.51 0.79 0.93 0.87 0.83
+(6) karl                  6                               0.94 0.74 0.66 1.09 0.97 1.17 1.22 1.08 1.15
+(7) george                7                                    0.92 0.65 0.81 1.51 0.73 0.91 0.92 0.78
+(8) martin                8                                         0.68 0.80 1.27 1.09 1.10 1.01 1.07
+(9) elizabeth             9                                              0.87 1.31 1.00 1.13 1.03 0.98
+(10) therapist           10                                                   1.74 0.65 0.63 0.69 0.65
+(11) irene               11                                                        1.83 1.86 1.72 1.84
+(12) childhood self      12                                                             0.43 0.50 0.34
+(13) self before illness 13                                                                  0.43 0.41
+(14) self with delusion  14                                                                       0.45
+(15) self as dreamer     15                                                                           
+
+Note that Slater distances cannot be compared across grids with a different number of constructs (see Hartmann, 1992).</code></pre>
+<p>You can save the results and define the way they are displayed using the <code>print</code> method. For example we could display distances only within certain boundaries, using the <code>cutoff</code> values <code>.8</code> and <code>1.2</code> to indicate very big or small distances as suggested by Norris and Makhlouf-Norris <span class="citation">(1976)</span>.</p>
+<pre class="r"><code>d &lt;- distanceSlater(boeker)
+print(d, cutoffs=c(.8, 1.2))</code></pre>
+<pre><code>
+##########################
+Distances between elements
+##########################
+
+Distance method:  Slater (standardized Euclidean) 
+
+                               1    2    3    4    5    6    7    8    9   10   11   12   13   14   15
+(1) self                  1           0.75 0.69           0.80           0.59 1.79 0.58 0.55 0.64 0.54
+(2) ideal self            2                0.78      1.31                     1.56 1.22 1.21 1.24 1.25
+(3) mother                3                0.73 0.53      0.55      0.64 0.67 1.58 0.69      0.77 0.69
+(4) father                4                     0.63      0.65           0.69 1.66                    
+(5) kurt                  5                               0.57 0.79 0.57 0.72 1.51 0.79               
+(6) karl                  6                                    0.74 0.66                1.22          
+(7) george                7                                         0.65      1.51 0.73           0.78
+(8) martin                8                                         0.68 0.80 1.27                    
+(9) elizabeth             9                                                   1.31                    
+(10) therapist           10                                                   1.74 0.65 0.63 0.69 0.65
+(11) irene               11                                                        1.83 1.86 1.72 1.84
+(12) childhood self      12                                                             0.43 0.50 0.34
+(13) self before illness 13                                                                  0.43 0.41
+(14) self with delusion  14                                                                       0.45
+(15) self as dreamer     15                                                                           
+
+Note that Slater distances cannot be compared across grids with a different number of constructs (see Hartmann, 1992).</code></pre>
+</div>
+<div id="calculation" class="section level4">
+<h4>Calculation</h4>
+<p>Let <span class="math inline">\(G\)</span> be the raw grid matrix and <span class="math inline">\(D\)</span> be the grid matrix centered around the construct means, with <span class="math inline">\(d_{ij} =g_{..} - g_{ij}\)</span>, where <span class="math inline">\(g_{..}\)</span> is the mean of the construct. Further, let</p>
+<p><span class="math display">\[P=D^TD \qquad \text{and} \qquad S=tr\;P\]</span></p>
+<p>The Euclidean distances results in:</p>
+<p><span class="math display">\[(\sum{ (d_{ij} - d_{ik} )^2})^{1/2}\]</span></p>
+<p><span class="math display">\[\Leftrightarrow (\sum{ (d_{ij}^2 + d_{ik}^2 - 2d_{ij}d_{ik})})^{1/2}\]</span></p>
+<p><span class="math display">\[\Leftrightarrow (\sum{ d_{ij}^2 } + \sum{d_{ik}^2} - 2\sum{d_{ij}d_{ik} })^{1/2}\]</span></p>
+<p><span class="math display">\[\Leftrightarrow (S_j + S_k - 2P_{jk})^{1/2}\]</span></p>
+<p>For the standardization, Slater proposes to use the expected Euclidean distance between a random pair of elements taken from the grid. The average for <span class="math inline">\(S_j\)</span> and <span class="math inline">\(S_k\)</span> would then be <span class="math inline">\(S_{avg} = S/m\)</span> where <span class="math inline">\(m\)</span> is the number of elements in the grid. The average of the off-line diagonals of <span class="math inline">\(P\)</span> is <span class="math inline">\(S/m(m-1)\)</span> <span class="citation">(see Slater, 1951, for a proof)</span>. Inserted into the formula above it gives the following expected average euclidean distance <span class="math inline">\(U\)</span> which is outputted as <em>unit of expected distance</em> in Slater’s INGRID program.</p>
+<p><span class="math display">\[U = (2S/(m-1))^{1/2}\]</span></p>
+<p>The calculated euclidean distances are then divided by <span class="math inline">\(U\)</span>, the <em>unit of expected distance</em> to form the matrix of standardized element distances <span class="math inline">\(E_{std}\)</span>, with</p>
+<p><span class="math display">\[E_{std} = E/U\]</span></p>
+</div>
+</div>
+<div id="hartmann-distances-1992" class="section level3">
+<h3>Hartmann distances (1992)</h3>
+<div id="description-1" class="section level4">
+<h4>Description</h4>
+<p>Hartmann <span class="citation">(1992)</span> showed in a Monte Carlo study that Slater distances (see above) based on random grids, for which Slater coined the expression <em>quasis</em>, have a skewed distribution, a mean and a standard deviation depending on the number of constructs elicited. Hence, the distances cannot be compared across grids with a different number of constructs. As a remedy he suggested a linear transformation (z-transformation) of the Slater distance values which take into account their estimated (or alternatively expected) mean and their standard deviation to standardize them. Hartmann distances represent a more accurate version of Slater distances. Note that Hartmann distances are multiplied by -1 to allow an interpretation similar to correlation coefficients: negative Hartmann values represent an above average dissimilarity (i.e. a big Slater distance) and positive values represent an above average similarity (i.e. a small Slater distance).</p>
+<p>The <em>Hartmann distance</em> is calculated as follows <span class="citation">(Hartmann, 1992, p. 49)</span>.</p>
+<p><span class="math display">\[D = -1 \frac{D_{slater} - M_c}{sd_c}\]</span></p>
+<p>Where <span class="math inline">\(D_{slater}\)</span> denotes the Slater distances of the grid, <span class="math inline">\(M_c\)</span> the sample distribution’s mean value and <span class="math inline">\(sd_c\)</span> the sample distributions’s standard deviation.</p>
+</div>
+<div id="r-code-1" class="section level4">
+<h4>R-Code</h4>
+<p>The function <code>distanceHartmann</code> calculates Hartmann distances. The function can be operated in two ways. The default option (<code>method=&quot;paper&quot;</code>) uses precalculated mean and standard deviations (as e.g. given in <span class="citation">Hartmann (1992)</span>) for the standardization.</p>
+<pre class="r"><code>distanceHartmann(boeker)</code></pre>
+<pre><code>
+##########################
+Distances between elements
+##########################
+
+Distance method:  Hartmann (standardized Slater distances) 
+
+                                1     2     3     4     5     6     7     8     9    10    11    12    13    14    15
+(1) self                  1       -0.28  1.58  1.92  0.80 -1.33  1.20 -0.29 -0.04  2.62 -5.24  2.66  2.87  2.28  2.89
+(2) ideal self            2             -0.78  1.36 -0.47 -2.09 -0.56  0.12 -1.02  0.12 -3.69 -1.50 -1.45 -1.63 -1.71
+(3) mother                3                    1.70  2.99  0.22  2.82  1.15  2.27  2.09 -3.84  1.91  1.06  1.44  1.92
+(4) father                4                          2.31 -1.04  2.23  0.55  1.00  1.92 -4.39  0.96  0.50  0.08  0.63
+(5) kurt                  5                                0.63  2.72  1.27  2.69  1.74 -3.37  1.30  0.35  0.79  1.01
+(6) karl                  6                                      0.29  1.63  2.14 -0.66  0.10 -1.21 -1.53 -0.60 -1.04
+(7) george                7                                            0.45  2.19  1.17 -3.39  1.70  0.54  0.42  1.35
+(8) martin                8                                                  2.03  1.22 -1.85 -0.67 -0.73 -0.13 -0.53
+(9) elizabeth             9                                                        0.76 -2.07 -0.08 -0.91 -0.29  0.05
+(10) therapist           10                                                             -4.91  2.20  2.35  1.97  2.22
+(11) irene               11                                                                   -5.47 -5.65 -4.79 -5.52
+(12) childhood self      12                                                                          3.66  3.16  4.22
+(13) self before illness 13                                                                                3.60  3.79
+(14) self with delusion  14                                                                                      3.52
+(15) self as dreamer     15                                                                                          
+
+For calculation the parameters from Hartmann (1992) were used. Use &#39;method=new&#39; or method=&#39;simulate&#39; for a more accurate version.</code></pre>
+<p>The second option (<code>method=&quot;simulate&quot;</code>) is to simulate the distribution of distances based on the size and scale range of the grid under investigation. A distribution of Slater distances is derived using quasis and used for the Hartmann standardization instead of the precalculated values. The following simulation is based on <code>reps=1000</code> quasis.</p>
+<pre class="r"><code>h &lt;- distanceHartmann(boeker, method=&quot;simulate&quot;, reps=1000)
+h</code></pre>
+<pre><code>
+##########################
+Distances between elements
+##########################
+
+Distance method:  Hartmann (standardized Slater distances) 
+
+                                1     2     3     4     5     6     7     8     9    10    11    12    13    14    15
+(1) self                  1       -0.28  1.56  1.90  0.79 -1.32  1.19 -0.29 -0.04  2.59 -5.19  2.63  2.84  2.25  2.86
+(2) ideal self            2             -0.77  1.35 -0.47 -2.07 -0.56  0.12 -1.01  0.12 -3.65 -1.48 -1.43 -1.62 -1.70
+(3) mother                3                    1.68  2.96  0.21  2.79  1.14  2.25  2.07 -3.80  1.89  1.04  1.42  1.90
+(4) father                4                          2.28 -1.04  2.20  0.54  0.99  1.90 -4.35  0.95  0.49  0.08  0.62
+(5) kurt                  5                                0.62  2.69  1.25  2.66  1.72 -3.34  1.28  0.34  0.78  0.99
+(6) karl                  6                                      0.28  1.61  2.11 -0.65  0.09 -1.20 -1.51 -0.59 -1.03
+(7) george                7                                            0.44  2.17  1.15 -3.36  1.68  0.53  0.41  1.33
+(8) martin                8                                                  2.01  1.20 -1.83 -0.67 -0.73 -0.13 -0.52
+(9) elizabeth             9                                                        0.75 -2.05 -0.08 -0.90 -0.28  0.05
+(10) therapist           10                                                             -4.86  2.18  2.32  1.95  2.19
+(11) irene               11                                                                   -5.41 -5.59 -4.74 -5.46
+(12) childhood self      12                                                                          3.62  3.12  4.18
+(13) self before illness 13                                                                                3.56  3.75
+(14) self with delusion  14                                                                                      3.48
+(15) self as dreamer     15                                                                                          </code></pre>
+<p>If the results are saved, there are a couple of options for printing the object (see <code>?print.hdistance</code>).</p>
+<pre class="r"><code>print(d, p=c(.05, .95))</code></pre>
+<pre><code>
+##########################
+Distances between elements
+##########################
+
+Distance method:  Slater (standardized Euclidean) 
+
+                               1    2    3    4    5    6    7    8    9   10   11   12   13   14   15
+(1) self                  1      1.03 0.75 0.69 0.87 1.19 0.80 1.03 0.99 0.59 1.79 0.58 0.55 0.64 0.54
+(2) ideal self            2           1.11 0.78 1.06 1.31 1.07 0.97 1.14 0.97 1.56 1.22 1.21 1.24 1.25
+(3) mother                3                0.73 0.53 0.95 0.55 0.81 0.64 0.67 1.58 0.69 0.83 0.77 0.69
+(4) father                4                     0.63 1.15 0.65 0.90 0.83 0.69 1.66 0.84 0.91 0.98 0.89
+(5) kurt                  5                          0.89 0.57 0.79 0.57 0.72 1.51 0.79 0.93 0.87 0.83
+(6) karl                  6                               0.94 0.74 0.66 1.09 0.97 1.17 1.22 1.08 1.15
+(7) george                7                                    0.92 0.65 0.81 1.51 0.73 0.91 0.92 0.78
+(8) martin                8                                         0.68 0.80 1.27 1.09 1.10 1.01 1.07
+(9) elizabeth             9                                              0.87 1.31 1.00 1.13 1.03 0.98
+(10) therapist           10                                                   1.74 0.65 0.63 0.69 0.65
+(11) irene               11                                                        1.83 1.86 1.72 1.84
+(12) childhood self      12                                                             0.43 0.50 0.34
+(13) self before illness 13                                                                  0.43 0.41
+(14) self with delusion  14                                                                       0.45
+(15) self as dreamer     15                                                                           
+
+Note that Slater distances cannot be compared across grids with a different number of constructs (see Hartmann, 1992).</code></pre>
+</div>
+</div>
+<div id="heckmanns-approach-2012" class="section level3">
+<h3>Heckmann’s approach (2012)</h3>
+<div id="description-2" class="section level4">
+<h4>Description</h4>
+<p>Hartmann (1992) suggested a transformation of Slater (1977) distances to make them independent from the size of a grid. Hartmann distances are supposed to yield stable cutoff values used to determine ‘significance’ of inter-element distances. It can be shown that Hartmann distances are still affected by grid parameters like size and the range of the rating scale used <span class="citation">(Heckmann, 2012)</span>. The function <code>distanceNormalize</code> applies a Box-Cox <span class="citation">(1964)</span> transformation to the Hartmann distances in order to remove the skew of the Hartmann distance distribution. The normalized values show to have more stable and nearly symmetric cutoffs (quantiles) and better properties for comparison across grids of different size and scale range.</p>
+</div>
+<div id="r-code-2" class="section level4">
+<h4>R-Code</h4>
+<p>The function <code>distanceNormalize</code> will return Slater, Hartmann or power transformed Hartmann distances <span class="citation">(Heckmann, 2012)</span> if prompted. It is also possible to return the quantiles of the sample distribution and only the element distances consideres ‘significant’ according to the quantiles defined.</p>
+<pre class="r"><code>n &lt;- distanceNormalized(boeker)
+n</code></pre>
+<pre><code>
+##########################
+Distances between elements
+##########################
+
+Distance method:  Power transformed Hartmann distances 
+
+                                1     2     3     4     5     6     7     8     9    10    11    12    13    14    15
+(1) self                  1       -0.28  1.56  1.90  0.79 -1.32  1.19 -0.29 -0.04  2.59 -5.18  2.63  2.84  2.25  2.86
+(2) ideal self            2             -0.77  1.35 -0.47 -2.07 -0.56  0.12 -1.01  0.12 -3.65 -1.48 -1.43 -1.62 -1.70
+(3) mother                3                    1.68  2.96  0.21  2.79  1.14  2.25  2.07 -3.80  1.89  1.04  1.42  1.90
+(4) father                4                          2.28 -1.04  2.20  0.54  0.99  1.90 -4.34  0.94  0.49  0.08  0.62
+(5) kurt                  5                                0.62  2.69  1.25  2.66  1.72 -3.34  1.28  0.34  0.78  0.99
+(6) karl                  6                                      0.28  1.61  2.11 -0.65  0.09 -1.19 -1.51 -0.59 -1.03
+(7) george                7                                            0.44  2.17  1.15 -3.36  1.68  0.53  0.41  1.33
+(8) martin                8                                                  2.01  1.20 -1.83 -0.67 -0.73 -0.13 -0.52
+(9) elizabeth             9                                                        0.75 -2.05 -0.08 -0.90 -0.28  0.05
+(10) therapist           10                                                             -4.86  2.18  2.32  1.95  2.19
+(11) irene               11                                                                   -5.41 -5.59 -4.74 -5.46
+(12) childhood self      12                                                                          3.62  3.12  4.17
+(13) self before illness 13                                                                                3.56  3.75
+(14) self with delusion  14                                                                                      3.48
+(15) self as dreamer     15                                                                                          </code></pre>
+</div>
+<div id="calculation-1" class="section level4">
+<h4>Calculation</h4>
+<p>The form of normalization applied by Hartmann <span class="citation">(1992)</span> does not account for skewness or kurtosis. Here, a form of normalization - a power transformation - is explored that takes into account these higher moments of the distribution. For this purpose Hartmann values are transformed using the ‘’Box-Cox’’ family of transformations <span class="citation">(Box &amp; Cox, 1964)</span>. The transformation is defined as</p>
+<p><span class="math display">\[
+  Y_i^{\lambda}= \left\{ 
+  \begin{matrix} 
+    \frac{(Y_i + c)^\lambda - 1}{\lambda} &amp; \mbox{for }\lambda \neq 0 \\ 
+    ln(Y_i + c) &amp; \mbox{for }\lambda = 0
+  \end{matrix} \right.
+\]</span></p>
+<p>As the transformation requires values <span class="math inline">\(\ge 0\)</span> a constant <span class="math inline">\(c\)</span> is added to derive positive values only. For the present transformation <span class="math inline">\(c\)</span> is defined as the minimum Hartmann distances from the quasis distribution. In order to derive at a transformation that resembles the normal distribution as close as possible, an optimal <span class="math inline">\(\lambda\)</span> is searched by selecting a <span class="math inline">\(\lambda\)</span> that maximizes the correlation between the quantiles of the transformed values <span class="math inline">\(Y_i^\lambda\)</span> and the standard normal distribution. As a last step, the power transformed values <span class="math inline">\(Y_i^\lambda\)</span> are z-transformed to remove the arbitrary scaling resulting from the Box-Cox transformation yielding <span class="math inline">\(Y_i^P\)</span>.</p>
+<p><span class="math inline">\(Y_{i}^P = \frac{Y^{\lambda}_i - \overline Y^{\lambda}}{\sigma_{Y^{\lambda}}}\)</span></p>
+</div>
+</div>
+<div id="literature" class="section level3 unnumbered">
+<h3>Literature</h3>
+<div id="refs" class="references">
+<div id="ref-box_analysis_1964">
+<p>Box, G. E. P., &amp; Cox, D. R. (1964). An analysis of transformations. <em>Journal of the Royal Statistical Society. Series B (Methodological)</em>, <em>26</em>(2), 211–252. Retrieved from <a href="http://www.jstor.org/stable/2984418" class="uri">http://www.jstor.org/stable/2984418</a></p>
+</div>
+<div id="ref-hartmann_element_1992">
+<p>Hartmann, A. (1992). Element comparisons in repertory grid technique: Results and consequences of a monte carlo study. <em>International Journal of Personal Construct Psychology</em>, <em>5</em>(1), 41–56. doi:<a href="https://doi.org/10.1080/08936039208404940">10.1080/08936039208404940</a></p>
+</div>
+<div id="ref-heckmann_standardizing_2012">
+<p>Heckmann, M. (2012, July). Standardizing inter-element distances in grids – a revision of hartmann’s distances. Talk held at the 11th Biennial Conference of the European Personal Construct Association (EPCA), Dublin, Irland.</p>
+</div>
+<div id="ref-norris_measurement_1976">
+<p>Norris, H., &amp; Makhlouf-Norris, F. (1976). The measurement of self-identity. In P. Slater (Ed.), <em>The measurement of intrapersonal space by grid technique: Explorations of intrapersonal space</em> (Vol. 1, pp. 79–92). London: Wiley &amp; Sons.</p>
+</div>
+<div id="ref-slater_transformation_1951">
+<p>Slater, P. (1951). The transformation of a matrix of negative correlations. <em>British Journal of Statistical Psychology</em>, <em>6</em>, 101–106.</p>
+</div>
+<div id="ref-slater_measurement_1977">
+<p>Slater, P. (1977). <em>The measurement of intrapersonal space by grid technique: Dimensions of intrapersonal space</em> (Vol. 2). London: Wiley &amp; Sons.</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

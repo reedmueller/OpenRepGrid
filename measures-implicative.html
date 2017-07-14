@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Implicative dilemma</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OpenRepGrid</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="installation.html">Installation</a></li>
+        <li><a href="features.html">Features</a></li>
+        <li><a href="data.html">Data</a></li>
+        <li><a href="contribute.html">Contribute</a></li>
+      </ul>
+      
+      <!-- Mailchimp signup page: http://eepurl.com/4h0t9 -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="http://eepurl.com/4h0t9" target="_blank"><span class="glyphicon glyphicon-envelope"></span> &nbsp;Newsletter</a></li>
+      </ul>
+    
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Implicative dilemma</h1>
+
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#process-of-detection">Process of detection</a><ul>
+<li><a href="#classifying-the-construct">Classifying the construct</a></li>
+<li><a href="#defining-the-correlations">Defining the correlations</a></li>
+<li><a href="#example-of-an-implicative-dilemma">Example of an implicative dilemma</a></li>
+</ul></li>
+<li><a href="#r-code">R-Code</a></li>
+<li><a href="#literature">Literature</a></li>
+</ul>
+</div>
+
+<div id="description" class="section level3">
+<h3>Description</h3>
+<p><em>Implicative dilemmas</em> are closely related to the notion of conflict. An implicative dilemma arises when a desired change on one construct is associated with an undesired implication on another construct. E. g. a <em>timid</em> subject may want to become more <em>socially skilled</em> but associates being <em>socially skilled</em> with different negative characteristics (<em>selfish</em>, <em>insensitive</em> etc.). Hence, he may anticipate that becoming <em>less timid</em> will also make him more selfish <span class="citation">(cf. Winter, 1982)</span>. As a consequence the subject will resist to the change if the negative presumed implications will threaten the patients identity and the predictive power of his construct system. From this stance the resistance to change is a logical consequence coherent with the subjects construct system <span class="citation">(Feixas, Saúl, &amp; Sanchez, 2000)</span>. The investigation of the role of cognitive dilemma in different disorders in the context of PCP is a current field of research <span class="citation">(Dorough, Grice, &amp; Parker, 2007; e.g. Feixas &amp; Saúl, 2004)</span>.</p>
+</div>
+<div id="process-of-detection" class="section level3">
+<h3>Process of detection</h3>
+<p>The detection of implicative dilemmas happens in two steps. First the constructs are classified as being ‘congruent’ or ‘discrepant’. Second the correlation between a congruent and discrepant construct pair is assessed if it is big enough to indicate an implication.</p>
+<div id="classifying-the-construct" class="section level4">
+<h4>Classifying the construct</h4>
+<p>To detect implicit dilemmas the construct pairs are first identified as ‘congruent’ or ‘discrepant’. The assessment is based on the rating differences between the elements ‘self’ and ‘ideal self’. A construct is ‘congruent’ if the construction of the ‘self’ and the preferred state (i.e. <em>ideal self</em>) are the same or similar. A construct is discrepant if the construction of the ‘self’ and the ‘ideal’ is dissimilar. Suppose the element ‘self’ is rated 2 and ‘ideal self’ 5 on a scale from 1 to 6. The ratings differences are 5-2 = 3. If this difference is smaller than e.g. 1 the construct is ‘congruent’, if it is bigger than 3 it is ‘discrepant’. The values used to classify the constructs ‘congruent’ or ‘discrepant’ can be determined in several ways <span class="citation">(cf. Bell, 2009)</span>:</p>
+<ul>
+<li>They are set ‘a priori’.</li>
+<li>They are implicitly derived by taking into account the rating differences to the other constructs. Not yet implemented.</li>
+</ul>
+<p>The value mode is determined via the argument diff.mode. If no ‘a priori’ criteria to determine if the construct is congruent or discrepant is supplied as an argument, the values are chosen acording to the range of the rating scale used. For the following scales the defaults are chosen as:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Scale</th>
+<th>‘A priori’ criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>1 2</code></td>
+<td>–&gt; con: &lt;=0 disc: &gt;=1</td>
+</tr>
+<tr class="even">
+<td><code>1 2 3</code></td>
+<td>–&gt; con: &lt;=0 disc: &gt;=2</td>
+</tr>
+<tr class="odd">
+<td><code>1 2 3 4</code></td>
+<td>–&gt; con: &lt;=0 disc: &gt;=2</td>
+</tr>
+<tr class="even">
+<td><code>1 2 3 4 5</code></td>
+<td>–&gt; con: &lt;=1 disc: &gt;=3</td>
+</tr>
+<tr class="odd">
+<td><code>1 2 3 4 5 6</code></td>
+<td>–&gt; con: &lt;=1 disc: &gt;=3</td>
+</tr>
+<tr class="even">
+<td><code>1 2 3 4 5 6 7</code></td>
+<td>–&gt; con: &lt;=1 disc: &gt;=4</td>
+</tr>
+<tr class="odd">
+<td><code>1 2 3 4 5 6 7 8</code></td>
+<td>–&gt; con: &lt;=1 disc: &gt;=5</td>
+</tr>
+<tr class="even">
+<td><code>1 2 3 4 5 6 7 8 9</code></td>
+<td>–&gt; con: &lt;=2 disc: &gt;=5</td>
+</tr>
+<tr class="odd">
+<td><code>1 2 3 4 5 6 7 8 9 10</code></td>
+<td>–&gt; con: &lt;=2 disc: &gt;=6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="defining-the-correlations" class="section level4">
+<h4>Defining the correlations</h4>
+<p>As the implications between constructs cannot be derived from a rating grid directly, the correlation between two constructs is used as an indicator for implication. A large correlation means that one construct pole implies the other. A small correlation indicates a lack of implication. The minimum criterion for a correlation to indicate implication is set to .35 <span class="citation">(cf. Feixas &amp; Saúl, 2004)</span>. The user may also chose another value. To get a an impression of the distribution of correlations in the grid, a visualization can be prompted via the argument show. When calculating the correlation used to assess if an implication is given or not, the elements under consideration (i. e. self and ideal self) can be included (default) or excluded. The options will cause different correlations (see argument exclude).</p>
+</div>
+<div id="example-of-an-implicative-dilemma" class="section level4">
+<h4>Example of an implicative dilemma</h4>
+<p>A depressive person considers herself as <em>timid</em> and wished to change to the opposite pole she defines as <em>extraverted</em>. This construct is called <em>discrepant</em> as the construction of the self and the desired state (e.g. described by the <em>ideal self</em>) on this construct differ. The person also considers herself as <em>sensitive</em> (preferred pole) for which the opposite pole is <em>selfish</em>. This construct is <em>congruent</em>, as the person construes herself as she would like to be. If the person now changed on the <em>discrepant</em> construct from the undesired to the desired pole, i.e. from <em>timid</em> to <em>extraverted</em>, the question can be asked what consequences such a change has. If the person construes being timid and being sensitive as related and that someone who is extraverted will not be timid, a change on the first construct will imply a change on the congruent construct as well. Hence, the positive shift from timid to extraverted is presumed to have a undesired effect in moving from sensitive towards selflish. This relation is called an implicative dilemma. As the implications of change on a construct cannot be derived from a rating grid directly, the correlation between two constructs is used as an indicator for implication.</p>
+</div>
+</div>
+<div id="r-code" class="section level3">
+<h3>R-Code</h3>
+<p>To detect implicative dilemma use the function <code>indexDilemma</code>. It will output an overview over the arguments used in the detection, a table of classifications of the construct and the implicative dilemmas that have been detected.</p>
+<pre class="r"><code>indexDilemma(boeker, self=1, ideal=2)</code></pre>
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+[1] 14
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+###################
+Implicative Dilemma
+###################
+
+Actual Self Position: (1) self
+Ideal Self Position: (2) ideal self
+
+A Priori Criteria (for classification):
+Discrepant Difference: &gt;= 3
+Congruent Difference: &lt;= 1
+
+Correlation Criterion: &gt;= 0.2
+Criterion Correlation includes Self &amp; Ideal
+
+Number of Implicative Dilemmas found: 5 
+
+
+Classification of Constructs
+############################
+
+                                    A priori Self Ideal
+balanced-get along with conflicts discrepant    1     4
+isolated-sociable                 discrepant    3     6
+closely integrated-excluded        congruent    2     2
+discursive-passive                discrepant    4     1
+open minded-indifferent            congruent    2     1
+dreamy-dispassionate                 neither    4     5
+practically oriented-depressed     congruent    2     1
+playful-serious                      neither    4     5
+socially minded-selfish            congruent    2     1
+peaceful-quarrelsome               congruent    3     5
+technical-artistic                discrepant    3     1
+scientific-emotional               congruent    2     1
+introvert-extrovert                  neither    4     5
+wanderlust-home oriented           congruent    1     1
+
+    Note: if Self&#39; score is not 4, left pole corresponds to Self
+
+
+Dilemmatic Self-Ideal Construct Pairs
+#####################################
+
+By A Priori Criteria:
+
+
+    Congruents on the left - Discrepants on the right   
+
+ 
+           Self - Not self      Rtot                      Self - Ideal             RexSI
+1  open minded-indifferent 0.5294218 balanced-get along with conflicts 0.631121582189946
+2  socially minded-selfish 0.3645978 balanced-get along with conflicts 0.434854895347714
+3     peaceful-quarrelsome 0.8387097 balanced-get along with conflicts  *Not implemented
+4     scientific-emotional 0.3318156 balanced-get along with conflicts 0.392422781445088
+5 wanderlust-home oriented 0.7184212 balanced-get along with conflicts 0.792824967172092
+
+    RexSI = Correlations excluding Self &amp; ideal
+    Rtot  = Correlations including Self &amp; ideal
+    Rtot was used as criterion</code></pre>
+<p>To change the values for the classification of the constructs as congruent and discrepant use the argument <code>diff.congruent</code>. The following output is identical to the Gridstat default.</p>
+<pre class="r"><code>indexDilemma(boeker, self=1, ideal=2, diff.congruent=0)</code></pre>
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+[1] 14
+ [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+
+###################
+Implicative Dilemma
+###################
+
+Actual Self Position: (1) self
+Ideal Self Position: (2) ideal self
+
+A Priori Criteria (for classification):
+Discrepant Difference: &gt;= 3
+Congruent Difference: &lt;= 0
+
+Correlation Criterion: &gt;= 0.2
+Criterion Correlation includes Self &amp; Ideal
+
+Number of Implicative Dilemmas found: 2 
+
+
+Classification of Constructs
+############################
+
+                                    A priori Self Ideal
+balanced-get along with conflicts discrepant    1     4
+isolated-sociable                 discrepant    3     6
+closely integrated-excluded        congruent    2     2
+discursive-passive                discrepant    4     1
+open minded-indifferent              neither    2     1
+dreamy-dispassionate                 neither    4     5
+practically oriented-depressed       neither    2     1
+playful-serious                      neither    4     5
+socially minded-selfish              neither    2     1
+peaceful-quarrelsome               congruent    3     5
+technical-artistic                discrepant    3     1
+scientific-emotional                 neither    2     1
+introvert-extrovert                  neither    4     5
+wanderlust-home oriented           congruent    1     1
+
+    Note: if Self&#39; score is not 4, left pole corresponds to Self
+
+
+Dilemmatic Self-Ideal Construct Pairs
+#####################################
+
+By A Priori Criteria:
+
+
+    Congruents on the left - Discrepants on the right   
+
+ 
+           Self - Not self      Rtot                      Self - Ideal             RexSI
+1     peaceful-quarrelsome 0.8387097 balanced-get along with conflicts  *Not implemented
+2 wanderlust-home oriented 0.7184212 balanced-get along with conflicts 0.792824967172092
+
+    RexSI = Correlations excluding Self &amp; ideal
+    Rtot  = Correlations including Self &amp; ideal
+    Rtot was used as criterion</code></pre>
+<p>Several other argumnets can be modified. Type the following code into the R console to see the results.</p>
+<pre class="r"><code>indexDilemma(boeker, self=1, ideal=2, output=2)         # show identified dillemas only
+indexDilemma(boeker, 1, 2, diff.disc=0, diff.con=4)     # set classification parameters
+
+indexDilemma(boeker, 1, 2, index=F)                     # no index numbers
+indexDilemma(boeker, 1, 2, trim=20)                     # trim construct labels</code></pre>
+<p>Called for console output. Invisibly returns a list containing the result dataframes and all results from the calculations.</p>
+<pre class="r"><code>r &lt;- indexDilemma(boeker, self=1, ideal=2)
+r$res1
+r$res2
+r$res3
+r$res4</code></pre>
+</div>
+<div id="literature" class="section level3 unnumbered">
+<h3>Literature</h3>
+<div id="refs" class="references">
+<div id="ref-bell_gridstat_2009">
+<p>Bell, R. C. (2009). Gridstat version 5. University of Melbourne, Australia: Department of Psychology. Retrieved from <a href="http://www.repgrid.unimelb.edu.au/downloads/gridstat.exe" class="uri">http://www.repgrid.unimelb.edu.au/downloads/gridstat.exe</a></p>
+</div>
+<div id="ref-dorough_implicative_2007">
+<p>Dorough, S., Grice, J. W., &amp; Parker, J. (2007). Implicative dilemmas and psychological well-being. <em>Personal Construct Theory &amp; Practice</em>, <em>4</em>, 83–101.</p>
+</div>
+<div id="ref-feixas_multi-center_2004">
+<p>Feixas, G., &amp; Saúl, L. A. (2004). The multi-center dilemma project: An investigation on the role of cognitive conflicts in health. <em>The Spanish Journal of Psychology</em>, <em>7</em>(1), 69–78. Retrieved from <a href="http://www.ncbi.nlm.nih.gov/pubmed/15139250" class="uri">http://www.ncbi.nlm.nih.gov/pubmed/15139250</a></p>
+</div>
+<div id="ref-feixas_detection_2000">
+<p>Feixas, G., Saúl, L. A., &amp; Sanchez, V. (2000). Detection and analysis of implicative dilemmas: Implications for the therapeutic process. In J. W. Scheer (Ed.), <em>The person in society: Challenges to a constructivist theory</em>. Giessen: Psychosozial-Verlag.</p>
+</div>
+<div id="ref-winter_construct_1982">
+<p>Winter, D. A. (1982). Construct relationships, psychological disorder and therapeutic change. <em>The British Journal of Medical Psychology</em>, <em>55 (Pt 3)</em>, 257–269. Retrieved from <a href="http://www.ncbi.nlm.nih.gov/pubmed/7126491" class="uri">http://www.ncbi.nlm.nih.gov/pubmed/7126491</a></p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

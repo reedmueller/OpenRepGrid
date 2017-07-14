@@ -1,0 +1,7 @@
+
+Add new page
+------------
+1) add a new .Rmd file with some content in root folder. Add a link in features
+2) update _navbar.html to link to new site
+3) run _make.R (calls Makefile and adds a footer to index.html) to rerun all files
+4) push to github

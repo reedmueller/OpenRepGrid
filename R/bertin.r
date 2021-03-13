@@ -586,16 +586,16 @@ bertin <- function(x, colors=c("white", "black"), showvalues=TRUE,
 #'                    For additional information on the different types see
 #'                    \code{?dist}. 
 #' @param  cmethod    The agglomeration method to be used. This should be (an
-#'                    unambiguous abbreviation of) one of \code{"ward"}, 
+#'                    unambiguous abbreviation of) one of \code{"ward.D"}, 
 #'                    \code{"single"}, \code{"complete"}, \code{"average"}, 
 #'                    \code{"mcquitty"}, \code{"median"} or \code{"centroid"}.
-#'                    Default is \code{"ward"}.
+#'                    Default is \code{"ward.D"}.
 #'                    A vector of length two can be passed if a different cluster method for
-#'                    constructs and elements is wanted (e.g.\code{c("ward", "euclidean")}).
+#'                    constructs and elements is wanted (e.g.\code{c("ward.D", "euclidean")}).
 #'                    This will apply ward clustering to the constructs and
 #'                    single linkage clustering to the elements. If only one of either
 #'                    constructs or elements is to be clustered the value \code{NA}
-#'                    can be supplied. E.g. to cluster elements only use \code{c(NA, "ward")}.
+#'                    can be supplied. E.g. to cluster elements only use \code{c(NA, "ward.D")}.
 #' @param  p          The power of the Minkowski distance, in case \code{"minkowski"}
 #'                    is used as argument for \code{dmethod}. \code{p} can be a vector
 #'                    of length two if different powers are wanted for constructs and
@@ -652,7 +652,7 @@ bertin <- function(x, colors=c("white", "black"), showvalues=TRUE,
 #'    ### using different methods for constructs and elements
 #'
 #'    # ward clustering for constructs, single linkage for elements
-#'    bertinCluster(bell2010, cmethod=c("ward", "single"))        
+#'    bertinCluster(bell2010, cmethod=c("ward.D", "single"))        
 #'    # euclidean distance measure for constructs, manhatten 
 #'    # distance for elements
 #'    bertinCluster(bell2010, dmethod=c("euclidean", "man"))
@@ -662,7 +662,7 @@ bertin <- function(x, colors=c("white", "black"), showvalues=TRUE,
 #'    ### clustering either constructs or elements only
 #'    # euclidean distance and ward clustering for constructs no 
 #'    # clustering for elements
-#'    bertinCluster(bell2010, cmethod=c("ward", NA))  
+#'    bertinCluster(bell2010, cmethod=c("ward.D", NA))  
 #'    # euclidean distance and single linkage clustering for elements 
 #'    # no clustering for constructs            
 #'    bertinCluster(bell2010, cm=c(NA, "single"))                 
@@ -687,7 +687,7 @@ bertin <- function(x, colors=c("white", "black"), showvalues=TRUE,
 #' }
 #'
 bertinCluster <- function(x, dmethod=c("euclidean", "euclidean"), 
-                          cmethod=c("ward", "ward"), p=c(2,2), align=TRUE, 
+                          cmethod=c("ward.D", "ward.D"), p=c(2,2), align=TRUE, 
                           trim=NA, type=c("triangle"), 
                           xsegs = c(0, .2, .7, .9, 1), ysegs = c(0, .1, .7, 1),
                           x.off=0.01, y.off=0.01,
